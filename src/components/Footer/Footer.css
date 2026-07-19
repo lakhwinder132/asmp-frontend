@@ -1,0 +1,387 @@
+/* @import url('//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css');
+
+.asmp-footer {
+    height: 30vh;
+    background-color: black;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: start;
+    text-align: center;
+}
+
+.footer-ul {
+  position: relative;
+  display: flex;
+  transform: rotate(0deg) skew(0deg);
+  transform-style: preserve-3d;
+}
+
+.footer-li {
+  position: relative;
+  list-style: none;
+  width: 60px;
+  height: 60px;
+  margin: 0 20px;
+}
+
+.footer-li:before {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: -5px;
+  width: 100%;
+  height: 10px;
+  background: #2a2a2a;
+  transform-origin: top;
+  transform: skewX(-41deg);
+}
+
+.footer-li:after {
+  content: '';
+  position: absolute;
+  top: 5px;
+  left: -9px;
+  width: 9px;
+  height: 100%;
+  background: #2a2a2a;
+  transform-origin: right;
+  transform: skewY(-49deg);
+}
+
+.footer-li span {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex !important;
+  background: #2a2a2a;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  font-size: 30px !important;
+  transition: 1.5s ease-out;
+}
+
+.footer-li:hover span {
+  z-index: 1000;
+  transition: .3s;
+  color: #fff;
+  box-shadow: -1px 1px 1px rgba(0, 0, 0, .5);
+}
+
+.footer-li:hover span:nth-child(5) {
+  transform: translate(40px, -40px);
+  opacity: 1;
+}
+
+.footer-li:hover span:nth-child(4) {
+  transform: translate(30px, -30px);
+  opacity: .8;
+}
+
+.footer-li:hover span:nth-child(3) {
+  transform: translate(20px, -20px);
+  opacity: .6;
+}
+
+.footer-li:hover span:nth-child(2) {
+  transform: translate(10px, -10px);
+  opacity: .4;
+}
+
+.footer-li:hover span:nth-child(1) {
+  transform: translate(0px, 0px);
+  opacity: .2;
+}
+
+.footer-li:nth-child(1):hover span {
+  background: #1877F2 !important;
+}
+
+.footer-li:nth-child(2):hover span {
+  background: #ff0000 !important;
+}
+
+
+.footer-li:nth-child(3):hover span { 
+    background-image: url('./src/assets/insta.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: transparent;
+}
+
+.footer-li:nth-child(4):hover span {
+  background: #0077B5 !important;
+}
+
+.heart {
+  font-size: 1em;
+  position: relative;
+}
+
+.heartbeat {
+  position: relative;
+  z-index: 0;
+  animation: beat 2s linear infinite;
+}
+
+.heartecho {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0px;
+  left: 20px;
+  animation: echo 2s linear infinite;
+}
+
+@keyframes beat {
+  0% {
+    transform: scale(1);
+  }
+  14% {
+    transform: scale(0.9);
+  }
+  21% {
+    transform: scale(1.1) skew(0.004turn)
+  }
+  28% {
+    transform: scale(1) skew(0.008turn);
+  }
+  35% {
+    transform: scale(1) skew(0)
+  }
+}
+
+@keyframes echo {
+  0% {
+    opacity: 0.5;
+    transform: scale(1);
+  }
+  14% {
+    opacity: 0.4;
+    transform: scale(0.8);
+  }
+  21% {
+    opacity: 0.4;
+    transform: scale(1.1);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(3);
+  }
+} */
+
+
+.asmp-footer {
+  width: 100vw;
+  background-color: black;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: start;
+  text-align: center;
+  padding: 0rem 1rem 1rem;
+  box-sizing: border-box;
+}
+
+.footer-ul {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.5rem;
+  padding: 0;
+  margin-top: 1.5rem;
+}
+
+.footer-li {
+  position: relative;
+  list-style: none;
+  width: 50px;
+  height: 50px;
+}
+
+.footer-li:before,
+.footer-li:after {
+  display: none;
+}
+
+.footer-li span {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex !important;
+  background: #2a2a2a;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  font-size: 1.5rem !important;
+  transition: 1.5s ease-out;
+  /* border-radius: 50%; */
+}
+
+.footer-li:hover span {
+  z-index: 1000;
+  transition: .3s;
+  color: #fff;
+  box-shadow: -1px 1px 1px rgba(0, 0, 0, .5);
+}
+
+.footer-li:hover span:nth-child(5) {
+  transform: translate(30px, -30px);
+  opacity: 1;
+}
+
+.footer-li:hover span:nth-child(4) {
+  transform: translate(22px, -22px);
+  opacity: .8;
+}
+
+.footer-li:hover span:nth-child(3) {
+  transform: translate(14px, -14px);
+  opacity: .6;
+}
+
+.footer-li:hover span:nth-child(2) {
+  transform: translate(7px, -7px);
+  opacity: .4;
+}
+
+.footer-li:hover span:nth-child(1) {
+  transform: translate(0px, 0px);
+  opacity: .2;
+}
+
+.footer-li:nth-child(1):hover span {
+  background: #1877F2 !important;
+}
+
+.footer-li:nth-child(2):hover span {
+  background: #ff0000 !important;
+}
+
+.footer-li:nth-child(3):hover span {
+  background-image: url('/insta.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-color: transparent;
+}
+
+.footer-li:nth-child(4):hover span {
+  background: #0077B5 !important;
+}
+
+.heart {
+  font-size: 1.2rem;
+  position: relative;
+  text-align: center;
+}
+
+.heartbeat {
+  z-index: 2;
+  animation: beat 2s linear infinite;
+}
+
+.heartecho {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  animation: echo 2s linear infinite;
+}
+
+@keyframes beat {
+  0% {
+    transform: scale(1);
+  }
+
+  14% {
+    transform: scale(0.9);
+  }
+
+  21% {
+    transform: scale(1.1) skew(0.004turn);
+  }
+
+  28% {
+    transform: scale(1) skew(0.008turn);
+  }
+
+  35% {
+    transform: scale(1) skew(0);
+  }
+}
+
+@keyframes echo {
+  0% {
+    opacity: 0.5;
+    transform: scale(1);
+  }
+
+  14% {
+    opacity: 0.4;
+    transform: scale(0.8);
+  }
+
+  21% {
+    opacity: 0.4;
+    transform: scale(1.1);
+  }
+
+  100% {
+    opacity: 0;
+    transform: scale(3);
+  }
+}
+
+/* Responsive Layouts */
+@media (max-width: 768px) {
+  .footer-ul {
+    gap: 1rem;
+  }
+
+  .footer-li {
+    width: 45px;
+    height: 45px;
+  }
+
+  .footer-li span {
+    font-size: 1.3rem !important;
+  }
+
+  .heart {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .footer-ul {
+    flex-direction: row;
+    gap: 0.8rem;
+  }
+
+  .footer-li {
+    width: 40px;
+    height: 40px;
+    margin: 0 5px;
+  }
+
+  .footer-li span {
+    font-size: 1.1rem !important;
+  }
+
+  .heart {
+    font-size: 0.95rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    line-height: 1.4;
+  }
+}

@@ -1,0 +1,276 @@
+@import url('https://fonts.googleapis.com/css2?family=Libre+Bodoni&display=swap');
+
+:root {
+    --switches-bg-color: hwb(314 5% 22% / 0.671);
+    --switches-label-color: #fff;
+    --switch-bg-color: #D9CDB3;
+    --switch-text-color: #d3dad5;
+}
+
+.toggle-bg-image {
+  background-image: url("/toggle_bg.jpg");
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  width: 100vw;
+  height: auto;
+  z-index: -1;
+  /* position: relative; */
+}
+
+.toggle-bg-image::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  /* Adjust the rgba value for desired darkness */
+  z-index: 1;
+}
+
+.toggle-bg-image>* {
+  position: relative;
+  z-index: 2;
+}
+
+.core-or-noncore-container {
+  width: 75%;
+  margin: 0 auto;
+  background-color: transparent;
+  padding: 20px;
+}
+
+.switches-container {
+  width: 100%;
+  position: relative;
+  display: flex;
+  padding: 0;
+  background: var(--switches-bg-color);
+  line-height: 3rem;
+  border: 4px solid #fff;
+  border-radius: 3rem;
+  margin-bottom: 20px;
+}
+
+.switches-container input {
+  visibility: hidden;
+  position: absolute;
+  top: 0;
+}
+
+.switches-container label {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50%;
+  padding: 0.5rem;
+  margin: 0;
+  cursor: pointer;
+  background-color: transparent !important;
+  font-family: 'Fraunces', serif;
+  text-align: center;
+  font-size: 3rem;
+  line-height: 1.2;
+  color: white;
+}
+
+/* switch highlighters wrapper (sliding left / right)
+     - need wrapper to enable the even margins around the highlight box
+  */
+  .switch-wrapper {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 50%;
+    padding: 0.15rem;
+    z-index: 3;
+    transition: transform 0.5s cubic-bezier(0.77, 0, 0.175, 1);
+  }
+  
+  /* switch box highlighter */
+  .switch {
+    border-radius: 3rem;
+    background: lab(71.85% -50.6 8.5 / 0.671);
+    border: 4px solid #fff;
+    font-size: 2rem;
+    height: 100%;
+  }
+  
+  /* switch box labels
+     - default setup
+     - toggle afterwards based on radio:checked status
+  */
+.switch div {
+  width: 100%;
+  /* display: flex;
+    justify-content: center;
+    align-items: center; */
+  text-align: center;
+  opacity: 0;
+  display: block;
+  color: var(--switch-text-color);
+  transition: opacity 0.2s cubic-bezier(0.77, 0, 0.175, 1) 0.125s;
+  will-change: opacity;
+  position: absolute;
+  top: 15%;
+  left: 0;
+}
+
+/* slide the switch box from right to left */
+.switches-container input:nth-of-type(1):checked~.switch-wrapper {
+  transform: translateX(0%);
+}
+
+/* slide the switch box from left to right */
+.switches-container input:nth-of-type(2):checked~.switch-wrapper {
+  transform: translateX(100%);
+}
+
+/* toggle the switch box labels - first checkbox:checked - show first switch div */
+.switches-container input:nth-of-type(1):checked~.switch-wrapper .switch div:nth-of-type(1) {
+  opacity: 1;
+}
+
+/* toggle the switch box labels - second checkbox:checked - show second switch div */
+.switches-container input:nth-of-type(2):checked~.switch-wrapper .switch div:nth-of-type(2) {
+  opacity: 1;
+}
+
+@media (max-width: 768px) {
+  .switch div {
+    padding: auto;
+    position: absolute;
+    top: 25%;
+    left: 0;
+  }
+}
+
+@media (max-width: 600px) {
+  .switch div {
+    padding: auto;
+    position: absolute;
+    top: 15%;
+    left: 0;
+  }
+}
+
+/*************************************************************************************/
+
+.toggle-ul-core {
+  list-style-type: none;
+  padding: 0;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 80%;
+  flex-wrap: wrap;
+}
+
+.toggle-li-core {
+  flex: 1 1 auto;
+  /* Allows the list items to grow and shrink */
+  text-align: center;
+  margin: 5px;
+}
+
+.toggle-li-link-core {
+  text-align: center;
+  display: block;
+  padding: 10px 15px;
+  text-decoration: none;
+  color: #D9CDB3;
+  background-color: #83267E;
+  border: 1px solid white;
+  border-radius: 25px;
+  transition: background-color 0.3s, color 0.3s;
+  font-size: 1.5rem;
+  font-family: 'Fraunces', serif;
+  line-height: 1.2;
+}
+
+/* Hover effect */
+.toggle-li-link-core:hover {
+  background-color: #b3b9d9;
+  color: #099c33;
+}
+
+/* Active state */
+.toggle-li-link-core.active {
+  background-color: #d9d0b3;
+  color: #245331;
+}
+  .toggle-ul-noncore {
+    list-style-type: none;
+    padding: 0;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 80%;
+    flex-wrap: wrap;
+  }
+  
+  .toggle-li-noncore {
+    flex: 1 1 auto; /* Allows the list items to grow and shrink */
+    text-align: center;
+    margin: 5px;
+  }
+  
+  .toggle-li-link-noncore {
+    text-align: center;
+    display: block;
+    padding: 10px 15px;
+    text-decoration: none;
+    color: #D9CDB3;
+    background-color: #83267E;
+    border: 1px solid white;
+    border-radius: 25px;
+    transition: background-color 0.3s, color 0.3s;
+    font-size: 1.5rem;
+    font-family: 'Fraunces', serif;
+    line-height: 1.2;
+  }
+  
+  /* Hover effect */
+  .toggle-li-link-noncore:hover {
+    background-color: #b3d9d6;
+    color:#83267E;
+  }
+  
+  /* Active state */
+  .toggle-li-link-noncore.active {
+    background-color: #D9CDB3;
+    color: #83267E;
+  }
+  
+  /* Responsive design for smaller screens */
+  @media (max-width: 768px) {
+    .toggle-li-noncore {
+      flex: 1 1 25%;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .toggle-li-noncore {
+      flex: 1 1 100%; /* One item per row */
+    }
+  }
+/*************************************************************************************/
+
+.btn-outline-light {
+  border-radius: 50%;
+  width: 40px;
+}
+
+.card {
+  transition: transform 0.3s ease;
+}
+
+.col-sm-3:hover {
+  transform: scale(1.05);
+}
+  
+  

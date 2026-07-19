@@ -1,0 +1,46 @@
+.mentor-ke-card {
+    transition: all 0.3s ease;
+    background-color: #83267E;
+    border-radius: 5px;
+    border-color: #fff;
+    max-width: 18rem;
+    height: 100%;
+    color: hwb(66 32% 9% / 0.884);
+    padding: 1rem;
+    font-family: 'Libre Bodoni', serif;
+    position: relative;
+    margin-bottom: 4rem;
+  }
+
+  .mentor-first-div {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 5px solid white;
+    border-radius: 0px;
+    box-sizing: border-box;
+    pointer-events: none;
+  }
+
+  .mentor-upper-card {
+    box-sizing: border-box;
+    border-radius: 0px;
+    background-color: hsl(303, 84%, 26%);
+    margin: -0.4rem;
+    padding: 0.4rem;
+  }
+
+  /* other css styling is coming from Wishlist_MentorCards.jsx because the class name is same */
+  
+  @media (max-width: 1000px) {
+    .card {
+      max-width: 100%;
+      margin: 0 auto;
+    }
+  
+    .card-header {
+      font-size: 1rem;
+    }
+  }

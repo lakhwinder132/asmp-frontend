@@ -1,0 +1,213 @@
+/* Allow scrolling, hide scrollbar visually */
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  overflow: auto;
+  scrollbar-width: none;        /* Firefox */
+  -ms-overflow-style: none;     /* IE 10+ */
+}
+
+/* Chrome, Safari */
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+  display: none;
+}
+
+/* Full page container */
+.sneakpeak-container {
+  height: 100vh;
+  width: 100vw;
+  padding: 20px;
+  background-image: url('/register_bg.png');
+  background-size: cover;
+  background-position: center;
+  color: white;
+  font-family: 'Fraunces', serif;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+/* Scrollable row of cards */
+.scroll-wrapper {
+  display: flex;
+  flex: 1;
+  overflow-x: auto;
+  overflow-y: hidden;
+  gap: 20px;
+  padding: 10px 0;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  padding: 100px;
+  
+}
+
+/* Hide scrollbar (Chrome/Safari) */
+.scroll-wrapper::-webkit-scrollbar {
+  display: none;
+}
+
+/* Mentor card design */
+.mentor-card {
+  flex: 0 0 auto;
+  width: 450px;
+  height: 530px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(5px);
+  border-radius: 16px;
+  padding: 20px;
+  scroll-snap-align: center;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+  transition: transform 0.3s ease;
+  text-align: center;
+  overflow: hidden;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* Text inside card */
+.mentor-card h4,
+.mentor-card h6,
+.mentor-card p {
+  margin: 10px 0;
+  color: #fff;
+}
+
+/* Title section styling */
+.title-section {
+  margin-bottom: 15px;
+}
+
+.position-title {
+  margin-bottom: 8px !important;
+  font-size: 1.8rem;
+  color: #fff !important;
+}
+
+.company-name {
+  margin: 0 !important;
+  font-size: 1.4rem;
+  color: #dd93ed !important;
+  font-weight: 600;
+  opacity: 0.9;
+}
+
+/* Button */
+.cssbuttons-io-button {
+  background: #c547bf;
+  color: white;
+  font-family: inherit;
+  padding: 0.35em 3.3em 0.35em 1.2em;
+  font-size: 17px;
+  font-weight: 500;
+  border-radius: 0.9em;
+  border: none;
+  letter-spacing: 0.05em;
+  display: flex;
+  align-items: center;
+  box-shadow: inset 0 0 1.6em -0.6em #83267E;
+  overflow: hidden;
+  position: relative;
+  height: 2.8em;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  text-decoration: none;
+  margin: 0 auto;
+}
+
+.cssbuttons-io-button .icon {
+  background: white;
+  margin-left: 1em;
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 2.2em;
+  width: 2.2em;
+  border-radius: 0.7em;
+  box-shadow: 0.1em 0.1em 0.6em 0.2em #7b52b9;
+  right: 0.3em;
+  transition: all 0.3s;
+}
+
+.cssbuttons-io-button:hover .icon {
+  width: calc(100% - 0.6em);
+}
+
+.cssbuttons-io-button .icon svg {
+  width: 1.1em;
+  transition: transform 0.3s;
+  color: #7b52b9;
+}
+
+.cssbuttons-io-button:hover .icon svg {
+  transform: translateX(0.1em);
+}
+
+.cssbuttons-io-button:active .icon {
+  transform: scale(0.95);
+}
+
+.btn-wrapper {
+  margin-top: auto;
+  padding-top: 15px;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+/* Arrow styles */
+.arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 2.5rem;
+  color: white;
+  background-color: rgba(0, 0, 0, 0.4);
+  border: 2px solid white;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  line-height: 46px;
+  text-align: center;
+  cursor: pointer;
+  z-index: 10;
+  transition: background 0.3s, transform 0.3s;
+}
+
+.arrow:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+  transform: translateY(-50%) scale(1.1);
+}
+
+.arrow.left {
+  left: 10px;
+}
+
+.arrow.right {
+  right: 10px;
+}
+
+/* Ensure container is positioned relatively */
+.sneakpeak-container {
+  position: relative; /* <-- add this line if it's not already there */
+}
+
+
+/* Responsive */
+@media (max-width: 600px) {
+  .mentor-card {
+    width: 80vw;
+    height: 480px;
+  }
+
+  .heading {
+    font-size: 2rem;
+  }
+}

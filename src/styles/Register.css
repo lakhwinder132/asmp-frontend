@@ -1,0 +1,485 @@
+/* Reset and Base Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body, html {
+  height: 100vh;
+  background: #000000;
+  font-family: 'Fraunces', serif;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+/* Form Container */
+.form-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 20px;
+  background-image: url("/teampage/registerbg1.png");
+  background-size: cover;
+  background-position: center;
+  width: 100%;
+}
+
+/* Form Box */
+.form-box {
+  width: 578px;
+  max-width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  
+}
+
+/* Image Container */
+.image-containerr {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  ;
+}
+
+/* Logo Image */
+.logoo {
+  width: 544px;
+  max-width: 90vw;
+  height: auto;
+  object-fit: contain;
+}
+
+/* Input Fields */
+.input-field {
+  width: 578px;
+  max-width: 100%;
+  height: 58px;
+  padding: 0 20px;
+  background: rgba(255, 255, 255, 0.35);
+  border: none;
+  border-radius: 10px;
+  color: white;
+  font-family: 'Fraunces', serif;
+  font-size: 22px;
+  margin-bottom: 10px;
+}
+
+.input-field::placeholder {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+/* Password Field Container */
+.password-field-container {
+  position: relative;
+  width: 578px;
+  max-width: 100%;
+  margin-bottom: 15px;
+  transition: all 0.3s ease;
+}
+
+.password-field-container:hover {
+  transform: translateY(-2px);
+}
+
+.password-input {
+  width: 100%;
+  padding-right: 70px; /* Make room for the eye icon */
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.4) 0%, rgba(255, 255, 255, 0.25) 100%);
+  border: 2px solid transparent;
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.password-input:focus {
+  border-color: #C8A840;
+  box-shadow: 
+    0 8px 32px rgba(189, 4, 231, 0.2),
+    0 0 0 3px rgba(189, 4, 231, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  transform: scale(1.02);
+}
+
+/* Eye Icon Button */
+.eye-icon-button {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0.1) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  cursor: pointer;
+  font-size: 18px;
+  color: rgba(255, 255, 255, 0.9);
+  padding: 8px;
+  border-radius: 8px;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  z-index: 10;
+  backdrop-filter: blur(5px);
+  min-width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.eye-icon-button:hover {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0.2) 100%);
+  color: white;
+  border-color: rgba(255, 255, 255, 0.5);
+  transform: translateY(-50%) scale(1.1);
+  box-shadow: 
+    0 8px 25px rgba(0, 0, 0, 0.2),
+    0 4px 15px rgba(255, 255, 255, 0.1);
+}
+
+.eye-icon-button:active {
+  transform: translateY(-50%) scale(0.95);
+}
+
+/* Password Match Indicator */
+.password-match-indicator {
+  width: 578px;
+  max-width: 100%;
+  padding: 12px 20px;
+  margin-bottom: 15px;
+  border-radius: 12px;
+  font-family: 'Fraunces', serif;
+  font-size: 16px;
+  font-weight: 600;
+  text-align: center;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  position: relative;
+  overflow: hidden;
+  backdrop-filter: blur(10px);
+  border: 1px solid transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.password-match-indicator::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+  transition: left 0.6s ease;
+}
+
+.password-match-indicator:hover::before {
+  left: 100%;
+}
+
+.password-match-indicator.match {
+  background: linear-gradient(135deg, rgba(34, 197, 94, 0.15) 0%, rgba(34, 197, 94, 0.25) 100%);
+  color: #10b981;
+  border-color: rgba(34, 197, 94, 0.4);
+  box-shadow: 
+    0 8px 32px rgba(34, 197, 94, 0.15),
+    0 4px 16px rgba(34, 197, 94, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.password-match-indicator.match::after {
+  content: '✓';
+  font-size: 20px;
+  font-weight: bold;
+  color: #10b981;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  animation: checkmarkPop 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.password-match-indicator.no-match {
+  background: linear-gradient(135deg, rgba(239, 68, 68, 0.15) 0%, rgba(239, 68, 68, 0.25) 100%);
+  color: #ef4444;
+  border-color: rgba(239, 68, 68, 0.4);
+  box-shadow: 
+    0 8px 32px rgba(239, 68, 68, 0.15),
+    0 4px 16px rgba(239, 68, 68, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.password-match-indicator.no-match::after {
+  content: '✗';
+  font-size: 20px;
+  font-weight: bold;
+  color: #ef4444;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  animation: xmarkPop 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* Animations */
+@keyframes checkmarkPop {
+  0% {
+    transform: scale(0) rotate(-45deg);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.2) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1) rotate(0deg);
+    opacity: 1;
+  }
+}
+
+@keyframes xmarkPop {
+  0% {
+    transform: scale(0) rotate(45deg);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.2) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1) rotate(0deg);
+    opacity: 1;
+  }
+}
+
+/* Enhanced input field styling */
+.input-field:focus {
+  border-color: #C8A840;
+  box-shadow: 
+    0 8px 32px #f6be06,
+    0 0 0 3px #c5a026,
+    inset 0 1px 0 #C8A840;
+  transform: scale(1.02);
+}
+
+/* Button */
+.register-button {
+  width: 578px;
+  max-width: 100%;
+  height: 58px;
+  background: #C8A840;
+  border: none;
+  border-radius: 10px;
+  color: black;
+  font-family: 'Fraunces', serif;
+  font-size: 22px;
+  font-weight: 900;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: all 0.3s ease;
+}
+
+.register-button:hover {
+  background: #ecb608;
+}
+
+.register-button:disabled,
+.register-button.button-disabled {
+  background: #C8A840;
+  cursor: not-allowed;
+}
+
+/* Login Link */
+.login-link {
+  color: rgba(255, 255, 255, 0.7);
+  font-family: 'Fraunces', serif;
+  font-size: 22px;
+  text-align: center;
+  margin-top: 20px;
+}
+
+.login-link a {
+  color: #C8A840;
+  text-decoration: none;
+}
+
+.login-link a:hover {
+  text-decoration: underline;
+}
+
+/* React Select Overrides */
+.react-select__control {
+  width: 578px !important;
+  max-width: 100% !important;
+  height: 58px !important;
+  min-height: 58px !important;
+  background: rgba(255, 255, 255, 0.35) !important;
+  border: none !important;
+  border-radius: 10px !important;
+  padding: 0 !important;
+}
+
+.react-select__control--menu-is-open {
+  border-radius: 10px 10px 0 0 !important;
+}
+
+.react-select__value-container {
+  height: 58px !important;
+  padding: 0 20px !important;
+}
+
+.react-select__indicators {
+  height: 58px !important;
+}
+
+.react-select__menu {
+  width: 578px !important;
+  max-width: 100% !important;
+  background: rgba(0, 0, 0, 0.9) !important;
+  border-radius: 0 0 10px 10px !important;
+  margin-top: -5px !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.react-select__menu-list {
+  padding: 0 !important;
+  background: rgba(0, 0, 0, 0.9) !important;
+  border-radius: 0 0 10px 10px !important;
+}
+
+.react-select__option {
+  font-family: 'Fraunces', serif !important;
+  font-size: 22px !important;
+  color: white !important;
+  padding: 15px 20px !important;
+  background: transparent !important;
+}
+
+.react-select__option--is-focused {
+  background:#b4a061!important;
+}
+
+.react-select__option--is-selected {
+  background: #C8A840 !important;
+}
+
+.react-select__single-value {
+  color: white !important;
+  font-family: 'Fraunces', serif !important;
+  font-size: 22px !important;
+}
+
+.react-select__placeholder {
+  color: rgba(255, 255, 255, 0.7) !important;
+  font-family: 'Fraunces', serif !important;
+  font-size: 22px !important;
+}
+
+/* Responsive Media Queries */
+@media (max-width: 768px) {
+  .form-box {
+    width: 90vw;
+  }
+
+  .input-field,
+  .register-button,
+  .react-select__control {
+    font-size: 18px !important;
+    height: 50px !important;
+  }
+
+  .input-field {
+    padding: 0 15px;
+  }
+
+  .password-field-container {
+    width: 90vw;
+  }
+
+  .password-input {
+    padding-right: 60px;
+  }
+
+  .eye-icon-button {
+    font-size: 16px;
+    right: 10px;
+    min-width: 35px;
+    height: 35px;
+    padding: 6px;
+  }
+
+  .password-match-indicator {
+    width: 90vw;
+    font-size: 14px;
+    padding: 10px 15px;
+  }
+
+  .react-select__value-container {
+    height: 50px !important;
+    padding: 0 15px !important;
+  }
+
+  .react-select__menu {
+    font-size: 18px !important;
+  }
+
+  .logoo {
+    width: 80vw;
+    margin-bottom: 20px;
+  }
+
+  .login-link {
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 480px) {
+  .form-box {
+    width: 100%;
+  }
+
+  .input-field,
+  .register-button,
+  .react-select__control {
+    font-size: 16px !important;
+    height: 45px !important;
+  }
+
+  .input-field {
+    padding: 0 10px;
+  }
+
+  .password-field-container {
+    width: 100%;
+  }
+
+  .password-input {
+    padding-right: 55px;
+  }
+
+  .eye-icon-button {
+    font-size: 14px;
+    right: 8px;
+    min-width: 32px;
+    height: 32px;
+    padding: 5px;
+  }
+
+  .password-match-indicator {
+    width: 100%;
+    font-size: 13px;
+    padding: 8px 12px;
+  }
+
+  .react-select__value-container {
+    height: 45px !important;
+    padding: 0 10px !important;
+  }
+
+  .logoo {
+    width: 90vw;
+    margin-bottom: 15px;
+  }
+
+  .login-link {
+    font-size: 16px;
+  }
+}

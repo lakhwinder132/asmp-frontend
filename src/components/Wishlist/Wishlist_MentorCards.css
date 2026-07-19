@@ -1,0 +1,696 @@
+.wishlist-card {
+  transition: all 0.3s ease;
+  background-color: #932C92;
+  border-radius: 0px;
+  border-color: #fff;
+  border-width: 4px;
+  width: 100%;
+  max-width: 18rem;
+  min-height: 400px;
+  max-height: 500px;
+  height: 400px;
+  color: #ffffff;
+  padding: 1rem;
+  font-family: 'Libre Bodoni', serif;
+  position: relative;
+  margin-bottom: 2rem;
+  overflow-y: auto;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  /* Ensure scrolling works properly */
+  scrollbar-gutter: stable;
+  /* Prevent horizontal scroll */
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+/* Custom purple scrollbar styling */
+.wishlist-card::-webkit-scrollbar {
+  width: 14px;
+}
+
+.wishlist-card::-webkit-scrollbar-track {
+  background: rgba(147, 44, 146, 0.6);
+  border-radius: 8px;
+  margin: 4px 0;
+}
+
+.wishlist-card::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #A742A4 0%, #932C92 100%);
+  border-radius: 8px;
+  border: 2px solid rgba(255, 255, 255, 0.4);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.wishlist-card::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #932C92 0%, #7B1FA2 100%);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+}
+
+/* Firefox scrollbar */
+.wishlist-card {
+  scrollbar-width: auto;
+  scrollbar-color: #A742A4 rgba(147, 44, 146, 0.6);
+}
+
+.upper-card {
+  box-sizing: border-box;
+  border-radius: 0px;
+  border-bottom-left-radius: 25px;
+  border-bottom-right-radius: 25px;
+  min-height: 200px;
+  height: auto;
+  background-color: #A742A4;
+  margin-top: -50px;
+  margin-right: -10px;
+  margin-left: -10px;
+  padding: 2rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+  /* Allow content to be visible */
+  overflow: visible;
+}
+
+/* Improved text handling for headers */
+.card-header {
+  margin-top: 15px;
+  background: none;
+  color: #ffffff;
+  border-bottom: none;
+  font-weight: bold;
+  text-align: center;
+  font-size: clamp(18px, 4vw, 25px);
+  line-height: 1.3;
+  margin-bottom: 8px;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  hyphens: auto;
+  max-width: 100%;
+  /* Allow text to be visible */
+  overflow: visible;
+}
+
+.card-header:first-of-type {
+  margin-top: 15px;
+}
+
+.card-header:not(:first-of-type) {
+  margin-top: 6px;
+  margin-bottom: 6px;
+}
+
+.lower-card-body {
+  padding: 1rem 1rem 1.5rem 1rem;
+  margin-top: 20px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  /* Allow content to grow and trigger scroll if needed */
+  min-height: 0;
+  /* No individual scrolling - content flows naturally */
+  overflow: visible;
+  /* Prevent horizontal scroll */
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  /* Ensure proper spacing between elements */
+  gap: 15px;
+}
+
+.card-text {
+  color: #ffffff;
+  text-align: center;
+  font-size: clamp(14px, 3vw, 16px);
+  line-height: 1.4;
+  margin-bottom: 15px;
+  margin-top: 8px;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  /* Allow text to be visible and scrollable */
+  overflow: visible;
+}
+
+.mentor-id-div {
+  background-color: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 15px;
+  padding: 12px 16px;
+  margin: 10px 0 25px 0;
+  text-align: center;
+  color: #ffffff;
+  font-size: clamp(12px, 2.5vw, 14px);
+  line-height: 1.4;
+  min-height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  hyphens: auto;
+  flex-shrink: 0;
+  /* Allow text to be visible and scrollable */
+  overflow: visible;
+}
+
+.add-to-wishlist {
+  margin-top: 25px;
+  padding: 12px 20px;
+  background-color: #A742A4;
+  border: none;
+  border-radius: 25px;
+  color: #ffffff;
+  cursor: pointer;
+  font-size: clamp(14px, 3vw, 16px);
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+  text-align: center;
+  display: block;
+  width: 100%;
+  flex-shrink: 0;
+  /* Ensure button stays at bottom */
+  margin-top: auto;
+}
+
+.add-to-wishlist p {
+  margin: 0;
+  line-height: 1.3;
+  font-size: inherit;
+  transition: all 0.3s ease;
+  display: block;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  /* Allow text to be visible */
+  overflow: visible;
+}
+
+/* Ensure proper scrolling behavior */
+.wishlist-card > * {
+  flex-shrink: 0;
+}
+
+/* Custom scrollbar styling for lower-card-body */
+/* Lower card body content flows naturally without individual scrolling */
+
+/* Enhanced scrolling for touch devices */
+@media (hover: none) and (pointer: coarse) {
+  .wishlist-card {
+    -webkit-overflow-scrolling: touch;
+    scroll-behavior: auto;
+  }
+  
+  /* Lower card body no longer scrolls individually */
+}
+
+/* Ensure cards maintain proper height and scrolling on all devices */
+.wishlist-card {
+  /* Prevent content from breaking the card layout */
+  contain: layout style paint;
+  /* Ensure proper stacking context */
+  isolation: isolate;
+}
+
+/* Optimize scrolling performance for main card */
+.wishlist-card {
+  /* Enable hardware acceleration for smooth scrolling */
+  transform: translateZ(0);
+  /* Ensure proper layer creation */
+  will-change: scroll-position;
+}
+
+/* Ensure button stays at bottom even when scrolling */
+.add-to-wishlist {
+  position: sticky;
+  bottom: 0;
+  z-index: 1;
+  /* Add subtle shadow to indicate it's above content */
+  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Profile mode specific styling for better scrolling */
+.wishlist-card[data-mode="profile"] {
+  /* Ensure consistent height for profile cards */
+  height: 400px;
+  min-height: 400px;
+  max-height: 500px;
+  /* Optimize scrolling for profile mode */
+  overflow-y: auto;
+  scrollbar-gutter: stable;
+}
+
+/* Ensure profile mode cards maintain proper layout */
+.wishlist-card[data-mode="profile"] .upper-card {
+  flex-shrink: 0;
+}
+
+.wishlist-card[data-mode="profile"] .lower-card-body {
+  flex: 1;
+  overflow: visible;
+  /* Content flows naturally without individual scrolling */
+  min-height: 0;
+}
+
+/* Selection mode specific styling */
+.wishlist-card[data-mode="selection"] {
+  /* Selection mode has fixed height, no scrolling needed */
+  overflow: hidden;
+}
+
+/* Display and wishlist modes */
+.wishlist-card[data-mode="display"],
+.wishlist-card[data-mode="wishlist"] {
+  /* Main card handles all scrolling */
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+/* Add subtle visual indicator when content is scrollable */
+.wishlist-card:has(.lower-card-body:not([style*="overflow: hidden"])) {
+  /* Add a subtle border or shadow to indicate scrollable content */
+  box-shadow: 0 0 0 1px rgba(167, 66, 164, 0.3);
+}
+
+/* Ensure smooth transitions for all interactive elements */
+.wishlist-card,
+.wishlist-card * {
+  transition: all 0.2s ease;
+}
+
+/* Enhance focus states for accessibility */
+.wishlist-card:focus-within {
+  outline: 2px solid #A742A4;
+  outline-offset: 2px;
+}
+
+/* Lower card body content flows naturally */
+
+/* Custom scrollbar for the main card when needed */
+.wishlist-card::-webkit-scrollbar {
+  width: 12px;
+}
+
+.wishlist-card::-webkit-scrollbar-track {
+  background: rgba(147, 44, 146, 0.4);
+  border-radius: 6px;
+  margin: 2px 0;
+}
+
+.wishlist-card::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #A742A4 0%, #932C92 100%);
+  border-radius: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.wishlist-card::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #932C92 0%, #7B1FA2 100%);
+}
+
+/* Ensure consistent behavior across different browsers */
+.wishlist-card {
+  /* Firefox scrollbar */
+  scrollbar-width: auto;
+  scrollbar-color: #A742A4 rgba(147, 44, 146, 0.6);
+  /* Safari scrollbar */
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Performance optimizations for smooth scrolling */
+.wishlist-card {
+  /* Enable hardware acceleration */
+  transform: translateZ(0);
+  /* Optimize for scrolling */
+  will-change: scroll-position;
+  /* Ensure proper layer creation */
+  backface-visibility: hidden;
+  /* Prevent layout shifts during scroll */
+  contain: layout style paint;
+}
+
+/* Ensure smooth scrolling on all devices */
+@media (prefers-reduced-motion: no-preference) {
+  .wishlist-card {
+    scroll-behavior: smooth;
+  }
+}
+
+/* Respect user's motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  .wishlist-card {
+    scroll-behavior: auto;
+  }
+}
+
+/* Ensure proper touch scrolling on mobile devices */
+@media (hover: none) and (pointer: coarse) {
+  .wishlist-card {
+    -webkit-overflow-scrolling: touch;
+    /* Optimize for touch scrolling */
+    overscroll-behavior: contain;
+  }
+  
+  /* Lower card body no longer scrolls individually */
+}
+
+/* High DPI display optimizations */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .wishlist-card::-webkit-scrollbar-thumb {
+    /* Ensure crisp scrollbar on high DPI displays */
+    border-width: 0.5px;
+  }
+}
+
+/* Responsive Design for Mentor Cards */
+/* Large tablets and small desktops */
+@media (max-width: 1024px) {
+  .wishlist-card {
+    max-width: 16rem;
+    min-height: 380px;
+    max-height: 480px;
+    height: 380px;
+    padding: 0.8rem;
+    margin-bottom: 1.5rem;
+    /* Ensure scrolling works on tablets */
+    overflow-y: auto;
+    scrollbar-gutter: stable;
+  }
+  
+  .upper-card {
+    min-height: 180px;
+    padding: 1.8rem 1.2rem;
+  }
+  
+  .card-header {
+    font-size: clamp(16px, 3.5vw, 22px);
+    margin-top: 12px;
+    margin-bottom: 8px;
+  }
+  
+  .card-text {
+    font-size: clamp(13px, 2.8vw, 15px);
+    margin-bottom: 12px;
+  }
+  
+  .mentor-id-div {
+    font-size: clamp(11px, 2.3vw, 13px);
+    padding: 12px 14px;
+    min-height: 55px;
+    margin-bottom: 20px;
+  }
+}
+
+/* Tablets */
+@media (max-width: 768px) {
+  .wishlist-card {
+    max-width: 15rem;
+    min-height: 360px;
+    max-height: 460px;
+    height: 360px;
+    padding: 0.7rem;
+    margin-bottom: 1.2rem;
+    /* Ensure scrolling works on tablets */
+    overflow-y: auto;
+    scrollbar-gutter: stable;
+  }
+  
+  .upper-card {
+    min-height: 160px;
+    padding: 1.5rem 1rem;
+  }
+  
+  .card-header {
+    font-size: clamp(15px, 3.2vw, 20px);
+    margin-top: 10px;
+    margin-bottom: 6px;
+  }
+  
+  .card-text {
+    font-size: clamp(12px, 2.6vw, 14px);
+    margin-bottom: 10px;
+  }
+  
+  .mentor-id-div {
+    font-size: clamp(10px, 2.1vw, 12px);
+    padding: 10px 12px;
+    min-height: 50px;
+    margin-bottom: 18px;
+  }
+}
+
+/* Mobile phones - Single column layout */
+@media (max-width: 767px) {
+  .wishlist-card {
+    max-width: 100%;
+    width: 100%;
+    min-height: 400px;
+    max-height: 500px;
+    height: 400px;
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+    margin-left: 0;
+    margin-right: 0;
+    /* Ensure scrolling works on mobile */
+    overflow-y: auto;
+    scrollbar-gutter: stable;
+  }
+  
+  .card-header {
+    font-size: clamp(18px, 4.5vw, 22px);
+    margin-top: 15px;
+    margin-bottom: 8px;
+    line-height: 1.2;
+  }
+  
+  .upper-card {
+    min-height: 180px;
+    margin-top: -40px;
+    margin-left: -8px;
+    margin-right: -8px;
+    padding: 2rem 1.2rem;
+  }
+  
+  .lower-card-body {
+    margin-top: 15px;
+    padding: 0.8rem;
+    /* Content flows naturally without individual scrolling */
+    overflow: visible;
+  }
+  
+  .card-text {
+    font-size: clamp(14px, 3.5vw, 16px);
+    margin-bottom: 12px;
+    margin-top: 6px;
+  }
+  
+  .mentor-id-div {
+    font-size: clamp(13px, 3vw, 15px);
+    padding: 12px 16px;
+    margin: 8px 0 20px 0;
+    min-height: 60px;
+  }
+  
+  .add-to-wishlist {
+    margin-top: 20px;
+    padding: 12px 20px;
+    font-size: clamp(14px, 3.5vw, 16px);
+  }
+}
+
+/* Small mobile phones */
+@media (max-width: 480px) {
+  .wishlist-card {
+    max-width: 100%;
+    width: 100%;
+    min-height: 380px;
+    max-height: 480px;
+    height: 380px;
+    padding: 0.8rem;
+    margin-bottom: 1.2rem;
+    /* Ensure scrolling works on small mobile */
+    overflow-y: auto;
+    scrollbar-gutter: stable;
+  }
+  
+  .card-header {
+    font-size: clamp(16px, 4vw, 20px);
+    margin-top: 12px;
+    margin-bottom: 6px;
+    line-height: 1.2;
+  }
+  
+  .upper-card {
+    min-height: 160px;
+    margin-top: -35px;
+    margin-left: -6px;
+    margin-right: -6px;
+    padding: 1.5rem 1rem;
+  }
+  
+  .lower-card-body {
+    margin-top: 12px;
+    padding: 0.6rem;
+    /* Content flows naturally without individual scrolling */
+    overflow: visible;
+  }
+  
+  .card-text {
+    font-size: clamp(13px, 3.2vw, 15px);
+    margin-bottom: 10px;
+    margin-top: 5px;
+  }
+  
+  .mentor-id-div {
+    font-size: clamp(12px, 2.8vw, 14px);
+    padding: 10px 14px;
+    margin: 6px 0 18px 0;
+    min-height: 55px;
+  }
+  
+  .add-to-wishlist {
+    margin-top: 18px;
+    padding: 10px 18px;
+    font-size: clamp(13px, 3.2vw, 15px);
+  }
+}
+
+/* Extra small mobile phones */
+@media (max-width: 360px) {
+  .wishlist-card {
+    max-width: 100%;
+    width: 100%;
+    min-height: 360px;
+    max-height: 460px;
+    height: 360px;
+    padding: 0.6rem;
+    margin-bottom: 1rem;
+    /* Ensure scrolling works on extra small mobile */
+    overflow-y: auto;
+    scrollbar-gutter: stable;
+  }
+  
+  .card-header {
+    font-size: clamp(14px, 3.8vw, 18px);
+    margin-top: 10px;
+    margin-bottom: 5px;
+    line-height: 1.1;
+  }
+  
+  .upper-card {
+    min-height: 140px;
+    margin-top: -30px;
+    margin-left: -4px;
+    margin-right: -4px;
+    padding: 1.2rem 0.8rem;
+  }
+  
+  .lower-card-body {
+    margin-top: 10px;
+    padding: 0.5rem;
+    /* Content flows naturally without individual scrolling */
+    overflow: visible;
+  }
+  
+  .card-text {
+    font-size: clamp(12px, 3vw, 14px);
+    margin-bottom: 8px;
+    margin-top: 4px;
+  }
+  
+  .mentor-id-div {
+    font-size: clamp(11px, 2.6vw, 13px);
+    padding: 8px 12px;
+    margin: 5px 0 15px 0;
+    min-height: 50px;
+  }
+  
+  .add-to-wishlist {
+    margin-top: 15px;
+    padding: 8px 16px;
+    font-size: clamp(12px, 3vw, 14px);
+  }
+}
+
+/* Ensure proper text wrapping and prevent overflow */
+.wishlist-card * {
+  box-sizing: border-box;
+}
+
+/* Improve text readability on small screens */
+@media (max-width: 480px) {
+  .wishlist-card {
+    font-size: 14px;
+  }
+  
+  .card-header,
+  .card-text,
+  .mentor-id-div,
+  .add-to-wishlist {
+    hyphens: auto;
+    word-break: break-word;
+  }
+}
+
+/* Additional responsive improvements */
+@media (max-width: 767px) {
+  .wishlist-card {
+    margin: 0 auto;
+    max-width: 100%;
+  }
+  
+  .upper-card {
+    margin-left: -8px;
+    margin-right: -8px;
+  }
+}
+
+/* Ensure cards maintain aspect ratio and don't stretch too much */
+@media (min-width: 768px) {
+  .wishlist-card {
+    max-width: 18rem;
+    width: 100%;
+  }
+}
+
+/* Improve card spacing in grid layout */
+.wishlist-card {
+  margin: 0;
+  align-self: start;
+}
+
+/* Ensure consistent card heights in grid */
+.wishlist-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* Better text handling for long content */
+.card-header,
+.card-text,
+.mentor-id-div {
+  max-width: 100%;
+  overflow: visible;
+}
+
+/* Improve button responsiveness */
+.add-to-wishlist {
+  flex-shrink: 0;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.add-to-wishlist p {
+  text-align: center;
+  width: 100%;
+}
+
+
+
+
+
+

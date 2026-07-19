@@ -1,0 +1,411 @@
+/* Box sizing for consistent layout */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Base reset */
+body,
+html {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: auto;
+  min-height: 100vh;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+/* Team container */
+.team-members {
+  position: relative;
+  text-align: center;
+  color: white;
+  font-family: 'Fraunces', serif;
+  background-image: url('../../assets/team_bg.png');
+  background-size: cover;
+  background-position: center;
+  padding: 10vh 0;
+  animation: moveBackground 10s linear infinite alternate;
+}
+
+/* Dark overlay */
+.team-members::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1;
+}
+
+/* Make sure content is above overlay */
+.team-members>* {
+  position: relative;
+  z-index: 2;
+}
+
+/* Headings */
+.headingg {
+  font-size: 60px;
+  font-weight: 700;
+  margin-bottom: 50px;
+  color: #FFFFFF;
+}
+
+.head2 {
+  font-size: 40px;
+  font-weight: 700;
+  margin-bottom: 30px;
+  color: #FFFFFF;
+}
+
+.sub-head {
+  font-size: 30px;
+  font-weight: 700;
+  margin: 30px 0;
+  color: #FFFFFF;
+}
+
+/* Layout */
+.team-grid-single {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 100vw;
+  margin: 0 auto 50px;
+}
+
+.team-grid-core {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+  justify-items: center;
+  gap: 40px;
+  max-width: 90vw;
+  margin: 0 auto 50px;
+}
+
+/* Team member card */
+.team-member {
+  text-align: center;
+  padding: 20px 10px;
+}
+
+/* Profile images */
+.image-circle,
+.image-circle-large {
+  border-radius: 50%;
+  background-size: cover;
+  background-position: center;
+  margin: 0 auto;
+  background-color: transparent;
+  transition: transform 0.3s ease;
+}
+
+.image-circle:hover,
+.image-circle-large:hover {
+  transform: scale(1.05);
+}
+
+.image-circle {
+  width: 302px;
+  height: 305.77px;
+}
+
+.image-circle-large {
+  width: 353.62px;
+  height: 358.04px;
+}
+
+/* Member name */
+.name {
+  font-size: 24px;
+  font-weight: 700;
+  margin-top: 15px;
+  color: #FFFFFF;
+}
+
+/* Social icons */
+.social-links {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  margin-top: 12px;
+  padding: 8px 16px;
+  background-color: transparent;
+  transition: all 0.3s ease;
+}
+
+.icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  padding: 8px;
+  background: linear-gradient(135deg, #83267E, #9B4B96, #B366AD);
+  box-shadow: 
+    0 4px 15px rgba(131, 38, 126, 0.4),
+    0 8px 25px rgba(131, 38, 126, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  filter: brightness(1.1);
+}
+
+.icon::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.6s ease;
+}
+
+.icon:hover {
+  transform: translateY(-3px) scale(1.1);
+  box-shadow: 
+    0 8px 25px rgba(131, 38, 126, 0.6),
+    0 15px 35px rgba(131, 38, 126, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  background: linear-gradient(135deg, #9B4B96, #B366AD, #C47BB8);
+  filter: brightness(1.3);
+}
+
+.icon:hover::before {
+  left: 100%;
+}
+
+.icon:active {
+  transform: translateY(-1px) scale(1.05);
+  transition: all 0.1s ease;
+}
+
+/* Instagram specific styling */
+.icon[alt="Instagram"] {
+  background: linear-gradient(135deg, #833AB4, #FD1D1D, #F77737);
+  box-shadow: 
+    0 4px 15px rgba(131, 58, 180, 0.4),
+    0 8px 25px rgba(253, 29, 29, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  position: relative;
+}
+
+.icon[alt="Instagram"]::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 60%;
+  height: 60%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.2) 0%, transparent 70%);
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.icon[alt="Instagram"]:hover {
+  background: linear-gradient(135deg, #9B4B96, #FD3333, #F88847);
+  box-shadow: 
+    0 8px 25px rgba(131, 58, 180, 0.6),
+    0 15px 35px rgba(253, 29, 29, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.icon[alt="Instagram"]:hover::after {
+  opacity: 1;
+}
+
+/* LinkedIn specific styling */
+.icon[alt="LinkedIn"] {
+  background: linear-gradient(135deg, #0077B5, #00A0DC, #0077B5);
+  box-shadow: 
+    0 4px 15px rgba(0, 119, 181, 0.4),
+    0 8px 25px rgba(0, 160, 220, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  position: relative;
+}
+
+.icon[alt="LinkedIn"]::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 60%;
+  height: 60%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.15) 0%, transparent 70%);
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.icon[alt="LinkedIn"]:hover {
+  background: linear-gradient(135deg, #0088C6, #00B0EC, #0088C6);
+  box-shadow: 
+    0 8px 25px rgba(0, 119, 181, 0.6),
+    0 15px 35px rgba(0, 160, 220, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.icon[alt="LinkedIn"]:hover::after {
+  opacity: 1;
+}
+
+/* Add a subtle pulse animation for the icons */
+@keyframes iconPulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+/* Add a floating effect */
+@keyframes iconFloat {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-2px);
+  }
+}
+
+/* Add a subtle glow effect */
+@keyframes iconGlow {
+  0%, 100% {
+    filter: brightness(1.1) drop-shadow(0 0 5px rgba(131, 38, 126, 0.3));
+  }
+  50% {
+    filter: brightness(1.2) drop-shadow(0 0 8px rgba(131, 38, 126, 0.5));
+  }
+}
+
+.icon {
+  animation: iconFloat 4s ease-in-out infinite, iconGlow 3s ease-in-out infinite;
+}
+
+.icon:hover {
+  animation: none;
+  filter: brightness(1.3) drop-shadow(0 0 12px rgba(131, 38, 126, 0.8));
+}
+
+/* Responsive styles */
+@media (max-width: 1200px) {
+  .team-grid-core {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .image-circle-large {
+    width: 220px;
+    height: 220px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .headingg {
+    font-size: 50px;
+  }
+
+  .head2 {
+    font-size: 35px;
+  }
+
+  .sub-head,
+  .name {
+    font-size: 22px;
+  }
+
+  .image-circle,
+  .image-circle-large {
+    width: 180px;
+    height: 180px;
+  }
+
+  .icon {
+    width: 28px;
+    height: 28px;
+    padding: 6px;
+  }
+}
+
+@media (max-width: 768px) {
+  .team-grid-core {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .headingg {
+    font-size: 40px;
+  }
+
+  .head2 {
+    font-size: 30px;
+  }
+
+  .sub-head,
+  .name {
+    font-size: 20px;
+  }
+
+  .image-circle,
+  .image-circle-large {
+    width: 160px;
+    height: 160px;
+  }
+
+  .icon {
+    width: 24px;
+    height: 24px;
+    padding: 5px;
+  }
+}
+
+@media (max-width: 480px) {
+  .team-grid-core {
+    grid-template-columns: 1fr;
+  }
+
+  .headingg {
+    font-size: 30px;
+  }
+
+  .head2 {
+    font-size: 25px;
+  }
+
+  .sub-head,
+  .name {
+    font-size: 18px;
+  }
+
+  .image-circle,
+  .image-circle-large {
+    width: 140px;
+    height: 140px;
+  }
+
+  .icon {
+    width: 20px;
+    height: 20px;
+    padding: 4px;
+  }
+}
+
+/* Subtle animation */
+@keyframes moveBackground {
+  0% {
+    background-position: center;
+  }
+
+  100% {
+    background-position: center 10%;
+  }
+}

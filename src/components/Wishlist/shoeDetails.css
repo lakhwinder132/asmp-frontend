@@ -1,0 +1,21 @@
+.wishlistButton {
+    padding: 10px;
+    width: 70%;
+    border-radius: 20px;
+}
+
+.wishlistButton:hover {
+    cursor: pointer;
+    opacity: 0.8;
+}
+
+/* Apply styles to the scrollbar track */
+.hideScrollBar::-webkit-scrollbar {
+    width: 5px;
+}
+
+/* Apply styles to the scrollbar thumb (the draggable part) */
+.hideScrollBar::-webkit-scrollbar-thumb {
+    background-color: #865dff;
+    border-radius: 4px;
+}

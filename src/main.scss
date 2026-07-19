@@ -1,0 +1,36 @@
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&display=swap');
+// styles/main.scss
+$body-bg : transparent;
+$body-color: white;
+$border-width: 0; 
+$accordion-padding-x: 0;
+$accordion-button-padding-x: 0px;
+$accordion-button-padding-y: 30px;
+$accordion-body-padding-x: 0px;
+$accordion-button-active-bg: transparent;
+$accordion-button-active-color: white;
+$accordion-button-focus-box-shadow: 0;
+$font-size-base: 1.5rem;
+$accordion-button-padding-y: 2px;
+$focus-ring-box-shadow: none;
+$accordion-icon-active-color: white;
+
+$input-btn-font-size-base: 14px;
+$input-btn-font-size-md: 24px;
+
+$input-btn-font-size: $input-btn-font-size-base;
+
+@import '../node_modules/bootstrap/scss/bootstrap.scss'; // Import other Sass files if needed
+
+@include media-breakpoint-up(md) {
+    .btn, .form-control {
+      font-size: $input-btn-font-size-md;
+    }
+}
+  
+//   @include media-breakpoint-up(lg) {
+//     $input-btn-font-size: 16px;
+//   }
+
+
+// Add your custom styles here
