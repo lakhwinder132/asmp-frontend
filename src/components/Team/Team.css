@@ -16,18 +16,24 @@ html {
   overflow-x: hidden;
   overflow-y: auto;
 }
-
+@font-face {
+  font-family: 'Exima Geometric';
+  src: url('../../assets/Exima Geometric.ttf Geometric.ttf') format('truetype'),
+       url('../../assets/Exima Geometric.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
 /* Team container */
 .team-members {
   position: relative;
   text-align: center;
   color: white;
-  font-family: 'Fraunces', serif;
-  background-image: url('../../assets/team_bg.png');
-  background-size: cover;
-  background-position: center;
-  padding: 10vh 0;
-  animation: moveBackground 10s linear infinite alternate;
+  font-family: 'Exima Geometric', sans-serif;
+  background-image: url('../../assets/bgteamcrop.png');
+  background-position: top center;
+  background-size: contain;
+  padding: 13vh 0;
+  /* animation: moveBackground 10s linear infinite alternate; */
 }
 
 /* Dark overlay */
