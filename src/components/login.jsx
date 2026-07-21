@@ -172,7 +172,7 @@ function Login() {
         <button
           onMouseEnter={() => sethover(true)}
           onMouseLeave={() => sethover(false)}
-          style={{ fontFamily: "Fraunces" ,backgroundImage: hover ?`url(${loginButtonBg})`:"none"}}
+          style={{ fontFamily: "Exima Geometric" ,backgroundImage: hover ?`url(${loginButtonBg})`:"none"}}
           onClick={handleLogin}
           className={
             allFieldsFilled()
@@ -187,8 +187,8 @@ function Login() {
           style={{
             color: "rgba(255,255,255,0.8)",
             fontSize: "medium",
-            fontFamily: "Fraunces",
           }}
+          id="registerlink"
         >
           New User?{" "}
           <a

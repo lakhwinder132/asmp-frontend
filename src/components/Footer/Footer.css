@@ -1,3 +1,9 @@
+@font-face {
+    font-family: "BatmanForeverAlternate";
+    src: url("../../assets/fonts/BatmanForeverAlternate/batmfa.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
+}
 /* @import url('//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css');
 
 .asmp-footer {
@@ -282,6 +288,11 @@
   font-size: 1.2rem;
   position: relative;
   text-align: center;
+}
+
+.Footerfont{
+  font-family:"BatmanForeverAlternate" ;
+
 }
 
 .heartbeat {

@@ -1,4 +1,13 @@
 /* Reset and Base Styles */
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+
+@font-face {
+    font-family: "Exima Geometric";
+    src: url("../assets/fonts/exima_geometric/Exima Geometric.otf") format("opentype");
+    font-weight: normal;
+    font-style: normal;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -8,7 +17,7 @@
 body, html {
   height: 100vh;
   background: #000000;
-  font-family: 'Fraunces', serif;
+  font-family: 'Space Grotesk', serif;
   overflow-y: auto;
   overflow-x: hidden;
 }
@@ -63,7 +72,7 @@ body, html {
   border: none;
   border-radius: 10px;
   color: white;
-  font-family: 'Fraunces', serif;
+  font-family: 'Space Grotesk', serif;
   font-size: 22px;
   margin-bottom: 10px;
 }
@@ -150,7 +159,7 @@ body, html {
   padding: 12px 20px;
   margin-bottom: 15px;
   border-radius: 12px;
-  font-family: 'Fraunces', serif;
+  font-family: 'Space Grotesk', serif;
   font-size: 16px;
   font-weight: 600;
   text-align: center;
@@ -268,7 +277,7 @@ body, html {
   border: none;
   border-radius: 10px;
   color: black;
-  font-family: 'Fraunces', serif;
+  font-family: 'Exima Geometric', serif;
   font-size: 22px;
   font-weight: 900;
   cursor: pointer;
@@ -289,7 +298,7 @@ body, html {
 /* Login Link */
 .login-link {
   color: rgba(255, 255, 255, 0.7);
-  font-family: 'Fraunces', serif;
+  font-family: 'Space Grotesk', serif;
   font-size: 22px;
   text-align: center;
   margin-top: 20px;
@@ -363,13 +372,13 @@ body, html {
 
 .react-select__single-value {
   color: white !important;
-  font-family: 'Fraunces', serif !important;
+  font-family: 'Space Grotesk', serif !important;
   font-size: 22px !important;
 }
 
 .react-select__placeholder {
   color: rgba(255, 255, 255, 0.7) !important;
-  font-family: 'Fraunces', serif !important;
+  font-family: 'Space Grotesk', serif !important;
   font-size: 22px !important;
 }
 
@@ -482,4 +491,8 @@ body, html {
   .login-link {
     font-size: 16px;
   }
+}
+
+#registerlink{
+  font-family: "Space Grotesk";
 }

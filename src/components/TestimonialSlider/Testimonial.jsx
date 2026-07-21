@@ -58,7 +58,6 @@ const TestimonialSlider = () => {
         className="testimonialHeading"
         style={{
           marginTop: "2%",
-          fontFamily: "Fraunces, serif",
           fontSize: "clamp(2rem, 4vw, 3.5rem)",
           fontWeight: "700",
           lineHeight: "1.2",

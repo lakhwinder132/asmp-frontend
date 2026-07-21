@@ -78,7 +78,7 @@ export const MiddleInnerContainer = styled.div`
   width: 100%;
   text-decoration: none;
   list-style-type: none;
-  color: white;
+  color: #121B3D;
   font-size: 1.5rem;
 
   li:hover{
@@ -159,7 +159,7 @@ export const NavbarExtendedContainer = styled.div`
     right: -20%;
     width: 140%;
     height: 140%;
-    background: rgba(0, 0, 0, 0.1); /* Subtle cloudy element */
+    background: #A4B4B8; /* Subtle cloudy element */
     filter: blur(40px);
     z-index: -1;
     animation: ${slideIn} 1s ease-out forwards;
@@ -172,7 +172,7 @@ export const NavbarExtendedContainer = styled.div`
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.1); /* Additional cloudy effect */
+    background: #A4B4B8; /* Additional cloudy effect */
     clip-path: polygon(0% 10%, 100% 0%, 100% 85%, 0% 100%);
     z-index: -1;
   }
@@ -183,7 +183,7 @@ export const NavbarExtendedContainer = styled.div`
     gap: 5%;
   }
   @media (max-width: 950px) {
-    height: 750px;
+    height: 750px;  
     width: 750px;
   padding-bottom: 5%;
   gap: 1%;
@@ -196,15 +196,15 @@ export const NavbarExtendedContainer = styled.div`
   }
 
   li {
-    color: #fff;
-    text-shadow: 0px 0px 5px rgba(255, 255, 255, 0.5);
+    color: #121B3D;
+    text-shadow: 0px 0px 5px #2f3750;
     padding: 10px 0;
     transition: color 0.3s ease, text-shadow 0.3s ease;
     cursor: pointer;
 
     &:hover {
-      color: #aaa; /* Light grey for hover effect */
-      text-shadow: 0px 0px 10px #aaa, 0px 0px 20px #aaa;
+      color: #040817; /* Light grey for hover effect */
+      text-shadow: 0px 0px 10px #1c233e, 0px 0px 20px #161d35;
     }
   }
 `;
