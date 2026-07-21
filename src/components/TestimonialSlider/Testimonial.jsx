@@ -53,7 +53,18 @@ const TestimonialSlider = () => {
   }, []);
 
   return (
-    <div ref={testimonialRef} id="testimonials">
+    <div
+    ref={testimonialRef}
+    id="testimonials"
+    style={{
+      backgroundImage: "url('/Testimonial.png')",
+      backgroundSize: "cover",
+      backgroundPosition: "center",
+      backgroundRepeat: "no-repeat",
+      minHeight: "100vh",
+      width: "100%",
+    }}
+   >
       <div
         className="testimonialHeading"
         style={{
@@ -88,9 +99,9 @@ const TestimonialSlider = () => {
           }}
         >
           {testimonials.map((testimonial, index) => (
-            <SwiperSlide key={index} >
-              <div style={styles.testimonialItem} >
-                <div style={styles.overContainer} >
+            <SwiperSlide key={index}>
+              <div style={styles.testimonialItem}>
+                <div style={styles.overContainer}>
                   <div
                     className="name-heading"
                     style={{
@@ -172,7 +183,7 @@ const styles = {
     background: "linear-gradient(90deg, rgba(0, 0, 0, 0.58) 0%, rgba(89, 84, 84, 0.58) 43.5%, rgba(0, 0, 0, 0.58) 87.5%, rgba(0, 0, 0, 0.58) 100%)",
     backdropFilter: "blur(1px)",
     WebkitBackdropFilter: "blur(10px)",
-    borderRadius: "10px",
+    borderRadius: "0px",
     border: "4px solid rgba(255, 255, 255, 1)",
     overflow: "hidden",
     padding: "20px",

@@ -290,3 +290,7 @@
     font-size: 1.3rem;
   }
 }
+.main-container-events {
+    min-height: 100vh;
+    width: 100%;
+}

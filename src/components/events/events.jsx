@@ -1,6 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
 import './Events.css';
-import backgroundImage from '/events_bg.jpg';
 import CursorAnimation from '../CursorAnimation';
 
 const EventImages = () => {
@@ -69,14 +68,14 @@ const EventImages = () => {
 
   return (
     <>
-      {/* <CursorAnimation /> */}
+      <CursorAnimation />
       <div
         className='main-container-events'
         style={{
-          backgroundImage: `linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url(${backgroundImage})`,
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          backgroundRepeat: 'no-repeat',
+          backgroundImage: "linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url('/event_background.png')",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
         }}
       >
         <h1 className='heading'>Events</h1>

@@ -14,8 +14,6 @@
     "@fortawesome/free-brands-svg-icons": "^6.6.0",
     "@fortawesome/free-solid-svg-icons": "^6.6.0",
     "@fortawesome/react-fontawesome": "^0.2.2",
-    "@react-three/drei": "^9.122.0",
-    "@react-three/fiber": "^8.18.0",
     "@restart/ui": "^1.8.0",
     "axios": "^1.7.3",
     "bootstrap": "^5.3.3",
@@ -36,8 +34,7 @@
     "slick-carousel": "^1.8.1",
     "styled-components": "^6.1.12",
     "sweetalert2": "^11.12.4",
-    "swiper": "^11.1.9",
-    "three": "^0.185.1"
+    "swiper": "^11.1.9"
   },
   "devDependencies": {
     "@types/react": "^18.3.3",
