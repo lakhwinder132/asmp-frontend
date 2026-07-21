@@ -14,8 +14,8 @@ const SWING_FREQUENCY = 0.8;
 
 // Cone dimensions before the length/width sliders are applied.
 const BASE_CONE_LENGTH = 90;
-const BASE_CONE_RADIUS = 30;
-const CONE_RADIAL_SEGMENTS = 32;
+const BASE_CONE_RADIUS = 50;
+const CONE_RADIAL_SEGMENTS = 40;
 
 const MANUAL_LENGTH_SCALE = 1;
 const MANUAL_WIDTH_SCALE = 0.3;
@@ -66,27 +66,65 @@ function getBatBottomCenter(batScene) {
  * point means the tip — not the base — is what's pinned there, so the
  * beam hangs and swings from its top, same as a lamp on a cord.
  */
-function ConeLight({ length, radius, opacity = 0.5 }) {
+function ConeLight({ length, radius, opacity = 0.2 }) {
   const geometry = useMemo(() => {
     const geo = new THREE.ConeGeometry(radius, length, CONE_RADIAL_SEGMENTS, 1, true);
-    // ConeGeometry defaults to apex at y=+length/2, base at y=-length/2.
-    // Translating by -length/2 brings the apex to the local origin.
     geo.translate(0, -length / 2, 0);
     return geo;
   }, [length, radius]);
 
-  return (
-    <mesh geometry={geometry}>
-      <meshBasicMaterial
-        color="#ffffff"
-        transparent
-        opacity="0.3"
-        blending={THREE.NormalBlending}
-        depthWrite={false}
-        side={THREE.FrontSide}
-      />
-    </mesh>
-  );
+  const material = useMemo(() => {
+    return new THREE.ShaderMaterial({
+      uniforms: {
+        uColor: { value: new THREE.Color("#ffffff") },
+        uOpacity: { value: opacity },
+        uLength: { value: length },
+      },
+      transparent: true,
+      depthWrite: false,
+      side: THREE.DoubleSide,
+      blending: THREE.AdditiveBlending,
+      vertexShader: `
+        varying vec3 vNormal;
+        varying vec3 vViewPosition;
+        varying float vY;
+        void main() {
+          vY = position.y; // 0 at tip, -length at base
+          vec4 mvPosition = modelViewMatrix * vec4(position, 1.0);
+          vViewPosition = -mvPosition.xyz;
+          vNormal = normalize(normalMatrix * normal);
+          gl_Position = projectionMatrix * mvPosition;
+        }
+      `,
+      fragmentShader: `
+        uniform vec3 uColor;
+        uniform float uOpacity;
+        uniform float uLength;
+        varying vec3 vNormal;
+        varying vec3 vViewPosition;
+        varying float vY;
+
+        void main() {
+          vec3 viewDir = normalize(vViewPosition);
+          vec3 normal = normalize(vNormal);
+
+          // Fresnel: ~0 face-on, ~1 at grazing/silhouette angles
+          float fresnel = pow(1.0 - abs(dot(viewDir, normal)), 2.0);
+          // We want the SILHOUETTE (high fresnel) to fade OUT, not in
+          float edgeFade = 1.0 - fresnel;
+
+          // Fade from tip (t=0) to base (t=1)
+          float t = clamp(-vY / uLength, 0.0, 1.0);
+          float lengthFade = pow(1.0 - t, 1.6);
+
+          float alpha = uOpacity * edgeFade * lengthFade;
+          gl_FragColor = vec4(uColor, alpha);
+        }
+      `,
+    });
+  }, [opacity, length]);
+
+  return <mesh geometry={geometry} material={material} />;
 }
 
 function BatWithLight({ lengthScale, widthScale, positionNudge }) {
@@ -122,7 +160,7 @@ function BatWithLight({ lengthScale, widthScale, positionNudge }) {
     <group ref={groupRef} position={[0, groupY, 0]}>
       <primitive object={batScene} scale={scaleFactor} rotation={[0,Math.PI/2,0]} />
 
-      <group position={[0, 0.01, 0]}>
+      <group position={[0, 0.03, 0]}>
         <ConeLight length={finalLength} radius={finalRadius} />
       </group>
     </group>
