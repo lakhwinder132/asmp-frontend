@@ -7,16 +7,14 @@ import CursorAnimation from "../CursorAnimation";
 import Lottie from "lottie-react";
 import animationData from "../../assets/scroll.json";
 import Footer from "../Footer/Footer";
-import './Homee.css'
-import BAT from "./../threeshadowmap/page.jsx"
+import "./Homee.css";
+import BAT from "./../threeshadowmap/page.jsx";
 
 export default function Homee() {
   const scrollAnimation = () => {
-    const scrollElement = document.body;
-    const currentScrollPosition = scrollElement.scrollTop;
-    scrollElement.scrollTo({
-      top: currentScrollPosition + 1000,
-      behavior: 'smooth'
+    window.scrollBy({
+      top: 1000,
+      behavior: "smooth",
     });
   };
 
@@ -24,46 +22,68 @@ export default function Homee() {
     <>
       <CursorAnimation />
 
-      {/* Bat overlay: fixed over the whole viewport, sits above the background
-          but pointerEvents 'none' so it never blocks clicks on your real UI. */}
       <div
+        className="home-background-image"
         style={{
-          position: "fixed",
-          inset: 0,
-          zIndex: 500,
-          pointerEvents: "none",
+          position: "relative",
+          overflow: "hidden",
         }}
       >
-        <BAT />
-      </div>
-
-      <div className='home-background-image'>
-        <div  
+        {/* BAT Background Layer */}
+        <div
           style={{
-            position: "fixed",
-            bottom: "2%",
-            right: "2%",
-            width: "5%",
-            height: "auto",
-            zIndex: 1000,
-            cursor: "pointer",
+            position: "absolute",
+            top: 40,
+            left: 0,
+            width: "100%",
+            height: "200%",
+            zIndex: 0,
+            pointerEvents: "none",
           }}
         >
-          <Lottie
-            animationData={animationData}
-            onClick={() => {
-              scrollAnimation();
+          <BAT />
+        </div>
+
+        {/* Content */}
+        <div
+          style={{
+            position: "relative",
+            zIndex: 1,
+          }}
+        >
+          <div
+            style={{
+              position: "fixed",
+              bottom: "2%",
+              right: "2%",
+              width: "5%",
+              height: "auto",
+              zIndex: 1000,
+              cursor: "pointer",
+            }}
+          >
+            <Lottie
+              animationData={animationData}
+              onClick={scrollAnimation}
+            />
+          </div>
+
+          <div
+            style={{
+              width: "100vw",
+              height: "7vh",
+              background: "transparent",
             }}
           />
+
+          <Home />
+          <About />
+          <div id="testimonials" />
+          <TestimonialSlider />
+          <div id="faq" />
+          <Faq />
+          <Footer />
         </div>
-        <div style={{width:'100vw',height:'7vh',backgroundColor:'transparent'}}></div>
-        <Home />
-        <About />
-        <div id="testimonials"></div>
-        <TestimonialSlider />
-        <div id="faq"></div>
-        <Faq />
-        <Footer />
       </div>
     </>
   );

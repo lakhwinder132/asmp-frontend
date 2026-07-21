@@ -1,13 +1,5 @@
-import React from "react";
-import ThreeShadowMap from "../threeshadowmap/page.jsx"; // <-- adjust this path to match where you saved ThreeShadowMap.jsx
-import landingImage from "../../assets/landing.png"; // <-- your background image
+export default function app(){
+  return(<div className="h-[200px] w-screen">
 
-function Home() {
-  return (
-    <div className="w-screen">
-      hello 
-    </div>
-  );
+  </div>)
 }
-
-export default Home;

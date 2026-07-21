@@ -62,7 +62,7 @@
   align-items: center;
   justify-content: center;
   color: white;
-  background: linear-gradient(135deg, #83267E 0%, #9a2e94 50%, #b366ad 100%);
+  background: linear-gradient(135deg, #C8A840 0%, #C8A840 50%, #C8A840 100%);
   border: none;
   border-radius: 25px;
   padding: 1rem 2.5rem;
@@ -75,9 +75,9 @@
   overflow: hidden;
   transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   box-shadow: 
-    0 10px 30px rgba(131, 38, 126, 0.4),
-    0 4px 15px rgba(0, 0, 0, 0.3),
-    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    0 10px 30px #C8A840,
+    0 4px 15px #b19640,
+    inset 0 1px 0 #c0aa62;
   transform: translateY(0);
 }
 
@@ -88,7 +88,7 @@
   left: -100%;
   width: 100%;
   height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  background: linear-gradient(90deg, transparent, #d3ba69);
   transition: left 0.6s ease;
 }
 
@@ -99,7 +99,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(135deg, #9a2e94 0%, #83267E 50%, #6a1b6a 100%);
+  background: linear-gradient(135deg, #C8A840 0%, #c9ac4e 50%, #c3a84f 100%);
   opacity: 0;
   transition: opacity 0.4s ease;
   border-radius: 25px;
@@ -108,9 +108,9 @@
 .events-button:hover {
   transform: translateY(-5px);
   box-shadow: 
-    0 20px 40px rgba(131, 38, 126, 0.6),
-    0 8px 25px rgba(0, 0, 0, 0.4),
-    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+    0 20px 40px #C8A840,
+    0 8px 25px #C8A840,
+    inset 0 1px 0 #C8A840;
 }
 
 .events-button:hover::before {

@@ -3,6 +3,8 @@ import "../styles/Login.css";
 import { Navigate } from "react-router-dom";
 import UseLogin from "../hooks/useLogin";
 import logo from "../assets/images/mk.png";
+import loginButtonBg from "../assets/images/loginbuttonbg.png";
+import loginbutton from "../assets/images/loginbutton.png";
 import CursorAnimation from "./CursorAnimation";
 import Swal from "sweetalert2";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -132,12 +134,13 @@ function Login() {
   const inputStyle = ["input2"];
   const buttonStyle = ["button"];
   const disabledButtonStyle = ["button", "button-disabled"];
+  const [hover,sethover]=useState(false);
 
   return localStorage.getItem("accessToken") !== null ? (
     <Navigate to="/toggle" />
   ) : (
     <>
-      {/* <CursorAnimation /> */}
+      <CursorAnimation />
       <div className="form-container">
         <div className="image-containerr">
           <img src={logo} alt="Logo" className="logoo" />
@@ -167,7 +170,9 @@ function Login() {
 
         <div style={{ color: "white" }}>{error}</div>
         <button
-          style={{ fontFamily: "Fraunces" }}
+          onMouseEnter={() => sethover(true)}
+          onMouseLeave={() => sethover(false)}
+          style={{ fontFamily: "Fraunces" ,backgroundImage: hover ?`url(${loginButtonBg})`:"none"}}
           onClick={handleLogin}
           className={
             allFieldsFilled()
@@ -176,7 +181,7 @@ function Login() {
           }
           disabled={!allFieldsFilled()}
         >
-          LOGIN
+          {hover ? "":"login"}
         </button>
         <div
           style={{

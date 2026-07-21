@@ -2,7 +2,7 @@
   import { Spin as Hamburger } from "hamburger-react";
   import Checkbox from "./HamburgerIcon";
   import { useNavigate, useLocation } from "react-router-dom";
-  import logo from "../../assets/images/Sarc.png";
+  import logo from "../../assets/images/sarclogo.png";
   import {
     NavbarContainer,
     LeftContainer,
@@ -12,6 +12,7 @@
     MiddleInnerContainer,
     NavbarExtendedContainer,
   } from "./navbar.style";
+import { Zoom } from "swiper/modules";
 
   function NavbarContent({ navigate, location }) {
     const [selectedItem, setSelectedItem] = useState(null);
@@ -286,7 +287,7 @@
               src={logo}
               alt="Logo"
               onClick={() => navigate("/")}
-              style={{ objectFit: "100% 100%" }}
+              style={{ objectFit: "100% 100%"}}
             />
           </LeftContainer>
           <MiddleContainer>

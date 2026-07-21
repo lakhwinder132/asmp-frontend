@@ -284,7 +284,7 @@ function Register() {
     <Navigate to="/login" />
   ) : (
     <>
-      {/* <CursorAnimation /> */}
+      <CursorAnimation />
       <div style={{ height: "10vh" }}></div>
       <div className="form-container">
         <div className="image-containerr">
