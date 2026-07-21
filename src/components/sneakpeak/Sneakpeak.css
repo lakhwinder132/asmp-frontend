@@ -221,17 +221,209 @@ body::-webkit-scrollbar {
 }
 
 /* Responsive */
-@media (max-width: 600px) {
-  .mentor-card {
-    width: 80vw;
-    height: 320px;
+/* ===========================
+   LARGE TABLETS (1024px)
+=========================== */
+@media screen and (max-width: 1024px) {
+
+  .sneakpeak-container{
+    padding: 160px 40px 40px;
   }
 
-  .scroll-wrapper {
+  .scroll-wrapper{
+    gap: 45px;
     padding: 60px 20px;
   }
 
-  .heading {
+  .mentor-card{
+    width: 320px;
+    height: 360px;
+    padding: 24px 20px;
+  }
+
+  .mentor-card p{
+    font-size: 1.1rem;
+  }
+
+  .position-title{
+    font-size: 1.25rem;
+  }
+
+  .company-name{
+    font-size: 1rem;
+  }
+
+  .cssbuttons-io-button{
+    font-size: 1.1rem;
+  }
+
+  .arrow{
+    width: 45px;
+    height: 45px;
+    line-height: 41px;
     font-size: 2rem;
   }
+
+}
+
+/* ===========================
+   TABLETS (768px)
+=========================== */
+@media screen and (max-width: 768px) {
+
+  .sneakpeak-container{
+    padding: 140px 25px 30px;
+  }
+
+  .scroll-wrapper{
+    gap: 30px;
+    padding: 40px 10px;
+  }
+
+  .mentor-card{
+    width: 280px;
+    height: 340px;
+    border-radius: 22px;
+    padding: 20px;
+  }
+
+  .mentor-card p{
+    font-size: 1rem;
+  }
+
+  .position-title{
+    font-size: 1.15rem;
+  }
+
+  .company-name{
+    font-size: 0.95rem;
+  }
+
+  .cssbuttons-io-button{
+    font-size: 1rem;
+    height: 2.5em;
+  }
+
+  .cssbuttons-io-button .icon{
+    width: 1.8em;
+    height: 1.8em;
+  }
+
+  .arrow{
+    width: 42px;
+    height: 42px;
+    line-height: 38px;
+    font-size: 1.8rem;
+  }
+
+}
+
+/* ===========================
+   MOBILE (600px)
+=========================== */
+@media screen and (max-width: 600px) {
+
+  .sneakpeak-container{
+    padding: 110px 15px 20px;
+    overflow-x: hidden;
+  }
+
+  .scroll-wrapper{
+    gap: 20px;
+    padding: 20px 5px;
+    scroll-padding: 15px;
+  }
+
+  .mentor-card{
+    width: calc(100vw - 40px);
+    max-width: 340px;
+    height: auto;
+    min-height: 340px;
+    padding: 20px 16px;
+    border-radius: 20px;
+  }
+
+  .mentor-card p{
+    font-size: 0.95rem;
+    line-height: 1.5;
+  }
+
+  .position-title{
+    font-size: 1rem;
+  }
+
+  .company-name{
+    font-size: 0.9rem;
+  }
+
+  .btn-wrapper{
+    margin-top: 20px;
+  }
+
+  .cssbuttons-io-button{
+    width: 100%;
+    justify-content: center;
+    font-size: 0.95rem;
+    padding: 0.8em 3em 0.8em 1em;
+  }
+
+  .cssbuttons-io-button .icon{
+    width: 1.8em;
+    height: 1.8em;
+  }
+
+  .arrow{
+    width: 38px;
+    height: 38px;
+    line-height: 34px;
+    font-size: 1.5rem;
+  }
+
+  .arrow.left{
+    left: 5px;
+  }
+
+  .arrow.right{
+    right: 5px;
+  }
+
+}
+
+/* ===========================
+   SMALL PHONES (400px)
+=========================== */
+@media screen and (max-width: 400px) {
+
+  .sneakpeak-container{
+    padding: 95px 10px 20px;
+  }
+
+  .mentor-card{
+    width: calc(100vw - 20px);
+    padding: 18px 14px;
+  }
+
+  .mentor-card p{
+    font-size: 0.9rem;
+  }
+
+  .position-title{
+    font-size: 0.95rem;
+  }
+
+  .company-name{
+    font-size: 0.82rem;
+  }
+
+  .cssbuttons-io-button{
+    font-size: 0.9rem;
+  }
+
+  .arrow{
+    width: 34px;
+    height: 34px;
+    line-height: 30px;
+    font-size: 1.3rem;
+  }
+
 }
