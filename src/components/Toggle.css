@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Libre+Bodoni&display=swap');
 
 :root {
-    --switches-bg-color: hwb(314 5% 22% / 0.671);
+    --switches-bg-color: hwb(60 5% 22% / 0.671);
     --switches-label-color: #fff;
     --switch-bg-color: #D9CDB3;
     --switch-text-color: #d3dad5;
@@ -182,7 +182,7 @@
   padding: 10px 15px;
   text-decoration: none;
   color: #D9CDB3;
-  background-color: #83267E;
+  background-color: #838326;
   border: 1px solid white;
   border-radius: 25px;
   transition: background-color 0.3s, color 0.3s;
@@ -225,7 +225,7 @@
     padding: 10px 15px;
     text-decoration: none;
     color: #D9CDB3;
-    background-color: #83267E;
+    background-color: #838326;
     border: 1px solid white;
     border-radius: 25px;
     transition: background-color 0.3s, color 0.3s;
@@ -237,13 +237,13 @@
   /* Hover effect */
   .toggle-li-link-noncore:hover {
     background-color: #b3d9d6;
-    color:#83267E;
+    color:#838326;
   }
   
   /* Active state */
   .toggle-li-link-noncore.active {
     background-color: #D9CDB3;
-    color: #83267E;
+    color: #838326;
   }
   
   /* Responsive design for smaller screens */
@@ -272,5 +272,3 @@
 .col-sm-3:hover {
   transform: scale(1.05);
 }
-  
-  

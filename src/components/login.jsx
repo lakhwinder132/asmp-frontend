@@ -13,11 +13,11 @@ import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 const customSwalStyles = `
   .swal2-popup {
     background: #1a1a1a !important;
-    border: 2px solid #83267E !important;
+    border: 2px solid #C8A840 !important;
     border-radius: 15px !important;
   }
   .swal2-title {
-    color: #9a2e94 !important;
+    color: #C8A840 !important;
     font-family: 'Fraunces', serif !important;
     font-size: 1.5rem !important;
   }
@@ -26,7 +26,7 @@ const customSwalStyles = `
     font-family: 'Fraunces', serif !important;
   }
   .swal2-confirm {
-    background: #83267E !important;
+    background: #C8A840 !important;
     border: none !important;
     border-radius: 8px !important;
     font-family: 'Fraunces', serif !important;
@@ -34,18 +34,18 @@ const customSwalStyles = `
     padding: 12px 24px !important;
   }
   .swal2-confirm:hover {
-    background: #9a2e94 !important;
+    background: #D3BB69 !important;
     transform: translateY(-2px) !important;
     transition: all 0.3s ease !important;
   }
   .swal2-icon {
-    border-color: #83267E !important;
+    border-color: #C8A840 !important;
   }
   .swal2-icon.swal2-error {
-    border-color: #83267E !important;
+    border-color: #C8A840 !important;
   }
   .swal2-icon.swal2-error [class^='swal2-x-mark-line'] {
-    background-color: #83267E !important;
+    background-color: #C8A840 !important;
   }
 `;
 
@@ -89,7 +89,7 @@ function Login() {
         icon: "error",
         title: "LDAP ID Required",
         text: "Please enter your LDAP ID to proceed with login",
-        confirmButtonColor: "#83267E",
+        confirmButtonColor: "#d7b56b",
         confirmButtonText: "Got it!",
       });
       return;
@@ -101,10 +101,10 @@ function Login() {
         title: "Invalid LDAP ID Format",
         html: `
           <div style="text-align: left; padding: 10px;">
-            <p style="margin-top: 15px; color: #b366ad;">Please add "@iitb.ac.in" to your LDAP ID and try again.</p>
+            <p style="margin-top: 15px; color: #D9CDB3;">Please add "@iitb.ac.in" to your LDAP ID and try again.</p>
           </div>
         `,
-        confirmButtonColor: "#83267E",
+        confirmButtonColor: "#D9CDB3",
         confirmButtonText: "I understand",
         width: "500px",
       });
@@ -117,7 +117,7 @@ function Login() {
         icon: "error",
         title: "Invalid LDAP ID",
         text: "Please enter your complete LDAP ID including your username/roll number before @iitb.ac.in",
-        confirmButtonColor: "#83267E",
+        confirmButtonColor: "#D9CDB3",
         confirmButtonText: "Got it!",
       });
       return;
