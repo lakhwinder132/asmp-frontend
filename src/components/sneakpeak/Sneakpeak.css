@@ -1,4 +1,5 @@
 /* Allow scrolling, hide scrollbar visually */
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@700;800&display=swap');
 html, body {
   margin: 0;
   padding: 0;
@@ -14,35 +15,36 @@ body::-webkit-scrollbar {
   display: none;
 }
 
-/* Full page container */
+/* Full page container — background now applied inline from Sneakpeak.jsx via `sneakBg` import */
 .sneakpeak-container {
-  height: 100vh;
+  min-height: 100vh;
   width: 100vw;
-  padding: 20px;
-  background-image: url('/register_bg.png');
+  padding: 220px 90px 0 90px;
+  /* margin-bottom: 100px; */
+  background-color: #0a0c10;
   background-size: cover;
-  background-position: center;
-  color: white;
-  font-family: 'Fraunces', serif;
+  background-position: top center;
+  /* color: rgb(222, 22, 22); */
+  font-family: 'Cinzel', serif;
   display: flex;
   flex-direction: column;
   overflow: hidden;
   box-sizing: border-box;
+  position: relative;
 }
 
 /* Scrollable row of cards */
 .scroll-wrapper {
   display: flex;
   flex: 1;
+  align-items: center;
   overflow-x: auto;
   overflow-y: hidden;
-  gap: 20px;
-  padding: 10px 0;
+  gap: 80px;
+  padding: 100px 60px;
   scroll-snap-type: x mandatory;
   scrollbar-width: none;
   -ms-overflow-style: none;
-  padding: 100px;
-  
 }
 
 /* Hide scrollbar (Chrome/Safari) */
@@ -50,18 +52,18 @@ body::-webkit-scrollbar {
   display: none;
 }
 
-/* Mentor card design */
+/* Mentor card design — muted, light glass panel matching the mockup */
 .mentor-card {
   flex: 0 0 auto;
-  width: 450px;
-  height: 530px;
-  background: rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  backdrop-filter: blur(5px);
-  border-radius: 16px;
-  padding: 20px;
+  width: 360px;
+  height: 380px;
+  background: #A4B4B8;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  backdrop-filter: blur(8px);
+  border-radius: 28px;
+  padding: 28px 24px;
   scroll-snap-align: center;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
   transition: transform 0.3s ease;
   text-align: center;
   overflow: hidden;
@@ -69,52 +71,68 @@ body::-webkit-scrollbar {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  transition: transform 0.3s ease, border 0.3s ease;
 }
 
-/* Text inside card */
-.mentor-card h4,
-.mentor-card h6,
-.mentor-card p {
-  margin: 10px 0;
-  color: #fff;
+.mentor-card:hover {
+  border: 7px solid #1a3d51b1;
 }
+
+/* Text inside card — bold, dark tones matching the mockup */
+.mentor-card h4,
+.mentor-card h5,
+.mentor-card p {
+  margin: 8px 0;
+  color: #1a1c24;
+}
+
+.mentor-card p {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #0a0a0afe;
+  line-height: 1.2;
+  font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+
 
 /* Title section styling */
 .title-section {
-  margin-bottom: 15px;
+  margin-bottom: 10px;
 }
 
 .position-title {
-  margin-bottom: 8px !important;
-  font-size: 1.8rem;
-  color: #fff !important;
+  margin-bottom: 4px !important;
+  font-size: 1.4rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  color: #010101 !important;
 }
 
 .company-name {
   margin: 0 !important;
-  font-size: 1.4rem;
-  color: #dd93ed !important;
-  font-weight: 600;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #263d50 !important;
   opacity: 0.9;
 }
 
-/* Button */
+/* Button — darker muted slate pill with a bordered circular arrow, matching the mockup */
 .cssbuttons-io-button {
-  background: #c547bf;
-  color: white;
-  font-family: inherit;
+  background:#3B4854;
+  color: #f0f0f2;
+  font-family: normal;
   padding: 0.35em 3.3em 0.35em 1.2em;
-  font-size: 17px;
-  font-weight: 500;
-  border-radius: 0.9em;
+  font-size: 1.3rem;
+  font-weight: 600;
+  border-radius: 999px;
   border: none;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.02em;
   display: flex;
   align-items: center;
-  box-shadow: inset 0 0 1.6em -0.6em #83267E;
   overflow: hidden;
   position: relative;
-  height: 2.8em;
+  height: 2.6em;
   cursor: pointer;
   transition: background 0.3s ease;
   text-decoration: none;
@@ -122,50 +140,58 @@ body::-webkit-scrollbar {
 }
 
 .cssbuttons-io-button .icon {
-  background: white;
+  background: transparent;
   margin-left: 1em;
   position: absolute;
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 2.2em;
-  width: 2.2em;
-  border-radius: 0.7em;
-  box-shadow: 0.1em 0.1em 0.6em 0.2em #7b52b9;
+  height: 2em;
+  width: 2em;
+  border-radius: 50%;
+  border: 1.5px solid #f0f0f2;
   right: 0.3em;
   transition: all 0.3s;
 }
 
-.cssbuttons-io-button:hover .icon {
+.cssbuttons-io-button:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 24px rgba(4, 5, 87, 0.762);
+} 
+
+/* .cssbuttons-io-button:hover .icon {
   width: calc(100% - 0.6em);
-}
+  background: rgba(255, 255, 255, 0.12);
+} */
 
 .cssbuttons-io-button .icon svg {
   width: 1.1em;
   transition: transform 0.3s;
-  color: #7b52b9;
+  color: #f0f0f2;
 }
 
 .cssbuttons-io-button:hover .icon svg {
-  transform: translateX(0.1em);
-}
-
-.cssbuttons-io-button:active .icon {
-  transform: scale(0.95);
+  transform: translateX(0.2em);
 }
 
 .btn-wrapper {
   margin-top: auto;
-  padding-top: 15px;
+  padding-top: 12px;
   display: flex;
   justify-content: center;
   width: 100%;
+  
+}
+
+.btn-wrapper a {
+  text-decoration: none;
+  color: inherit;
 }
 
 /* Arrow styles */
 .arrow {
   position: absolute;
-  top: 50%;
+  top: 60%;
   transform: translateY(-50%);
   font-size: 2.5rem;
   color: white;
@@ -194,17 +220,15 @@ body::-webkit-scrollbar {
   right: 10px;
 }
 
-/* Ensure container is positioned relatively */
-.sneakpeak-container {
-  position: relative; /* <-- add this line if it's not already there */
-}
-
-
 /* Responsive */
 @media (max-width: 600px) {
   .mentor-card {
     width: 80vw;
-    height: 480px;
+    height: 320px;
+  }
+
+  .scroll-wrapper {
+    padding: 60px 20px;
   }
 
   .heading {
