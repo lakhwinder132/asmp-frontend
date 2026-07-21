@@ -1,136 +1,66 @@
 import React, { useState, useEffect } from "react";
-import Wishlist_Mentor from "./Wishlist_Mentor";
 import CursorAnimation from "../CursorAnimation";
 import "./Wishlist.css";
-import { gsap } from "gsap";
 import Swal from "sweetalert2";
 import UseFetchWishlist from "../../hooks/useFetchWishlist";
-import UseRegisterMentors from "../../hooks/useRegisterMentors";
 import UseDeleteFromWishlist from "../../hooks/useDeleteFromWishlist";
-import styled from "styled-components";
-import "./Card.css";
 import Wishlist_MentorCard from "./Wishlist_MentorCards";
 import { Link } from "react-router-dom";
+import gothamBg from "../../assets/images/Gotham City 2 1.png";
+
+const MOCK_WISHLIST = [
+  {
+    id: 1,
+    name: "Mohit Yadav",
+    company_name: "Amazon",
+    designation: "Associate Product Manager",
+    year: "2023",
+    experience: "2 Yrs",
+    work_profile: "Product Management"
+  },
+  {
+    id: 2,
+    name: "Priya Sharma",
+    company_name: "McKinsey & Co",
+    designation: "Strategy Consultant",
+    year: "2022",
+    experience: "3 Yrs",
+    work_profile: "Management Consulting"
+  },
+  {
+    id: 3,
+    name: "Rahul Verma",
+    company_name: "Google",
+    designation: "Senior SDE",
+    year: "2021",
+    experience: "4 Yrs",
+    work_profile: "Software Engineering"
+  },
+  {
+    id: 4,
+    name: "Ananya Roy",
+    company_name: "Goldman Sachs",
+    designation: "Investment Analyst",
+    year: "2023",
+    experience: "2 Yrs",
+    work_profile: "Quantitative Finance"
+  }
+];
 
 export default function Wishlist(props) {
-  const { fetchMentors, setError, loading, error, mentors, setMentors } = UseFetchWishlist();
+  const { fetchMentors, mentors, setMentors } = UseFetchWishlist();
   const { deleteMentor } = UseDeleteFromWishlist();
-  const {
-    registerMentors,
-    error: registerError,
-    success,
-  } = UseRegisterMentors(props);
 
+  useEffect(() => {
+    const checkMentors = async () => {
+      await fetchMentors();
+    };
+    checkMentors();
+  }, [fetchMentors]);
 
-  const styles = {
-    "@media (max-width: 768px)": {
-      formContainer: {
-        width: "90%",
-        padding: "10px",
-      },
-      profilelabel: {
-        flexBasis: "100%",
-        marginBottom: "5px",
-      },
-      profileinput: {
-        width: "100%",
-      },
-      textarea: {
-        width: "100%",
-      },
-      submitButton: {
-        width: "100%",
-      },
-    },
+  const displayMentors = (mentors && mentors.length > 0) ? mentors : MOCK_WISHLIST;
 
-    profileformArea: {
-      backgroundColor: "#000",
-      color: "white",
-      fontFamily: "'Source Sans Pro', 'Roboto', sans-serif",
-      textAlign: "center",
-      padding: "20px",
-      width: "100vw",
-    },
-    formContainer: {
-      margin: "0 7%",
-      marginleft: "10px !important",
-      padding: "20px",
-      width: "80%",
-      backgroundColor: "#000",
-      borderRadius: "20px",
-    },
-    headingContainer: {
-      textAlign: "center",
-      marginBottom: "20px",
-      backgroundColor: "#3D52D5",
-      boxShadow: "0px 0px 3px 7px #FFF",
-      borderRadius: "10vw",
-      margin: "10vh 37vw",
-      fontSize: "32px",
-      padding: "10px",
-      width: "300px",
-    },
-    profHead: {
-      textDecoration: "none", // Remove underline from the text itself
-    },
-    constituents: {
-      display: "flex", // Use flex to place label and input on the same line
-      alignItems: "center", // Vertically center the content
-      margin: "5px 0", // Add space between label and input field
-      width: "100%",
-    },
-    profilelabel: {
-      flexBasis: "30%", // Adjust the label width as needed
-      marginRight: "10px",
-      color: "#fff",
-      fontSize: "20px",
-    },
-    input: {
-      flexBasis: "70%", // Adjust the input width as needed
-      border: "none",
-      borderBottom: "1px solid #ccc",
-      padding: "5px",
-      borderRadius: "1rem",
-      outline: "none",
-      backgroundColor: "#BDD4E7",
-      color: "#000",
-      fontSize: "20px",
-    },
-    textarea: {
-      width: "100%",
-      border: "none",
-      borderBottom: "1px solid #ccc",
-      padding: "10px",
-      borderRadius: "2rem",
-      outline: "none",
-      backgroundColor: "#BDD4E7",
-      height: "150px",
-    },
-    textCenter: {
-      textAlign: "center",
-      marginBottom: "20px",
-    },
-    submitButton: {
-      margin: "10px",
-      width: "fit-content",
-      textAlign: "center",
-      padding: "1%",
-      fontFamily: "Fraunces, serif",
-      fontSize: "2vw",
-      color: "white",
-      background: "#A742A4",
-      boxShadow: "0 8px 32px 0 rgba(0, 0, 0, 0.67)",
-      backdropFilter: "blur(3px)",
-      WebkitBackdropFilter: "blur(9px)",
-      border: "3px solid rgba(255, 255, 255, 0.3)",
-      borderRadius: "17px",
-      lineHeight: "1.2",
-    },
-  };
-
-
-
-  async function deleteFromWishlist(id) {
+  async function handleDeleteMentor(id) {
     Swal.fire({
       title: "Are you sure?",
       text: "You want to remove this mentor from wishlist",
@@ -142,63 +72,54 @@ export default function Wishlist(props) {
     }).then(async (result) => {
       if (result.isConfirmed) {
         await deleteMentor(id);
-        const newMentors = [...mentors];
-        let something = newMentors.filter((mentor) => mentor.id == id)[0];
-        newMentors.splice(newMentors.indexOf(something), 1);
+        const newMentors = displayMentors.filter((m) => m.id !== id);
         setMentors(newMentors);
-        Swal.fire(
-          "Removed!",
-          "Mentor has been removed from wishlist, please refresh this page.",
-          "success"
-        );
+        Swal.fire("Removed!", "Mentor has been removed from wishlist.", "success");
       }
     });
   }
 
-  useEffect(() => {
-    const checkMentors = async () => {
-      await fetchMentors();
-    };
-    checkMentors();
-  }, [fetchMentors]);
-
   return (
     <>
       <CursorAnimation />
-      <div className="wishlist-background-image">
-        <div style={{ height: "10vh" }}></div>
-        <div className="wishlist-headings-1">Wishlist</div>
+      <div 
+        className="wishlist-page-container"
+        style={{ backgroundImage: `url(${gothamBg})` }}
+      >
+        <div className="wishlist-overlay"></div>
 
-        <div>
-          {mentors && mentors.length > 0 ? (
-            mentors.map((mentor, index) => (
-              <div className="wishlist-mentor-cards-ka-div">
-                <Wishlist_MentorCard key={mentor.id} mentor={mentor} />
+        <div className="wishlist-content-wrapper">
+          <div className="wishlist-header-space"></div>
+
+          {/* Wishlist Cards Grid Section (2 Columns matching Figma) */}
+          <div className="wishlist-cards-section">
+            {displayMentors.length > 0 ? (
+              <div className="wishlist-grid-container">
+                {displayMentors.map((mentor, index) => (
+                  <div key={mentor.id || index} className="wishlist-grid-card-wrapper">
+                    <Wishlist_MentorCard 
+                      mentor={mentor} 
+                      mentors={displayMentors} 
+                      setMentors={setMentors} 
+                      onDelete={handleDeleteMentor}
+                    />
+                  </div>
+                ))}
               </div>
-            ))
-          ) : (
-            <p
-              style={{
-                justifyContent: "center",
-                display: "flex",
-                alignItems: "center",
-                fontFamily: "Fraunces, serif",
-                fontSize: "4vw",
-                lineHeight: "1.2",
-                color: "white",
-              }}
-            >
-              No mentors in the wishlist
-            </p>
-          )}
-        </div>
-       
-        <div style={styles.textCenter}>
-          <Link to="/profile">
-            <button className="submit-button" style={{...styles.submitButton, fontSize: "3vw"}}>
-            Proceed to Register
-            </button>
-          </Link>
+            ) : (
+              <div className="empty-wishlist-msg">
+                <h2>No mentors in the wishlist</h2>
+              </div>
+            )}
+          </div>
+
+          <div className="register-action-container">
+            <Link to="/profile">
+              <button className="proceed-register-btn">
+                Proceed to Register
+              </button>
+            </Link>
+          </div>
         </div>
       </div>
     </>

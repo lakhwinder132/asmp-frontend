@@ -4,6 +4,11 @@ import Swal from "sweetalert2";
 import UseAddToWishlist from "../hooks/useAddToWishlist";
 import UseDeleteFromWishlist from "../hooks/useDeleteFromWishlist";
 import UseFetchWishlist from "../hooks/useFetchWishlist";
+import batmanLogoImg from "../Images/Batman.png";
+import companyNameSvg from "../assets/images/Company Name.svg";
+import subtractSvg from "../assets/images/Subtract.svg";
+import rectangle47Svg from "../assets/images/Rectangle 47.svg";
+import batmanLogoSvg from "../assets/images/Batman-Logo-2018 1.svg";
 
 const UnifiedMentorCard = ({ 
   mentor, 
@@ -112,88 +117,9 @@ const UnifiedMentorCard = ({
     }
   };
 
-  // For profile mode - show empty card or selected mentor
-  if (mode === "profile") {
-    if (!mentor) {
-      // Empty preference card
-      return (
-        <div style={{ margin: "1rem", height: "fit-content", width: "100%" }}>
-          <div 
-            className="wishlist-card"
-            data-mode={mode}
-            style={{ cursor: isRegistered ? "default" : "pointer" }}
-            onClick={() => !isRegistered && onSelect && onSelect()}
-          >
-            <div className="upper-card">
-              <div className="card-header px-4 py-2" style={{ wordBreak: "break-word", overflowWrap: "break-word" }}>
-                Please select your
-              </div>
-              <div className="card-header" style={{ wordBreak: "break-word", overflowWrap: "break-word" }}>
-                Preference {preferenceIndex !== null ? preferenceIndex + 1 : ""}
-              </div>
-            </div>
-            <div className="lower-card-body">
-              <p className="card-text" style={{ wordBreak: "break-word", overflowWrap: "break-word" }}>
-                Click to select a mentor from your wishlist
-              </p>
-            </div>
-            {/* <p className="mentor-id-div" style={{ wordBreak: "break-word", overflowWrap: "break-word" }}>
-              No mentor selected yet
-            </p> */}
-            <div className="add-to-wishlist">
-              <p style={{ fontSize: "medium", marginBottom: 0, color: "#ffffff", wordBreak: "break-word", overflowWrap: "break-word" }}>
-                Select Mentor
-              </p>
-            </div>
-          </div>
-        </div>
-      );
-    } else {
-      // Selected mentor card
-      return (
-        <div style={{ margin: "1rem", height: "fit-content", width: "100%" }}>
-          <div className="wishlist-card" data-mode={mode}>
-            <div className="upper-card">
-              <div className="card-header px-4 py-2" style={{ wordBreak: "break-word", overflowWrap: "break-word" }}>
-                {mentor.designation}
-              </div>
-              <div className="card-header" style={{ wordBreak: "break-word", overflowWrap: "break-word" }}>
-                {mentor.company_name}
-              </div>
-            </div>
-            <div className="lower-card-body">
-              <p className="card-text" style={{ wordBreak: "break-word", overflowWrap: "break-word" }}>
-                Graduation year: {mentor.year}
-              </p>
-            </div>
-            <p className="mentor-id-div" style={{ wordBreak: "break-word", overflowWrap: "break-word" }}>
-              Work Profile: {mentor.work_profile}
-            </p>
 
-            <div className="add-to-wishlist">
-              {!isRegistered && (
-                <p
-                  style={{
-                    fontSize: "medium",
-                    marginBottom: 0,
-                    transition: "all 0.3s ease",
-                    cursor: "pointer",
-                    wordBreak: "break-word",
-                    overflowWrap: "break-word"
-                  }}
-                  onClick={handleRemove}
-                >
-                  Remove from Preferences
-                </p>
-              )}
-            </div>
-          </div>
-        </div>
-      );
-    }
-  }
 
-  // For selection mode (modal), use different styling
+  // For Selection / Modal mode
   if (mode === "selection") {
     return (
       <div
@@ -223,9 +149,9 @@ const UnifiedMentorCard = ({
             padding: "28px 0 6px 0",
           }}
         >
-          <strong>{mentor.company_name || mentor.name}</strong>
+          <strong>{mentor?.company_name || mentor?.name}</strong>
           <br />
-          {mentor.designation || mentor.work_profile || ""}
+          {mentor?.designation || mentor?.work_profile || ""}
         </div>
         <div style={{ flexGrow: 1 }}></div>
         <div
@@ -274,59 +200,182 @@ const UnifiedMentorCard = ({
     );
   }
 
-  // For display and wishlist modes, use the standard card styling
-  return (
-    <div style={{ margin: "1rem", height: "fit-content", width: "100%" }}>
-      <div className="wishlist-card" data-mode={mode}>
-        <div className="upper-card">
-          <div className="card-header px-4 py-2" style={{ wordBreak: "break-word", overflowWrap: "break-word" }}>
-            {mentor.designation}
-          </div>
-          <div className="card-header" style={{ wordBreak: "break-word", overflowWrap: "break-word" }}>
-            {mentor.company_name}
-          </div>
+  // For Profile Mode (Preference Cards)
+  if (mode === "profile") {
+    const prefNum = (preferenceIndex !== null && preferenceIndex !== undefined) ? preferenceIndex + 1 : 1;
+    return (
+      <div className="profile-preference-card-wrapper">
+        <div className="preference-label">
+          Preference {prefNum}
         </div>
-        <div className="lower-card-body">
-          <p className="card-text" style={{ wordBreak: "break-word", overflowWrap: "break-word" }}>
-          Graduation year: {mentor.year || "N/A"}
-          </p>
-        </div>
-        <p className="mentor-id-div" style={{ wordBreak: "break-word", overflowWrap: "break-word" }}>
-          Work Profile: {mentor.work_profile}
-        </p>
+        <div className="wishlist-figma-card profile-pref-card" onClick={!mentor ? onSelect : undefined}>
+          {/* Top Bat Logo */}
+          <img src={batmanLogoSvg} alt="Bat Logo" className="wishlist-batman-logo" />
 
-        <div className="add-to-wishlist">
-          {mode === "wishlist" && showRemoveButton && (
-            <p
-              style={{
-                fontSize: "medium",
-                marginBottom: 0,
-                transition: "all 0.3s ease",
-                cursor: "pointer",
-                wordBreak: "break-word",
-                overflowWrap: "break-word"
+          {/* Outer Wireframe */}
+          <img src={subtractSvg} alt="Subtract" className="wishlist-subtract-bg" />
+
+          {/* Inner Wireframe */}
+          <div className="wishlist-inner-card-box">
+            <img src={rectangle47Svg} alt="Rect47" className="wishlist-rect47-bg" />
+
+            <div className="wishlist-card-content">
+              {mentor ? (
+                <>
+                  <div className="wishlist-card-designation">
+                    {(mentor.designation || mentor.work_profile || "Associate Product Manager").toUpperCase()}
+                  </div>
+                  <div className="wishlist-card-company">
+                    <img src={companyNameSvg} alt={mentor.company_name || mentor.name} className="company-svg-graphic" />
+                  </div>
+                  <div className="wishlist-card-divider"></div>
+                  <div className="wishlist-card-exp">
+                    Experience: {mentor.experience || mentor.exp || "2 Yrs"}
+                  </div>
+                  <div className="wishlist-card-grad">
+                    Graduation year: {mentor.year || mentor.graduation_year || "2023"}
+                  </div>
+                </>
+              ) : (
+                <div className="please-select-pref-text">
+                  Please select your Preference {prefNum}
+                </div>
+              )}
+            </div>
+          </div>
+
+          {/* Remove or Select Button */}
+          {mentor ? (
+            <button 
+              className="wishlist-card-remove-btn pref-card-btn" 
+              onClick={(e) => {
+                e.stopPropagation();
+                if (onRemove) onRemove();
               }}
-              onClick={handleDelete}
             >
-              Remove from Wishlist {clicked ? "\u2690" : "\u2691"}
-            </p>
+              Remove
+            </button>
+          ) : (
+            <button 
+              className="wishlist-card-remove-btn pref-card-btn select-btn" 
+              onClick={(e) => {
+                e.stopPropagation();
+                if (onSelect) onSelect();
+              }}
+            >
+              Select
+            </button>
           )}
-          
-          {mode === "display" && showAddButton && (
-            <p
-              style={{
-                fontSize: "medium",
-                marginBottom: 0,
-                transition: "all 0.3s ease",
-                color: isInWishlist ? "rgba(255, 0, 238, 0.88)" : "#ffffff",
-                cursor: "pointer",
-                wordBreak: "break-word",
-                overflowWrap: "break-word"
-              }}
-              onClick={handleAddToWishlist}
-            >
-              Add to Wishlist {isInWishlist ? "\u2691" : "\u2690"}
-            </p>
+        </div>
+      </div>
+    );
+  }
+
+  // For Wishlist Mode, render exact Figma wireframe card layout using Subtract.svg & Rectangle 47.svg
+  if (mode === "wishlist") {
+    return (
+      <div className="wishlist-figma-card">
+        {/* 1. Top Batman Logo Emblem (Batman-Logo-2018 1.svg) */}
+        <img 
+          src={batmanLogoSvg} 
+          alt="Batman Logo" 
+          className="wishlist-batman-logo" 
+        />
+
+        {/* 2. Outer Wireframe Frame (Subtract.svg 240px x 258px) */}
+        <img 
+          src={subtractSvg} 
+          alt="Outer Wireframe" 
+          className="wishlist-subtract-bg" 
+        />
+
+        {/* 3. Inner Wireframe Box (Rectangle 47.svg 205px x 231px) */}
+        <div className="wishlist-inner-card-box">
+          <img 
+            src={rectangle47Svg} 
+            alt="Inner Wireframe" 
+            className="wishlist-rect47-bg" 
+          />
+
+          {/* Content overlaid inside Rectangle 47 */}
+          <div className="wishlist-card-content">
+            <div className="wishlist-card-designation">
+              {(mentor?.designation || mentor?.work_profile || "Associate Product Manager").toUpperCase()}
+            </div>
+
+            <div className="wishlist-card-company">
+              <img src={companyNameSvg} alt={mentor?.company_name || mentor?.name || "Company Name"} className="company-svg-graphic" />
+            </div>
+
+            <div className="wishlist-card-divider"></div>
+
+            <div className="wishlist-card-exp">
+              Experience: {mentor?.experience || mentor?.exp || "2 Yrs"}
+            </div>
+
+            <div className="wishlist-card-grad">
+              Graduation year: {mentor?.year || mentor?.graduation_year || "2023"}
+            </div>
+          </div>
+        </div>
+
+        {/* 4. Remove Button Pill (141px x 41px) */}
+        <button className="wishlist-card-remove-btn" onClick={handleDelete}>
+          Remove
+        </button>
+      </div>
+    );
+  }
+
+  // For display mode, use standard capsule stadium card styling
+  return (
+    <div className="mentor-capsule-wrapper">
+      <div className="mentor-capsule-card" data-mode={mode}>
+        {/* Profile Circle */}
+        <div className="mentor-circle-avatar">
+          {mentor?.img ? (
+            <img src={mentor.img} alt={mentor.company_name || mentor.name} className="mentor-img" />
+          ) : (
+            <div className="mentor-img-placeholder">
+              <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                <circle cx="12" cy="7" r="4"></circle>
+              </svg>
+            </div>
+          )}
+        </div>
+
+        {/* Designation / Work Profile */}
+        <div className="mentor-designation">
+          {mentor?.designation || mentor?.work_profile || "Associate Product Manager"}
+        </div>
+
+        {/* Company Name */}
+        <div className="mentor-company">
+          {mentor?.company_name || mentor?.name || "Company Name"}
+        </div>
+
+        {/* Graduation Year */}
+        <div className="mentor-grad-year">
+          Graduation Year: {mentor?.year || mentor?.graduation_year || "2023"}
+        </div>
+
+        {/* Experience */}
+        <div className="mentor-experience">
+          Experience: {mentor?.experience || mentor?.exp || "2 Yrs"}
+        </div>
+
+        {/* Add / Remove Wishlist Button */}
+        <div 
+          className={`mentor-wishlist-btn ${isInWishlist ? "active" : ""}`}
+          onClick={mode === "wishlist" && showRemoveButton ? handleDelete : handleAddToWishlist}
+        >
+          {mode === "wishlist" && showRemoveButton ? (
+            "Remove Wishlist"
+          ) : isInWishlist ? (
+            "In Wishlist ✓"
+          ) : (
+            "Add to Wishlist"
           )}
         </div>
       </div>

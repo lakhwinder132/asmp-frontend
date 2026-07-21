@@ -1,18 +1,27 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect } from "react";
 import "./Profile.css";
-import Container from "react-bootstrap/Container";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
 import UseFetchProfile from "../hooks/useFetchProfile";
 import UseEditProfile from "../hooks/useEditProfile";
 import UseRegisterMentors from "../hooks/useRegisterMentors";
-import Form from "react-bootstrap/Form";
-import InputGroup from "react-bootstrap/InputGroup";
-import Button from "react-bootstrap/Button";
 import WishlistModal from "./WishlistModal/WishlistModal";
 import CursorAnimation from "./CursorAnimation";
 import Swal from "sweetalert2";
 import UnifiedMentorCard from "./UnifiedMentorCard";
+
+import registerTitleSvg from "../assets/images/Register.svg";
+import preferencesTitleSvg from "../assets/images/Preferences.svg";
+import batmanLogoSvg from "../assets/images/Batman-Logo-2018 1.svg";
+import profileBgImg from "../assets/images/profile_bg.png";
+
+import rollNumberSvg from "../assets/images/Roll Number.svg";
+import usernameSvg from "../assets/images/Username.svg";
+import ldapSvg from "../assets/images/LDAP.svg";
+import personalEmailSvg from "../assets/images/Personal Email.svg";
+import hostelSvg from "../assets/images/Hostel.svg";
+import roomNoSvg from "../assets/images/Room No..svg";
+import academicSvg from "../assets/images/Academic.svg";
+import sopSvg from "../assets/images/Statement Of Purpose.svg";
+import expectationsSvg from "../assets/images/What are your Expectations from your Mentor.svg";
 
 export default function Profile(props) {
   const DEGREE_CHOICES = {
@@ -51,11 +60,10 @@ export default function Profile(props) {
     other: "Other (If not mentioned above)",
   };
 
-  const { editProfile, loading1, error, success: editSuccess } = UseEditProfile();
+  const { editProfile } = UseEditProfile();
   const { fetchProfile, fetchedProfile } = UseFetchProfile();
-  const { registerMentors, error: registerError, success: registerSuccess } = UseRegisterMentors(props);
+  const { registerMentors } = UseRegisterMentors(props);
 
-  const [loading, setLoading] = useState(true);
   const [profile, setProfile] = useState({
     user: {},
     email: "",
@@ -69,706 +77,371 @@ export default function Profile(props) {
     expectations: "",
   });
 
-  // Word count state
-  const [wordCounts, setWordCounts] = useState({
-    sop: 0,
-    expectations: 0
-  });
-
-  // Word limits
-  const WORD_LIMITS = {
-    sop: 200,
-    expectations: 150
-  };
-
-  // Modal and preferences state
-  const [preferences, setPreferences] = useState([
-    null,
-    null,
-    null,
-    null,
-    null,
-  ]);
-
+  const [preferences, setPreferences] = useState([null, null, null, null, null]);
   const [showWishlist, setShowWishlist] = useState(false);
   const [activeCard, setActiveCard] = useState(null);
   const [isRegistered, setIsRegistered] = useState(false);
 
-  // Load profile and preferences
   useEffect(() => {
     const loadProfile = async () => {
       await fetchProfile();
-      setLoading(false);
     };
     loadProfile();
   }, [fetchProfile]);
 
-  // Function to count words
-  const countWords = (text) => {
-    if (!text || text.trim() === '') return 0;
-    return text.trim().split(/\s+/).filter(word => word.length > 0).length;
-  };
-
-  // Function to check if word limit is exceeded
-  const isWordLimitExceeded = (fieldName) => {
-    return wordCounts[fieldName] > WORD_LIMITS[fieldName];
-  };
-
-  // Function to get word count color
-  const getWordCountColor = (fieldName) => {
-    const count = wordCounts[fieldName];
-    const limit = WORD_LIMITS[fieldName];
-    
-    if (count === 0) return 'text-gray-500';
-    if (count <= limit * 0.8) return 'text-green-500';
-    if (count <= limit) return 'text-yellow-500';
-    return 'text-red-500';
-  };
-
   useEffect(() => {
-    if (fetchedProfile) {
-      setProfile((prevProfile) => ({
-        ...prevProfile,
+    if (fetchedProfile && fetchedProfile.user) {
+      setProfile({
         user: fetchedProfile.user || {},
         email: fetchedProfile.email || "",
         hostel: fetchedProfile.hostel || "",
         room_no: fetchedProfile.room_no || "",
+        academic_program: fetchedProfile.academic_program || "",
         joining_year: fetchedProfile.joining_year || "",
         graduation_year: fetchedProfile.graduation_year || "",
         linkedin: fetchedProfile.linkedin || "",
         sop: fetchedProfile.sop || "",
         expectations: fetchedProfile.expectations || "",
-      }));
-      
-      // Initialize word counts
-      setWordCounts({
-        sop: countWords(fetchedProfile.sop || ""),
-        expectations: countWords(fetchedProfile.expectations || "")
       });
-    }
-  }, [fetchedProfile]);
 
-  // Load preferences
-  useEffect(() => {
-    const loadPreferences = async () => {
-      try {
-        const token = localStorage.getItem("accessToken");
-        const resp = await fetch(
-          // `http://127.0.0.1:8000/api/registration/my-preferences/?accessToken=${token}`,
-          `https://asmp.sarc-iitb.org/api/registration/my-preferences/?accessToken=${token}`,
-          {
-            headers: {
-              "Content-Type": "application/json",
-            },
+      if (fetchedProfile.preferences && Array.isArray(fetchedProfile.preferences)) {
+        const loadedPrefs = [...preferences];
+        fetchedProfile.preferences.forEach((pref, index) => {
+          if (index < 5) {
+            loadedPrefs[index] = pref.mentor || null;
           }
-        );
-        
-        if (resp.status === 404) {
-          // No registration exists yet, set empty preferences
-          setPreferences([null, null, null, null, null]);
-          setIsRegistered(false);
-          return;
-        }
-        
-        const data = await resp.json();
-        console.log("This is the data that i am testing: ", data);
-
-        if (data.error) {
-          // Handle error case
-          setPreferences([null, null, null, null, null]);
-          setIsRegistered(false);
-          return;
-        }
-
-        setPreferences([
-          data.pref1,
-          data.pref2,
-          data.pref3,
-          data.pref4,
-          data.pref5,
-        ]);
-        
-        // If we successfully loaded preferences, user is registered
-        setIsRegistered(true);
-      } catch (error) {
-        console.log("Error loading preferences:", error);
-        setPreferences([null, null, null, null, null]);
-        setIsRegistered(false);
+        });
+        setPreferences(loadedPrefs);
       }
-    };
-    if (fetchedProfile) {
-      loadPreferences();
+
+      if (fetchedProfile.is_registered) {
+        setIsRegistered(true);
+      }
     }
   }, [fetchedProfile]);
 
-  const handleInputChange = (event) => {
-    const { name, value } = event.target;
-    setProfile((prevProfile) => ({ ...prevProfile, [name]: value }));
-    setWordCounts((prevCounts) => ({ ...prevCounts, [name]: countWords(value) }));
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setProfile((prevProfile) => ({
+      ...prevProfile,
+      [name]: value,
+    }));
   };
 
-  const handleSubmit = (event) => {
-    // Check if word limits are exceeded
-    if (isWordLimitExceeded('sop') || isWordLimitExceeded('expectations')) {
-      Swal.fire({
-        icon: "error",
-        title: "Word Limit Exceeded",
-        html: `
-          <div style="text-align: left;">
-            <p>Please reduce the word count in the following fields:</p>
-            <ul style="margin: 10px 0; padding-left: 20px;">
-              ${isWordLimitExceeded('sop') ? `<li>SOP: ${wordCounts.sop}/${WORD_LIMITS.sop} words (exceeded by ${wordCounts.sop - WORD_LIMITS.sop})</li>` : ''}
-              ${isWordLimitExceeded('expectations') ? `<li>Expectations: ${wordCounts.expectations}/${WORD_LIMITS.expectations} words (exceeded by ${wordCounts.expectations - WORD_LIMITS.expectations})</li>` : ''}
-            </ul>
-          </div>
-        `,
-        confirmButtonColor: "#83267E",
-        confirmButtonText: "I understand",
-      });
+  const handleCardClick = (index) => {
+    if (!isRegistered) {
+      setActiveCard(index);
+      setShowWishlist(true);
+    }
+  };
+
+  const handleRemove = (index) => {
+    if (!isRegistered) {
+      const updatedPrefs = [...preferences];
+      updatedPrefs[index] = null;
+      setPreferences(updatedPrefs);
+    }
+  };
+
+  const handleMentorSelect = (mentor) => {
+    if (activeCard !== null) {
+      const updatedPrefs = [...preferences];
+      updatedPrefs[activeCard] = mentor;
+      setPreferences(updatedPrefs);
+      setShowWishlist(false);
+      setActiveCard(null);
+    }
+  };
+
+  const handleRegisteration = async (e) => {
+    if (e) e.preventDefault();
+
+    if (!profile.sop) {
+      Swal.fire("Error!", "Statement of Purpose is required.", "error");
       return;
     }
 
-    const accessToken = localStorage.getItem("accessToken");
-    const updatedProfile = {
-      ...profile,
-      accessToken,
-      email: profile.email,
-      hostel: profile.hostel,
-      room_no: profile.room_no,
-      joining_year: profile.joining_year,
-      graduation_year: profile.graduation_year,
-      sop: profile.sop,
-      expectations: profile.expectations,
-    };
-    editProfile(updatedProfile);
-  };
+    const hasPreference = preferences.some((pref) => pref !== null);
+    if (!hasPreference) {
+      Swal.fire("Error!", "Please select at least one mentor preference.", "error");
+      return;
+    }
 
-  async function handleRegisteration() {
     try {
-      const accessToken = localStorage.getItem("accessToken");
-      
-      // Check if word limits are exceeded
-      if (isWordLimitExceeded('sop') || isWordLimitExceeded('expectations')) {
-        Swal.fire({
-          icon: "error",
-          title: "Word Limit Exceeded",
-          html: `
-            <div style="text-align: left;">
-              <p>Please reduce the word count in the following fields before registering for mentors:</p>
-              <ul style="margin: 10px 0; padding-left: 20px;">
-                ${isWordLimitExceeded('sop') ? `<li>SOP: ${wordCounts.sop}/${WORD_LIMITS.sop} words (exceeded by ${wordCounts.sop - WORD_LIMITS.sop})</li>` : ''}
-                ${isWordLimitExceeded('expectations') ? `<li>Expectations: ${wordCounts.expectations}/${WORD_LIMITS.expectations} words (exceeded by ${wordCounts.expectations - WORD_LIMITS.expectations})</li>` : ''}
-              </ul>
-            </div>
-          `,
-          confirmButtonColor: "#83267E",
-          confirmButtonText: "I understand",
-        });
-        return;
-      }
-      
-      // Check if SOP and LinkedIn are filled
-      if (!profile.sop || !profile.linkedin || !profile.expectations) {
-        Swal.fire({
-          icon: "error",
-          title: "Profile Incomplete",
-          text: "Please fill in your SOP, LinkedIn, and Expectations from the mentors before you submit your profile.",
-        });
-        return;
-      }
-      
-      // Check if all 5 preferences are selected
-      const hasAllPreferences = preferences.every(pref => pref !== null && pref !== undefined);
-      if (!hasAllPreferences) {
-        Swal.fire({
-          icon: "error",
-          title: "Incomplete Preferences",
-          text: "Please select all 5 mentor preferences before registering.",
-        });
-        return;
-      }
-
-      // Validate that all preferences have valid IDs
-      const validPreferences = preferences.every(pref => pref && pref.id);
-      if (!validPreferences) {
-        Swal.fire({
-          icon: "error",
-          title: "Invalid Preferences",
-          text: "Please ensure all mentor preferences are properly selected.",
-        });
-        return;
-      }
-
-      // Prepare registration data with preferences
-      const registrationData = {
-        accessToken: accessToken,
-        pref1_id: preferences[0].id,
-        pref2_id: preferences[1].id,
-        pref3_id: preferences[2].id,
-        pref4_id: preferences[3].id,
-        pref5_id: preferences[4].id,
-      };
-
-      const swalWithBootstrapButtons = Swal.mixin({
-        customClass: {
-          confirmButton: "btn btn-success",
-          cancelButton: "btn btn-danger",
-        },
-        buttonsStyling: false,
+      await editProfile({
+        hostel: profile.hostel,
+        room_no: profile.room_no,
+        joining_year: profile.joining_year,
+        graduation_year: profile.graduation_year,
+        sop: profile.sop,
+        expectations: profile.expectations,
       });
 
-      swalWithBootstrapButtons
-        .fire({
-          title: "Are you sure?",
-          text: "You can register only once",
-          icon: "warning",
-          showCancelButton: true,
-          confirmButtonText: "Yes register!",
-          cancelButtonText: "No, cancel!",
-        })
-        .then((result) => {
-          if (result.isConfirmed) {
-            registerMentors(registrationData);
-            if (registerSuccess) {
-              console.log("Registered successfully");
-              setIsRegistered(true);
-              Swal.fire(
-                "Registered!",
-                "You have successfully registered your preferences.",
-                "success"
-              );
-            }
-          }
-        });
+      const selectedMentors = preferences
+        .filter((pref) => pref !== null)
+        .map((pref) => pref.id);
+
+      await registerMentors(selectedMentors);
+      setIsRegistered(true);
+
+      Swal.fire({
+        title: "Success!",
+        text: "Your profile and mentor preferences have been registered successfully!",
+        icon: "success",
+        confirmButtonText: "OK",
+      });
     } catch (err) {
-      console.log("Error registering mentors");
-      console.log(err);
+      Swal.fire("Error!", "Registration failed. Please try again.", "error");
     }
-  }
-
-  // Card click handler to open wishlist modal for the selected preference slot
-  const handleCardClick = useCallback((index) => {
-    console.log("Card clicked:", index);
-    setActiveCard(index);
-    setShowWishlist(true);
-  }, []);
-
-  // Close modal handler
-  const handleCloseModal = useCallback(() => {
-    console.log("Closing modal");
-    setShowWishlist(false);
-    setActiveCard(null);
-  }, []);
-
-  // Mentor selection handler - assign selected mentor to active preference and close modal
-  const handleMentorSelect = useCallback(
-    async (mentor) => {
-      if (activeCard === null || activeCard === undefined) {
-        console.error("No active card selected.");
-        return;
-      }
-      console.log("Mentor selected: ", mentor);
-
-      try {
-        const newPrefs = [...preferences];
-        newPrefs[activeCard] = mentor;
-        setPreferences(newPrefs);
-
-        // Don't make backend call here - just store locally
-        // Backend calls will be made during registration
-
-        // Close modal
-        handleCloseModal();
-      } catch (error) {
-        console.error("Error selecting mentor:", error);
-      }
-    },
-    [preferences, activeCard, handleCloseModal]
-  );
-
-  // Remove mentor handler
-  const handleRemove = useCallback(
-    async (i, e) => {
-      e.stopPropagation(); // Prevent card click from triggering modal
-      try {
-        const newPrefs = [...preferences];
-        newPrefs[i] = null;
-        setPreferences(newPrefs);
-
-        // Don't make backend call here - just store locally
-        // Backend calls will be made during registration
-      } catch (error) {
-        console.error("Error removing mentor:", error);
-      }
-    },
-    [preferences]
-  );
-
-  if (loading) {
-    return <div>Loading...</div>;
-  }
-
-  if (!fetchedProfile) {
-    return <div>No profile data available.</div>;
-  }
+  };
 
   return (
     <>
       <CursorAnimation />
-      <Container
-        className="w-screen min-h-screen py-24 profile cursor-auto"
-        fluid
+      <div 
+        className="profile-page-container"
+        style={{ backgroundImage: `url(${profileBgImg})` }}
       >
-        <h1 className="md:pt-5 xl:py-0 text-center text-[background: #FFFFFF]">
-          User Profile
-        </h1>
+        <div className="profile-overlay"></div>
 
-        <Row className="lg:px-20">
-          <Col className="my-2 md:text-2xl text-sm" md={3} xs>
-            Roll Number
-          </Col>
-          <Col
-            className="bg-[#BDD4E7AB] text-black my-2 rounded-xl md:text-2xl text-sm justify-center items-center flex opacity-80"
-            md={6}
-            xs
-          >
-            {fetchedProfile.user.roll}
-          </Col>
-        </Row>
+        <div className="profile-main-content">
+          <div className="profile-header-space"></div>
 
-        <Row className="lg:px-20">
-          <Col className="my-2 md:text-2xl text-sm" md={3} xs>
-            Username
-          </Col>
-          <Col
-            className="bg-[#BDD4E7AB] text-black my-2 rounded-xl md:text-2xl text-sm justify-center items-center flex opacity-80"
-            md={6}
-            xs
-          >
-            {fetchedProfile.user.fullname}
-          </Col>
-        </Row>
-
-        <Row className="lg:px-20">
-          <Col className="my-2 md:text-2xl text-sm" md={3} xs>
-            LDAP
-          </Col>
-          <Col
-            className="bg-[#BDD4E7AB] text-black my-2 rounded-xl md:text-2xl text-sm justify-center items-center flex opacity-80"
-            md={6}
-            xs
-          >
-            {fetchedProfile.user.ldap}
-          </Col>
-        </Row>
-
-        <Row className="lg:px-20">
-          <Col className="my-2 md:text-2xl text-sm" md={3} xs>
-            Personal Email
-          </Col>
-          <Col
-            className="bg-[#BDD4E7AB] text-black my-2 rounded-xl md:text-2xl text-sm justify-center items-center flex opacity-80"
-            md={6}
-            xs
-          >
-            <input
-              type="text"
-              onChange={handleInputChange}
-              name="email"
-              value={profile.email}
-              className="bg-transparent text-black md:mx-5 my-2 rounded-xl md:text-2xl text-xs sm:p-0 p-1 justify-center items-center flex opacity-80 w-full text-center"
-              placeholder="Personal Email"
-            />
-          </Col>
-        </Row>
-
-        <Row className="lg:px-20">
-          <Col className="my-2 md:text-2xl text-sm" md={3} xs>
-            Hostel:
-          </Col>
-          <Col
-            className="bg-[#BDD4E7AB] text-black my-2 rounded-xl md:text-2xl text-sm justify-center items-center flex opacity-80"
-            md={6}
-            xs
-          >
-            <input
-              type="text"
-              onChange={handleInputChange}
-              name="hostel"
-              value={profile.hostel}
-              className="bg-transparent text-black md:mx-5 my-2 rounded-xl md:text-2xl text-xs sm:p-0 p-1 justify-center items-center flex opacity-80 w-full text-center"
-              placeholder="Hostel"
-            />
-          </Col>
-        </Row>
-
-        <Row className="lg:px-20">
-          <Col className="my-2 md:text-2xl text-sm" md={3} xs>
-            Room No:
-          </Col>
-          <Col
-            className="bg-[#BDD4E7AB] text-black my-2 rounded-xl md:text-2xl text-sm justify-center items-center flex opacity-80"
-            md={6}
-            xs
-          >
-            <input
-              type="text"
-              onChange={handleInputChange}
-              name="room_no"
-              value={profile.room_no}
-              className="bg-transparent text-black md:mx-5 my-2 rounded-xl md:text-2xl text-xs sm:p-0 p-1 justify-center items-center flex opacity-80 w-full text-center"
-              placeholder="Room No."
-            />
-          </Col>
-        </Row>
-
-        <Row className="lg:px-20 ">
-          <Col className="my-2 md:text-2xl text-sm" md={3} xs>
-            Academic:
-          </Col>
-          <Col
-            className="bg-[#BDD4E7AB] text-black md:mx-5 mx-2 my-2 rounded-xl md:text-2xl text-sm sm:p-4 p-1 justify-center items-center flex opacity-80 text-center"
-            xl={3}
-            xs={5}
-            sm={4}
-          >
-            {BRANCH_CHOICES[fetchedProfile.user.dept]}
-          </Col>
-          <Col
-            className="bg-[#BDD4E7AB] text-black md:mx-5 mx-2 my-2 rounded-xl md:text-2xl text-sm sm:p-4 p-1 justify-center items-center flex opacity-80 text-center"
-            xl={3}
-            xs={5}
-            sm={4}
-          >
-            {DEGREE_CHOICES[fetchedProfile.user.degree]}
-          </Col>
-
-          <Row className="lg:px-20">
-            <Col className="my-2 md:text-2xl" md={3} xs></Col>
-            <Col
-              className="bg-[#BDD4E7AB] text-black md:mx-5 mx-2 my-2 rounded-xl md:text-2xl text-sm sm:p-4 p-1 justify-center items-center flex opacity-80 text-center"
-              xl={3}
-              xs={5}
-              sm={4}
-            >
-              <input
-                type="text"
-                onChange={handleInputChange}
-                name="joining_year"
-                value={profile.joining_year}
-                className="bg-transparent text-black md:mx-5 my-2 rounded-xl md:text-2xl text-xs sm:p-0 p-1 justify-center items-center flex opacity-80 w-full text-center"
-                placeholder="Joining Year"
-              />
-            </Col>
-            <Col
-              className="bg-[#BDD4E7AB] text-black md:mx-5 mx-2 my-2 rounded-xl md:text-2xl text-sm sm:p-4 p-1 justify-center items-center flex opacity-80 text-center"
-              xl={3}
-              xs={5}
-              sm={4}
-            >
-              <input
-                type="text"
-                onChange={handleInputChange}
-                name="graduation_year"
-                value={profile.graduation_year}
-                className="bg-transparent text-black md:mx-5 my-2 rounded-xl md:text-2xl text-xs sm:p-0 p-1 justify-center items-center flex opacity-80 w-full text-center"
-                placeholder="Graduation Year"
-              />
-            </Col>
-          </Row>
-        </Row>
-
-        <Row className="lg:px-20">
-          <Col className="my-2 md:text-2xl text-sm" md={3} xs>
-            LinkedIn ID: <span className="text-red-500">*</span>
-          </Col>
-          <Col
-            className="bg-[#BDD4E7AB] text-black my-2 rounded-xl md:text-2xl text-sm justify-center items-center flex opacity-80"
-            md={6}
-            xs
-          >
-            <input
-              type="text"
-              onChange={handleInputChange}
-              name="linkedin"
-              value={profile.linkedin}
-              className="bg-transparent text-black md:mx-5 my-2 rounded-xl md:text-2xl text-xs sm:p-0 p-1 justify-center items-center flex opacity-80 w-full text-center"
-              placeholder="LinkedIn ID (Required)"
-            />
-          </Col>
-        </Row>
-
-        <Row className="lg:px-20">
-          <Col className="my-2 md:text-2xl text-sm" md={3} xs>
-            SOP <span className="text-red-500">*</span>
-          </Col>
-          <Col
-            className="bg-[#BDD4E7AB] text-black my-2 rounded-xl justify-center items-center flex opacity-80"
-            md={9}
-            xs={7}
-          >
-            <InputGroup size="xs" className="h-[150px]">
-              <Form.Control
-                as="textarea"
-                aria-label="With textarea"
-                onChange={handleInputChange}
-                name="sop"
-                value={profile.sop}
-                className="text-black h-[150px] bg-[#BDD4E7AB] rounded-xl p-2 resize-none"
-                placeholder="Statement of Purpose (Required)"
-                style={{ 
-                  paddingRight: '8px',
-                  paddingBottom: '8px',
-                  lineHeight: '1.4'
-                }}
-              />
-            </InputGroup>
-            <div className="word-count-container mt-2">
-              <p className={`text-sm font-medium ${getWordCountColor('sop')}`} style={{
-                textShadow: '0 1px 2px rgba(0,0,0,0.8)',
-                backgroundColor: 'rgba(0,0,0,0.7)',
-                padding: '4px 8px',
-                borderRadius: '6px',
-                display: 'inline-block',
-                color: getWordCountColor('sop') === 'text-gray-500' ? '#9CA3AF' : 
-                       getWordCountColor('sop') === 'text-green-500' ? '#10B981' : 
-                       getWordCountColor('sop') === 'text-yellow-500' ? '#F59E0B' : '#EF4444'
-              }}>
-                Words: {wordCounts.sop}/{WORD_LIMITS.sop}
-              </p>
-              {isWordLimitExceeded('sop') && (
-                <p className="text-sm text-red-500 font-semibold mt-1" style={{
-                  textShadow: '0 1px 2px rgba(0,0,0,0.8)',
-                  backgroundColor: 'rgba(239,68,68,0.9)',
-                  padding: '4px 8px',
-                  borderRadius: '6px',
-                  display: 'inline-block',
-                  color: 'white'
-                }}>
-                  Exceeded by {wordCounts.sop - WORD_LIMITS.sop} words
-                </p>
-              )}
-            </div>
-          </Col>
-        </Row>
-
-        <Row className="lg:px-20">
-          <Col className="my-2 md:text-2xl text-sm" md={3} xs>
-            What are your Expectations from Mentor? <span className="text-red-500">*</span>
-          </Col>
-          <Col
-            className="bg-[#BDD4E7AB] text-black my-2 rounded-xl justify-center items-center flex opacity-80"
-            md={9}
-            xs={7}
-          >
-            <InputGroup size="xs" className="h-[130px]">
-              <Form.Control
-                as="textarea"
-                aria-label="With textarea"
-                className="text-black"
-                onChange={handleInputChange}
-                name="expectations"
-                value={profile.expectations}
-                style={{ 
-                  paddingRight: '8px',
-                  paddingBottom: '8px',
-                  lineHeight: '1.4'
-                }}
-              />
-            </InputGroup>
-            <div className="word-count-container mt-2">
-              <p className={`text-sm font-medium ${getWordCountColor('expectations')}`} style={{
-                textShadow: '0 1px 2px rgba(0,0,0,0.8)',
-                backgroundColor: 'rgba(0,0,0,0.7)',
-                padding: '4px 8px',
-                borderRadius: '6px',
-                display: 'inline-block',
-                color: getWordCountColor('expectations') === 'text-gray-500' ? '#9CA3AF' : 
-                       getWordCountColor('expectations') === 'text-green-500' ? '#10B981' : 
-                       getWordCountColor('expectations') === 'text-yellow-500' ? '#F59E0B' : '#EF4444'
-              }}>
-                Words: {wordCounts.expectations}/{WORD_LIMITS.expectations}
-              </p>
-              {isWordLimitExceeded('expectations') && (
-                <p className="text-sm text-red-500 font-semibold mt-1" style={{
-                  textShadow: '0 1px 2px rgba(0,0,0,0.8)',
-                  backgroundColor: 'rgba(239,68,68,0.9)',
-                  padding: '4px 8px',
-                  borderRadius: '6px',
-                  display: 'inline-block',
-                  color: 'white'
-                }}>
-                  Exceeded by {wordCounts.expectations - WORD_LIMITS.expectations} words
-                </p>
-              )}
-            </div>
-          </Col>
-        </Row>
-
-        <Row>
-          <Col className="flex justify-center items-center my-5">
-            <Button
-              onClick={handleSubmit}
-              className="p-3 bg-[#83267E] text-white hover:bg-[#6b1f68] transition-colors duration-300 border-none"
-            >
-              Save Profile
-            </Button>
-          </Col>
-        </Row>
-        
-        <h1 className="md:pt-5 xl:py-0 text-center text-[background: #FFFFFF]">
-          Mentor Preferences
-        </h1>
-
-        <div className="min-h-screen bg-cover bg-center p-8 ">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 justify-items-center max-w-7xl mx-auto place-content-center">
-            {preferences.map((mentor, i) => (
-              <UnifiedMentorCard
-                key={i}
-                mentor={mentor}
-                mode="profile"
-                onSelect={() => !isRegistered && handleCardClick(i)}
-                onRemove={() => handleRemove(i)}
-                isRegistered={isRegistered}
-                mentors={preferences}
-                setMentors={setPreferences}
-                preferenceIndex={i}
-              />
-            ))}
+          {/* Top Title Graphic (Register.svg) */}
+          <div className="profile-title-graphic-container">
+            <img src={registerTitleSvg} alt="REGISTER" className="profile-register-title-img" />
           </div>
-        </div>
 
-        <Row>
-          <Col className="flex justify-center items-center my-5">
-            {!isRegistered && (
-              <Button
-                onClick={handleRegisteration}
-                className="p-3 bg-[#83267E] text-white hover:bg-[#6b1f68] transition-colors duration-300 border-none"
-              >
-                Register!
-              </Button>
-            )}
-            {isRegistered && (
-              <div className="text-center">
-                <div className="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded">
-                  <strong>Registration Complete!</strong> Your mentor preferences have been submitted successfully.
+          {/* Registration Form Fields */}
+          <form className="profile-form-grid" onSubmit={handleRegisteration}>
+            {/* Row 1: Roll Number */}
+            <div className="profile-form-row">
+              <div className="profile-label label-svg-wrapper">
+                <img src={rollNumberSvg} alt="ROLL NUMBER" className="label-svg-graphic" />
+              </div>
+              <div className="profile-input-frame text-display-field">
+                {fetchedProfile?.user?.roll_number || "25B3004"}
+              </div>
+            </div>
+
+            {/* Row 2: Username */}
+            <div className="profile-form-row">
+              <div className="profile-label label-svg-wrapper">
+                <img src={usernameSvg} alt="USERNAME" className="label-svg-graphic" />
+              </div>
+              <div className="profile-input-frame text-display-field">
+                {fetchedProfile?.user?.first_name || fetchedProfile?.user?.username || "krish"}
+              </div>
+            </div>
+
+            {/* Row 3: LDAP */}
+            <div className="profile-form-row">
+              <div className="profile-label label-svg-wrapper">
+                <img src={ldapSvg} alt="LDAP" className="label-svg-graphic" />
+              </div>
+              <div className="profile-input-frame text-display-field">
+                {fetchedProfile?.user?.email || "25b3004@iitb.ac.in"}
+              </div>
+            </div>
+
+            {/* Row 4: Personal Email */}
+            <div className="profile-form-row">
+              <div className="profile-label label-svg-wrapper">
+                <img src={personalEmailSvg} alt="PERSONAL EMAIL" className="label-svg-graphic" />
+              </div>
+              <div className="profile-input-frame">
+                <input
+                  type="email"
+                  name="email"
+                  value={profile.email}
+                  onChange={handleInputChange}
+                  placeholder="Personal Email"
+                  className="profile-field-input"
+                />
+              </div>
+            </div>
+
+            {/* Row 5: Hostel */}
+            <div className="profile-form-row">
+              <div className="profile-label label-svg-wrapper">
+                <img src={hostelSvg} alt="HOSTEL" className="label-svg-graphic" />
+              </div>
+              <div className="profile-input-frame">
+                <input
+                  type="text"
+                  name="hostel"
+                  value={profile.hostel}
+                  onChange={handleInputChange}
+                  placeholder="Hostel"
+                  className="profile-field-input"
+                />
+              </div>
+            </div>
+
+            {/* Row 6: Room No. / Program */}
+            <div className="profile-form-row">
+              <div className="profile-label label-svg-wrapper">
+                <img src={roomNoSvg} alt="ROOM NO." className="label-svg-graphic" />
+              </div>
+              <div className="profile-input-frame">
+                <input
+                  type="text"
+                  name="room_no"
+                  value={profile.room_no}
+                  onChange={handleInputChange}
+                  placeholder="Program*"
+                  className="profile-field-input"
+                />
+              </div>
+            </div>
+
+            {/* Row 7: Academic Subgrid */}
+            <div className="profile-form-row academic-row">
+              <div className="profile-label label-svg-wrapper">
+                <img src={academicSvg} alt="ACADEMIC" className="label-svg-graphic" />
+              </div>
+              <div className="academic-subgrid-container">
+                <div className="academic-subgrid-top">
+                  <div className="academic-sub-box">
+                    {BRANCH_CHOICES[fetchedProfile?.user?.dept] || "Department"}
+                  </div>
+                  <div className="academic-sub-box">
+                    {DEGREE_CHOICES[fetchedProfile?.user?.degree] || "Degree*"}
+                  </div>
+                </div>
+
+                <div className="academic-subgrid-bottom">
+                  <div className="academic-sub-box input-box">
+                    <input
+                      type="text"
+                      name="joining_year"
+                      value={profile.joining_year}
+                      onChange={handleInputChange}
+                      placeholder="Joining year*"
+                      className="profile-field-input sub-input"
+                    />
+                  </div>
+                  <div className="academic-sub-box input-box">
+                    <input
+                      type="text"
+                      name="graduation_year"
+                      value={profile.graduation_year}
+                      onChange={handleInputChange}
+                      placeholder="Graduating year*"
+                      className="profile-field-input sub-input"
+                    />
+                  </div>
                 </div>
               </div>
-            )}
-          </Col>
-        </Row>
+            </div>
 
-        {/* Modal rendered OUTSIDE of cards - this is KEY! Pass activeCard */}
-        {showWishlist && (
-          <WishlistModal
-            onClose={() => {
-              setShowWishlist(false);
-              setActiveCard(null);
-            }}
-            onSelect={handleMentorSelect}
-          />
-        )}
-      </Container>
+
+            {/* Row 9: Statement of Purpose */}
+            <div className="profile-form-row sop-row">
+              <div className="profile-label label-svg-wrapper sop-svg-wrapper">
+                <img src={sopSvg} alt="STATEMENT OF PURPOSE" className="label-svg-graphic sop-svg" />
+              </div>
+              <div className="profile-textarea-frame">
+                <textarea
+                  name="sop"
+                  value={profile.sop}
+                  onChange={handleInputChange}
+                  placeholder="write your SOP (word limit: 200 words)"
+                  className="profile-textarea-input"
+                  rows={5}
+                />
+              </div>
+            </div>
+
+            {/* Row 10: Expectations From Mentor */}
+            <div className="profile-form-row sop-row">
+              <div className="profile-label label-svg-wrapper expectations-svg-wrapper">
+                <img src={expectationsSvg} alt="WHAT ARE YOUR EXPECTATIONS FROM YOUR MENTOR" className="label-svg-graphic expectations-svg" />
+              </div>
+              <div className="profile-textarea-frame">
+                <textarea
+                  name="expectations"
+                  value={profile.expectations}
+                  onChange={handleInputChange}
+                  placeholder="write your SOP (word limit: 200 words)"
+                  className="profile-textarea-input"
+                  rows={5}
+                />
+              </div>
+            </div>
+          </form>
+
+          {/* Preferences Section Header Graphic (Preferences.svg) */}
+          <div className="preferences-header-container">
+            <img src={preferencesTitleSvg} alt="PREFERENCES" className="preferences-title-img" />
+          </div>
+
+          {/* Preferences Cards Section */}
+          <div className="preferences-cards-wrapper">
+            {/* Top Row: 3 Cards */}
+            <div className="preferences-grid-top">
+              {[0, 1, 2].map((index) => (
+                <UnifiedMentorCard
+                  key={index}
+                  mentor={preferences[index]}
+                  mode="profile"
+                  preferenceIndex={index}
+                  onSelect={() => !isRegistered && handleCardClick(index)}
+                  onRemove={() => handleRemove(index)}
+                  isRegistered={isRegistered}
+                />
+              ))}
+            </div>
+
+            {/* Bottom Row: 2 Cards Centered */}
+            <div className="preferences-grid-bottom">
+              {[3, 4].map((index) => (
+                <UnifiedMentorCard
+                  key={index}
+                  mentor={preferences[index]}
+                  mode="profile"
+                  preferenceIndex={index}
+                  onSelect={() => !isRegistered && handleCardClick(index)}
+                  onRemove={() => handleRemove(index)}
+                  isRegistered={isRegistered}
+                />
+              ))}
+            </div>
+          </div>
+
+          {/* Bottom Interactive Register Pill Button (Rectangle 72 + Rectangle 73) */}
+          <div className="bottom-register-container">
+            <button 
+              type="button" 
+              className="batman-register-pill-btn"
+              onClick={handleRegisteration}
+              disabled={isRegistered}
+            >
+              <div className="inner-register-pill">
+                <span className="register-text-default">REGISTER</span>
+                <img src={batmanLogoSvg} alt="Bat Logo" className="register-bat-hover-img" />
+              </div>
+            </button>
+
+            {isRegistered && (
+              <div className="registration-success-badge">
+                ✓ Registration Completed Successfully!
+              </div>
+            )}
+          </div>
+        </div>
+      </div>
+
+      {/* Wishlist Modal */}
+      {showWishlist && (
+        <WishlistModal
+          onClose={() => {
+            setShowWishlist(false);
+            setActiveCard(null);
+          }}
+          onSelect={handleMentorSelect}
+        />
+      )}
     </>
   );
 }

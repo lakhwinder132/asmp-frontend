@@ -1,274 +1,287 @@
-@import url('https://fonts.googleapis.com/css2?family=Libre+Bodoni&display=swap');
+/* ==========================================================
+   FIGMA MENTORS LANDING PAGE STYLES (MATCHING TARGET IMAGE)
+   ========================================================== */
 
-:root {
-    --switches-bg-color: hwb(60 5% 22% / 0.671);
-    --switches-label-color: #fff;
-    --switch-bg-color: #D9CDB3;
-    --switch-text-color: #d3dad5;
-}
-
-.toggle-bg-image {
-  background-image: url("/toggle_bg.jpg");
+.figma-mentor-landing {
+  position: relative;
+  min-height: 100vh;
+  width: 100%;
   background-size: cover;
-  background-position: center;
+  background-position: center top;
+  background-repeat: no-repeat;
   background-attachment: fixed;
-  width: 100vw;
-  height: auto;
-  z-index: -1;
-  /* position: relative; */
+  color: #FFFFFF;
+  font-family: 'Ek Mukta', sans-serif;
+  overflow-x: hidden;
+  padding-bottom: 120px;
 }
 
-.toggle-bg-image::before {
-  content: '';
+.landing-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(5, 10, 20, 0.3) 0%,
+    rgba(5, 10, 20, 0.5) 50%,
+    rgba(5, 10, 20, 0.75) 100%
+  );
+  pointer-events: none;
+  z-index: 1;
+}
+
+.figma-content-container {
+  position: relative;
+  z-index: 2;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 60px 40px 60px 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* ----------------------------------------------------------
+   TOP BAT BADGES ROW (CORE / NON CORE)
+   ---------------------------------------------------------- */
+
+.top-bat-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  max-width: 1240px;
+  margin-top: 10px;
+  margin-bottom: 0px;
+}
+
+.bat-badge-box {
+  position: relative;
+  width: 520px;
+  height: 280px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: transform 0.3s ease, filter 0.3s ease;
+  user-select: none;
+}
+
+.bat-badge-box:hover {
+  transform: scale(1.04);
+  filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.6));
+}
+
+.bat-badge-box.active {
+  filter: drop-shadow(0 0 25px rgba(255, 255, 255, 0.9));
+}
+
+.bat-symbol-shape {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.4);
-  /* Adjust the rgba value for desired darkness */
-  z-index: 1;
-}
-
-.toggle-bg-image>* {
-  position: relative;
-  z-index: 2;
-}
-
-.core-or-noncore-container {
-  width: 75%;
-  margin: 0 auto;
-  background-color: transparent;
-  padding: 20px;
-}
-
-.switches-container {
-  width: 100%;
-  position: relative;
   display: flex;
-  padding: 0;
-  background: var(--switches-bg-color);
-  line-height: 3rem;
-  border: 4px solid #fff;
-  border-radius: 3rem;
+  justify-content: center;
+  align-items: center;
+}
+
+.bat-png-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: brightness(0.9) drop-shadow(0 6px 12px rgba(0, 0, 0, 0.9));
+}
+
+.bat-badge-text {
+  position: relative;
+  z-index: 3;
+  font-family: 'Ek Mukta', sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 36px;
+  line-height: 60px;
+  color: #FFFFFF;
+  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.95), 0 0 15px rgba(255, 255, 255, 0.7);
+  letter-spacing: 0.06em;
+  margin-top: 15px;
+}
+
+/* ----------------------------------------------------------
+   CENTRAL BAT EMBLEM OVER LIGHT BEAM
+   ---------------------------------------------------------- */
+
+.central-bat-container {
+  position: relative;
+  width: 520px;
+  height: 240px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: -60px;
   margin-bottom: 20px;
+  pointer-events: none;
 }
 
-.switches-container input {
-  visibility: hidden;
-  position: absolute;
-  top: 0;
-}
-
-.switches-container label {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 50%;
-  padding: 0.5rem;
-  margin: 0;
-  cursor: pointer;
-  background-color: transparent !important;
-  font-family: 'Fraunces', serif;
-  text-align: center;
-  font-size: 3rem;
-  line-height: 1.2;
-  color: white;
-}
-
-/* switch highlighters wrapper (sliding left / right)
-     - need wrapper to enable the even margins around the highlight box
-  */
-  .switch-wrapper {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    width: 50%;
-    padding: 0.15rem;
-    z-index: 3;
-    transition: transform 0.5s cubic-bezier(0.77, 0, 0.175, 1);
-  }
-  
-  /* switch box highlighter */
-  .switch {
-    border-radius: 3rem;
-    background: lab(71.85% -50.6 8.5 / 0.671);
-    border: 4px solid #fff;
-    font-size: 2rem;
-    height: 100%;
-  }
-  
-  /* switch box labels
-     - default setup
-     - toggle afterwards based on radio:checked status
-  */
-.switch div {
+.central-bat-img {
   width: 100%;
-  /* display: flex;
-    justify-content: center;
-    align-items: center; */
+  height: 100%;
+  object-fit: contain;
+  filter: brightness(0.95) drop-shadow(0 0 20px rgba(255, 255, 255, 0.4));
+}
+
+/* ----------------------------------------------------------
+   10 FILTER PILL RECTANGLES GRID (2 COLUMNS OF 5)
+   ---------------------------------------------------------- */
+
+.filter-rectangles-container {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 1240px;
+  gap: 60px;
+  margin-bottom: 90px;
+}
+
+.filter-column {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  flex: 1;
+  max-width: 506px;
+}
+
+.filter-rectangle-btn {
+  box-sizing: border-box;
+  width: 100%;
+  height: 72px;
+  background: #121F2F;
+  border: 2px solid #FCFDF6;
+  border-radius: 16px;
+  font-family: 'Ek Mukta', sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 22px;
+  line-height: 30px;
+  color: #FFFFFF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   text-align: center;
-  opacity: 0;
-  display: block;
-  color: var(--switch-text-color);
-  transition: opacity 0.2s cubic-bezier(0.77, 0, 0.175, 1) 0.125s;
-  will-change: opacity;
-  position: absolute;
-  top: 15%;
-  left: 0;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.5);
+  user-select: none;
 }
 
-/* slide the switch box from right to left */
-.switches-container input:nth-of-type(1):checked~.switch-wrapper {
-  transform: translateX(0%);
+.filter-rectangle-btn:hover {
+  background: #1E334D;
+  border-color: #FFFFFF;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.7), 0 0 14px rgba(252, 253, 246, 0.4);
 }
 
-/* slide the switch box from left to right */
-.switches-container input:nth-of-type(2):checked~.switch-wrapper {
-  transform: translateX(100%);
+.filter-rectangle-btn.active {
+  background: #2A4868;
+  border-color: #81D4FA;
+  box-shadow: 0 0 20px rgba(129, 212, 250, 0.6);
+  color: #81D4FA;
 }
 
-/* toggle the switch box labels - first checkbox:checked - show first switch div */
-.switches-container input:nth-of-type(1):checked~.switch-wrapper .switch div:nth-of-type(1) {
-  opacity: 1;
-}
+/* ----------------------------------------------------------
+   MENTOR CARDS 3x2 GRID SECTION
+   ---------------------------------------------------------- */
 
-/* toggle the switch box labels - second checkbox:checked - show second switch div */
-.switches-container input:nth-of-type(2):checked~.switch-wrapper .switch div:nth-of-type(2) {
-  opacity: 1;
-}
-
-@media (max-width: 768px) {
-  .switch div {
-    padding: auto;
-    position: absolute;
-    top: 25%;
-    left: 0;
-  }
-}
-
-@media (max-width: 600px) {
-  .switch div {
-    padding: auto;
-    position: absolute;
-    top: 15%;
-    left: 0;
-  }
-}
-
-/*************************************************************************************/
-
-.toggle-ul-core {
-  list-style-type: none;
-  padding: 0;
-  margin: auto;
+.mentor-cards-section {
+  width: 100%;
+  max-width: 1200px;
   display: flex;
   justify-content: center;
-  align-items: center;
-  width: 80%;
-  flex-wrap: wrap;
 }
 
-.toggle-li-core {
-  flex: 1 1 auto;
-  /* Allows the list items to grow and shrink */
-  text-align: center;
-  margin: 5px;
+.mentor-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  column-gap: 50px;
+  row-gap: 85px;
+  width: 100%;
+  justify-items: center;
 }
 
-.toggle-li-link-core {
-  text-align: center;
-  display: block;
-  padding: 10px 15px;
-  text-decoration: none;
-  color: #D9CDB3;
-  background-color: #838326;
-  border: 1px solid white;
-  border-radius: 25px;
-  transition: background-color 0.3s, color 0.3s;
-  font-size: 1.5rem;
-  font-family: 'Fraunces', serif;
-  line-height: 1.2;
+.mentor-grid-item {
+  width: 100%;
+  display: flex;
+  justify-content: center;
 }
 
-/* Hover effect */
-.toggle-li-link-core:hover {
-  background-color: #b3b9d9;
-  color: #099c33;
-}
+/* ----------------------------------------------------------
+   RESPONSIVE DESIGN ADJUSTMENTS
+   ---------------------------------------------------------- */
 
-/* Active state */
-.toggle-li-link-core.active {
-  background-color: #d9d0b3;
-  color: #245331;
-}
-  .toggle-ul-noncore {
-    list-style-type: none;
-    padding: 0;
-    margin: auto;
-    display: flex;
-    justify-content: center;
+@media (max-width: 1100px) {
+  .top-bat-row {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .bat-badge-box {
+    width: 380px;
+    height: 200px;
+  }
+
+  .central-bat-container {
+    width: 380px;
+    height: 180px;
+    margin-top: -20px;
+  }
+
+  .filter-rectangles-container {
+    flex-direction: column;
     align-items: center;
-    width: 80%;
-    flex-wrap: wrap;
+    gap: 22px;
   }
-  
-  .toggle-li-noncore {
-    flex: 1 1 auto; /* Allows the list items to grow and shrink */
-    text-align: center;
-    margin: 5px;
-  }
-  
-  .toggle-li-link-noncore {
-    text-align: center;
-    display: block;
-    padding: 10px 15px;
-    text-decoration: none;
-    color: #D9CDB3;
-    background-color: #838326;
-    border: 1px solid white;
-    border-radius: 25px;
-    transition: background-color 0.3s, color 0.3s;
-    font-size: 1.5rem;
-    font-family: 'Fraunces', serif;
-    line-height: 1.2;
-  }
-  
-  /* Hover effect */
-  .toggle-li-link-noncore:hover {
-    background-color: #b3d9d6;
-    color:#838326;
-  }
-  
-  /* Active state */
-  .toggle-li-link-noncore.active {
-    background-color: #D9CDB3;
-    color: #838326;
-  }
-  
-  /* Responsive design for smaller screens */
-  @media (max-width: 768px) {
-    .toggle-li-noncore {
-      flex: 1 1 25%;
-    }
-  }
-  
-  @media (max-width: 480px) {
-    .toggle-li-noncore {
-      flex: 1 1 100%; /* One item per row */
-    }
-  }
-/*************************************************************************************/
 
-.btn-outline-light {
-  border-radius: 50%;
-  width: 40px;
+  .filter-column {
+    width: 100%;
+    max-width: 506px;
+  }
+
+  .mentor-cards-grid {
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 30px;
+    row-gap: 50px;
+  }
 }
 
-.card {
-  transition: transform 0.3s ease;
-}
+@media (max-width: 700px) {
+  .figma-content-container {
+    padding: 60px 20px 40px 20px;
+  }
 
-.col-sm-3:hover {
-  transform: scale(1.05);
+  .bat-badge-box {
+    width: 300px;
+    height: 160px;
+  }
+
+  .bat-badge-text {
+    font-size: 28px;
+  }
+
+  .central-bat-container {
+    width: 300px;
+    height: 140px;
+  }
+
+  .filter-rectangle-btn {
+    height: 60px;
+    font-size: 18px;
+  }
+
+  .mentor-cards-grid {
+    grid-template-columns: 1fr;
+    row-gap: 40px;
+  }
 }
