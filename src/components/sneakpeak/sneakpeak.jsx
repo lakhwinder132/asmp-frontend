@@ -3,49 +3,50 @@ import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import "./Sneakpeak.css";
 import CursorAnimation from "../CursorAnimation";
+import sneakBg from "../../Images/Sneakpeak.png";
 
 const slides = [
   {
     title: "Director, American Express",
     description: "Managing credit risk models for American Express' $350B US small business portfolio, leveraging machine learning to identify and mitigate high-risk customers",
     link: "/Login",
-    buttonText: "Grab Mentorship Now!",
+    buttonText: "Grab Mentorship",
   },
   {
     title: "Vice President, Citi Group",
     description: "AI researcher with 15 years' experience, including a PhD from INRIA Rennes",
     link: "/Login",
-    buttonText: "Grab Mentorship Now!",
+    buttonText: "Grab Mentorship",
   },
   {
     title: "IAS Officer, Government of India",
     description: "Experienced IAS officer responsible for both policy formulation and execution",
     link: "/Login",
-    buttonText: "Grab Mentorship Now!",
+    buttonText: "Grab Mentorship",
   },
   {
     title: "Deputy Commissioner of Income Tax, Ministry of Finance",
     description: "18+ months of experience as a Project Manager in the infrastructure sector and a background as a Financial Advisor in the Ministry of Defence",
     link: "/Login",
-    buttonText: "Grab Mentorship Now!",
+    buttonText: "Grab Mentorship",
   },
   {
     title: "Business Finance Head, Google India",
     description: "20+ years of experience across engineering, consulting, and technology, including leadership roles at L&T, Kearney, and Google in digital marketing and business finance",
     link: "/Login",
-    buttonText: "Grab Mentorship Now!",
+    buttonText: "Grab Mentorship",
   },
   {
     title: "Climate Change Analyst, World Bank",
     description: "Expertise in international climate change policy, climate finance, and international development, with a focus on sustainable global solutions and policy frameworks",
     link: "/Login",
-    buttonText: "Grab Mentorship Now!",
+    buttonText: "Grab Mentorship",
   },
   {
     title: "Junior Engagement Manager, McKinsey & Company",
     description: "Consultant with an MBA from IIM Ahmedabad and B.Tech from IIT Bombay. Experienced in management consulting, project management, & operational excellence",
     link: "/Login",
-    buttonText: "Grab Mentorship Now!",
+    buttonText: "Grab Mentorship",
   },
 ];
 
@@ -76,8 +77,10 @@ function Sneakpeak() {
   return (
     <>
       <CursorAnimation />
-      <div className="sneakpeak-container">
-       
+      <div
+        className="sneakpeak-container"
+        style={{ backgroundImage: `url(${sneakBg})` }}
+      >
         <div className="arrow left" onClick={() => scrollByAmount(-400)}>&#8592;</div>
         <div
           className="scroll-wrapper"
@@ -89,7 +92,7 @@ function Sneakpeak() {
             <motion.div
               className="mentor-card"
               key={i}
-              whileHover={{ scale: 1.05, rotateY: 5 }}
+              whileHover={{ scale: 1.2, rotateY: 5 }}
               transition={{ type: "spring", stiffness: 300 }}
             >
               <div className="title-section">
