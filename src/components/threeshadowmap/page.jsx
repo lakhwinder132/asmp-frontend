@@ -80,7 +80,7 @@ function ConeLight({ length, radius, opacity = 0.5 }) {
       <meshBasicMaterial
         color="#ffffff"
         transparent
-        opacity="0.18"
+        opacity="0.3"
         blending={THREE.NormalBlending}
         depthWrite={false}
         side={THREE.FrontSide}
@@ -94,7 +94,7 @@ function BatWithLight({ lengthScale, widthScale, positionNudge }) {
   const { size } = useThree();
 
   const isSmallScreen = size.width < 668;
-  const groupY = isSmallScreen ? 1.34 : 2.6;
+  const groupY = isSmallScreen ? 1.355 : 2.6;
 
   // scale factor now responsive too
   const scaleFactor = isSmallScreen ? 0.025 : MANUAL_SCALE; // tweak 0.04 to taste
