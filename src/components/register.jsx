@@ -85,7 +85,7 @@ function Register() {
         : "transparent",
       color: "white",
       fontSize: "22px",
-      fontFamily: "'Fraunces', serif",
+      // fontFamily: "'Fraunces', serif",
       padding: "15px 20px",
     }),
   };

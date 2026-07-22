@@ -419,3 +419,11 @@
 .swiper-pagination-bullet-active {
   background: #808080 !important;   /* Gray */
 }
+
+#TestimoinalHeading{
+  font-family: "Oxanium";
+}
+
+#TestimoninalContent{
+  font-family: "Space+Grotesk";
+}

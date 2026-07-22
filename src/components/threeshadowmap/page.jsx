@@ -4,7 +4,7 @@ import { useGLTF } from "@react-three/drei";
 import * as THREE from "three";
 import { Bounds } from "@react-three/drei";
 
-const MANUAL_SCALE = 0.03; // ⚠ adjust after testing
+const MANUAL_SCALE = 0.055; // ⚠ adjust after testing
 
 // Both the bat and the light beam are children of the SAME rotating
 // group (see BatWithLight below), so they always share this exact swing
@@ -13,8 +13,8 @@ const SWING_AMPLITUDE = Math.PI / 8;
 const SWING_FREQUENCY = 0.8;
 
 // Cone dimensions before the length/width sliders are applied.
-const BASE_CONE_LENGTH = 90;
-const BASE_CONE_RADIUS = 50;
+const BASE_CONE_LENGTH = 140;
+const BASE_CONE_RADIUS = 70;
 const CONE_RADIAL_SEGMENTS = 40;
 
 const MANUAL_LENGTH_SCALE = 1;
@@ -132,10 +132,10 @@ function BatWithLight({ lengthScale, widthScale, positionNudge }) {
   const { size } = useThree();
 
   const isSmallScreen = size.width < 668;
-  const groupY = isSmallScreen ? 1.355 : 2.6;
+  const groupY = isSmallScreen ? 2.459 : 2.478;
 
   // scale factor now responsive too
-  const scaleFactor = isSmallScreen ? 0.025 : MANUAL_SCALE; // tweak 0.04 to taste
+  const scaleFactor = isSmallScreen ? 0.036 : MANUAL_SCALE; // tweak 0.04 to taste
 
   useFrame(({ clock }) => {
     const t = clock.getElapsedTime();

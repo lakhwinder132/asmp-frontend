@@ -57,7 +57,7 @@ const TestimonialSlider = () => {
     ref={testimonialRef}
     id="testimonials"
     style={{
-      backgroundImage: "url('/Testimonial.png')",
+      background:"transparent",
       backgroundSize: "cover",
       backgroundPosition: "center",
       backgroundRepeat: "no-repeat",
@@ -100,15 +100,15 @@ const TestimonialSlider = () => {
         >
           {testimonials.map((testimonial, index) => (
             <SwiperSlide key={index}>
-              <div style={styles.testimonialItem}>
-                <div style={styles.overContainer}>
+              <div style={styles.testimonialItem} >
+                <div style={styles.overContainer} >
                   <div
                     className="name-heading"
                     style={{
                       width: "100%",
                       color: "white",
-                      fontFamily: "Fraunces, serif",
                     }}
+                    id="TestimonialHeading"
                   >
                     {testimonial.name}
                   </div>
@@ -152,12 +152,12 @@ const TestimonialSlider = () => {
                       className="testimonal-content"
                       style={{
                         color: "white",
-                        fontFamily: "Fraunces, serif",
                         flex: 1,
                         minWidth: "0",
                         wordWrap: "break-word",
                         overflowWrap: "break-word"
                       }}
+                      id="TestimonialContent"
                     >
                       {testimonial.feedback}
                     </div>
@@ -183,7 +183,7 @@ const styles = {
     background: "linear-gradient(90deg, rgba(0, 0, 0, 0.58) 0%, rgba(89, 84, 84, 0.58) 43.5%, rgba(0, 0, 0, 0.58) 87.5%, rgba(0, 0, 0, 0.58) 100%)",
     backdropFilter: "blur(1px)",
     WebkitBackdropFilter: "blur(10px)",
-    borderRadius: "0px",
+    borderRadius: "7px",
     border: "4px solid rgba(255, 255, 255, 1)",
     overflow: "hidden",
     padding: "20px",

@@ -33,10 +33,10 @@ export default function Homee() {
         <div
           style={{
             position: "absolute",
-            top: 40,
+            top: 0,
             left: 0,
             width: "100%",
-            height: "200%",
+            height: "100%",
             zIndex: 0,
             pointerEvents: "none",
           }}

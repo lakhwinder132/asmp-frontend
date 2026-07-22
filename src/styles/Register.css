@@ -355,7 +355,7 @@ body, html {
 }
 
 .react-select__option {
-  font-family: 'Fraunces', serif !important;
+  font-family:'Space Grotesk';
   font-size: 22px !important;
   color: white !important;
   padding: 15px 20px !important;
