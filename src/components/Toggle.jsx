@@ -1,168 +1,197 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./Toggle.css";
-
-import NonCoreManagement_consult from "./non-corefiles/NonCoreManagement-consult";
-import NonCoreFinance from "./non-corefiles/NonCoreFinance";
-import NonCoreSoftware from "./non-corefiles/NonCoreSoftware";
-import Civil_services from "./non-corefiles/civil_services";
-import Management from "./non-corefiles/management";
-import Product_management from "./non-corefiles/product_management";
-import Strategy_consulting from "./non-corefiles/strategy_consulting";
-import Design from "./non-corefiles/design";
-import Marketing from "./non-corefiles/marketing";
-import Entrepreneurship from "./non-corefiles/entrepreneurship";
-import Analytics from "./non-corefiles/analytics.jsx";
-import Other from "./non-corefiles/other.jsx";
-
-import Core from "./Core";
-import Research from "./research";
-
-import backgroundImage from "../assets/asmp_bg.jpg";
 import CursorAnimation from "./CursorAnimation";
+import UnifiedMentorCard from "./UnifiedMentorCard";
+import UseFetchMentors from "../hooks/useFetchMentors";
+import batLogoImg from "../assets/images/download__80_-removebg-preview 2.png";
+import homeBg from "../assets/images/Justice bleeds black 1.png";
+
+const MOCK_MENTORS = [
+  {
+    id: 1,
+    name: "Mohit Yadav",
+    company_name: "Amazon",
+    designation: "Associate Product Manager",
+    year: "2023",
+    experience: "2 Yrs",
+    work_profile: "Product Management",
+    field: "product_management"
+  },
+  {
+    id: 2,
+    name: "Priya Sharma",
+    company_name: "McKinsey & Co",
+    designation: "Strategy Consultant",
+    year: "2022",
+    experience: "3 Yrs",
+    work_profile: "Management Consulting",
+    field: "management_consulting"
+  },
+  {
+    id: 3,
+    name: "Rahul Verma",
+    company_name: "Google",
+    designation: "Senior SDE",
+    year: "2021",
+    experience: "4 Yrs",
+    work_profile: "Software Engineering",
+    field: "software"
+  },
+  {
+    id: 4,
+    name: "Ananya Roy",
+    company_name: "Goldman Sachs",
+    designation: "Investment Analyst",
+    year: "2023",
+    experience: "2 Yrs",
+    work_profile: "Quantitative Finance",
+    field: "finance"
+  },
+  {
+    id: 5,
+    name: "Vikram Malhotra",
+    company_name: "ISRO / DRDO",
+    designation: "Lead Systems Engineer",
+    year: "2020",
+    experience: "5 Yrs",
+    work_profile: "Aerospace Engineering",
+    field: "core_engineering"
+  },
+  {
+    id: 6,
+    name: "Sneha Patel",
+    company_name: "Boston Consulting Group",
+    designation: "Business Analyst",
+    year: "2022",
+    experience: "3 Yrs",
+    work_profile: "Strategy & Operations",
+    field: "strategy_consulting"
+  }
+];
+
+const LEFT_CORE_FIELDS = [
+  { id: "core_engineering", label: "Core Engineering" },
+  { id: "research", label: "Research" },
+  { id: "software", label: "IT / Software" },
+  { id: "analytics", label: "Analytics" },
+  { id: "civil_services", label: "Civil Services / Govt." }
+];
+
+const RIGHT_NONCORE_FIELDS = [
+  { id: "management_consulting", label: "Management Consulting" },
+  { id: "strategy_consulting", label: "Strategy Consulting" },
+  { id: "finance", label: "Finance" },
+  { id: "product_management", label: "Product Management" },
+  { id: "design", label: "Design & Marketing" }
+];
 
 const Toggle = () => {
-  const [selectedOption, setSelectedOption] = useState("core");
-  const [activeTabNonCore, setActiveTabNonCore] = useState("analytics");
-  const [activeTabCore, setActiveTabCore] = useState("core-engineering");
+  const [selectedCategory, setSelectedCategory] = useState("all");
+  const [activeField, setActiveField] = useState("all");
+  const { fetchMentors, mentors, setMentors } = UseFetchMentors();
 
-  // to toggle between core and non-core
-  const handleOptionChange = (event) => {
-    setSelectedOption(event.target.value);
+  useEffect(() => {
+    if (activeField !== "all") {
+      fetchMentors(activeField);
+    }
+  }, [activeField, fetchMentors]);
+
+  const handleFieldClick = (fieldId) => {
+    if (activeField === fieldId) {
+      setActiveField("all");
+    } else {
+      setActiveField(fieldId);
+    }
   };
 
-  // to toggle between different options in the non-core div
-  const handleTabClickNonCore = (tab, event) => {
-    event.preventDefault();
-    setActiveTabNonCore(tab);
+  const handleCategoryClick = (category) => {
+    setSelectedCategory(category);
+    setActiveField("all");
   };
 
-  // to toggle between different options in the core div
-  const handleTabClickCore = (tab, event) => {
-    event.preventDefault();
-    setActiveTabCore(tab);
-  };
-
-  const nonCoreTabs = [
-    { id: "analytics", label: "Analytics", href: "#analytics" },
-    { id: "civil-service", label: "Civil Services/Government of India", href: "#civil-service" },
-    { id: "management-consult", label: "Management Consulting", href: "#management-consult" },
-    { id: "strategy-consult", label: "Strategy Consulting", href: "#strategy-consult" },
-    { id: "finance", label: "Finance", href: "#finance" },
-    { id: "software", label: "IT/Software", href: "#software" },
-    { id: "others", label: "Others", href: "#others" },
-    { id: "product-management", label: "Product Management", href: "#product-management" },
-    { id: "design", label: "Design", href: "#design" },
-    { id: "management", label: "Management", href: "#management" },
-    { id: "marketing", label: "Marketing", href: "#marketing" },
-    { id: "entrepreneurship", label: "Entrepreneurship", href: "#entrepreneurship" },
-  ];
-
-  const coreTabs = [
-    { id: "core-engineering", label: "Core Engineering", href: "#core-engineering" },
-    { id: "research", label: "Research", href: "#research" },
-  ];
+  const displayMentors = (mentors && mentors.length > 0) ? mentors : MOCK_MENTORS;
 
   return (
     <>
       <CursorAnimation />
-      <div className="toggle-bg-image">
-        <div style={{ height: "10vh" }}></div>
-        <div className="core-or-noncore-container">
-          <div className="switches-container">
-            <input
-              type="radio"
-              id="core"
-              name="coreOrNonCore"
-              value="core"
-              checked={selectedOption === "core"}
-              onChange={handleOptionChange}
-            />
-            <label htmlFor="core">Core</label>
+      <div 
+        className="figma-mentor-landing"
+        style={{ backgroundImage: `url(${homeBg})` }}
+      >
+        <div className="landing-overlay"></div>
 
-            <input
-              type="radio"
-              id="noncore"
-              name="coreOrNonCore"
-              value="noncore"
-              checked={selectedOption === "noncore"}
-              onChange={handleOptionChange}
-            />
-            <label htmlFor="noncore">Non Core</label>
-
-            <div className="switch-wrapper">
-              <div
-                className="switch">
-                <div
-                  style={{
-                    fontFamily: "Fraunces, serif",
-                    fontSize: "3rem",
-                    lineHeight: "1.2",
-                    color: "#245331",
-                  }}>Core</div>
-                <div
-                  style={{
-                    fontFamily: "Fraunces, serif",
-                    fontSize: "3rem",
-                    lineHeight: "1.2",
-                    color: "#245331",
-                  }}>Non Core</div>
+        <div className="figma-content-container">
+          {/* Top Bat Badges Row */}
+          <div className="top-bat-row">
+            {/* CORE Bat Logo Button */}
+            <div 
+              className={`bat-badge-box left-bat ${selectedCategory === "core" ? "active" : ""}`}
+              onClick={() => handleCategoryClick(selectedCategory === "core" ? "all" : "core")}
+            >
+              <div className="bat-symbol-shape">
+                <img src={batLogoImg} alt="Bat Logo" className="bat-png-img" />
               </div>
+              <div className="bat-badge-text">CORE</div>
+            </div>
+
+            {/* NON CORE Bat Logo Button */}
+            <div 
+              className={`bat-badge-box right-bat ${selectedCategory === "noncore" ? "active" : ""}`}
+              onClick={() => handleCategoryClick(selectedCategory === "noncore" ? "all" : "noncore")}
+            >
+              <div className="bat-symbol-shape">
+                <img src={batLogoImg} alt="Bat Logo" className="bat-png-img" />
+              </div>
+              <div className="bat-badge-text">NON CORE</div>
+            </div>
+          </div>
+
+          {/* 10 Filter Pill Rectangles Grid */}
+          <div className="filter-rectangles-container">
+            {/* Left Column (5 pills) */}
+            <div className="filter-column left-col">
+              {LEFT_CORE_FIELDS.map((item) => (
+                <button
+                  key={item.id}
+                  className={`filter-rectangle-btn ${activeField === item.id ? "active" : ""}`}
+                  onClick={() => handleFieldClick(item.id)}
+                >
+                  {item.label}
+                </button>
+              ))}
+            </div>
+
+            {/* Right Column (5 pills) */}
+            <div className="filter-column right-col">
+              {RIGHT_NONCORE_FIELDS.map((item) => (
+                <button
+                  key={item.id}
+                  className={`filter-rectangle-btn ${activeField === item.id ? "active" : ""}`}
+                  onClick={() => handleFieldClick(item.id)}
+                >
+                  {item.label}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          {/* Mentor Cards 3x2 Grid Section */}
+          <div className="mentor-cards-section">
+            <div className="mentor-cards-grid">
+              {displayMentors.slice(0, 6).map((mentor, index) => (
+                <div key={mentor.id || index} className={`mentor-grid-item card-pos-${index + 1}`}>
+                  <UnifiedMentorCard
+                    mentor={mentor}
+                    mentors={displayMentors}
+                    setMentors={setMentors}
+                    mode="display"
+                    showAddButton={true}
+                  />
+                </div>
+              ))}
             </div>
           </div>
         </div>
-
-        {/* Conditionally rendering coreDiv and noncoreDiv */}
-        {selectedOption === "core" && (
-          <div id="coreDiv">
-            <ul className="toggle-ul-core">
-              {coreTabs.map(({ id, label, href = `#${id}` }) => (
-                <li key={id} className="toggle-li-core">
-                  <a
-                    className={`toggle-li-link-core ${activeTabCore === id ? "active" : ""
-                      }`}
-                    href={href}
-                    onClick={(e) => handleTabClickCore(id, e)}
-                  >
-                    {label}
-                  </a>
-                </li>
-              ))}
-            </ul>
-            {activeTabCore === "core-engineering" && <Core />}
-            {activeTabCore === "research" && <Research />}
-          </div>
-        )}
-
-        {selectedOption === "noncore" && (
-          <div id="noncoreDiv">
-            <ul className="toggle-ul-noncore">
-              {nonCoreTabs.map(({ id, label, href = `#${id}` }) => (
-                <li key={id} className="toggle-li-noncore">
-                  <a
-                    className={`toggle-li-link-noncore ${activeTabNonCore === id ? "active" : ""
-                      }`}
-                    href={href}
-                    onClick={(e) => handleTabClickNonCore(id, e)}
-                  >
-                    {label}
-                  </a>
-                </li>
-              ))}
-            </ul>
-            {activeTabNonCore === "analytics" && <Analytics />}
-            {activeTabNonCore === "civil-service" && <Civil_services />}
-            {activeTabNonCore === "management-consult" && <NonCoreManagement_consult />}
-            {activeTabNonCore === "strategy-consult" && <Strategy_consulting />}
-            {activeTabNonCore === "finance" && <NonCoreFinance />}
-            {activeTabNonCore === "software" && <NonCoreSoftware />}
-            {activeTabNonCore === "others" && <Other />}
-            {activeTabNonCore === "product-management" && <Product_management />}
-            {activeTabNonCore === "design" && <Design />}
-            {activeTabNonCore === "management" && <Management />}
-            {activeTabNonCore === "marketing" && <Marketing />}
-            {activeTabNonCore === "entrepreneurship" && <Entrepreneurship />}
-          </div>
-        )}
       </div>
     </>
   );

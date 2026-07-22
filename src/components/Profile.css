@@ -1,167 +1,499 @@
-@import url("https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Inknut+Antiqua:wght@300;400;500;600;700;800;900&display=swap");
+/* ==========================================================
+   FIGMA PROFILE / REGISTER PAGE STYLES (EXACT FIGMA REDESIGN)
+   ========================================================== */
 
-.profile {
-  background-image: url("../assets/background_resized.png");
+.profile-page-container {
+  position: relative;
+  min-height: 100vh;
+  width: 100%;
   background-size: cover;
+  background-position: center top;
   background-repeat: no-repeat;
   background-attachment: fixed;
-  font-family: "Inknut Antiqua", serif !important;
-  min-height: 100vh;
-  width: 100vw;
+  color: #FFFFFF;
+  font-family: 'Inknut Antiqua', serif;
   overflow-x: hidden;
-  position: relative;
+  padding-bottom: 120px;
 }
 
-.profile input::placeholder {
-  color: rgb(50, 50, 50) !important;
-}
-
-/* Textarea improvements */
-.profile textarea {
-  resize: none !important;
-  overflow-y: auto !important;
-  scrollbar-width: thin !important;
-  scrollbar-color: rgba(0, 0, 0, 0.3) transparent !important;
-}
-
-.profile textarea::-webkit-scrollbar {
-  width: 8px !important;
-}
-
-.profile textarea::-webkit-scrollbar-track {
-  background: transparent !important;
-}
-
-.profile textarea::-webkit-scrollbar-thumb {
-  background: rgba(0, 0, 0, 0.3) !important;
-  border-radius: 4px !important;
-}
-
-.profile textarea::-webkit-scrollbar-thumb:hover {
-  background: rgba(0, 0, 0, 0.5) !important;
-}
-
-/* Word count container styling */
-.word-count-container {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 4px;
-}
-
-.word-count-container p {
-  margin: 0;
-  font-weight: 600;
-  letter-spacing: 0.5px;
-}
-
-/* For purple overlays etc., you can use utility classes in JSX (see previous messages) */
-
-.profile h1 {
-  font-family: "Fraunces", serif !important;
-  text-shadow: 0 0 10px #ffffff;
-}
-
-/* Responsive cards and modal tweaks (Tailwind already helps, but for custom classes:) */
-
-.preference-card {
-  max-width: 340px;
-  width: 100%;
-  height: 24rem;
-  background: #932c92;
-  border: 3px solid #fff;
-  border-radius: 16px;
-  box-shadow: 0px 0px 3px 7px #fff;
-  cursor: pointer;
-  margin: 0.5rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-
-.preference-card-content {
-  background: #a742a4;
-  color: #fff;
-  text-align: center;
-  border-radius: 0 0 49px 49px;
-  padding: 2.5rem 0.5rem 0.5rem 0.5rem;
-}
-
-.preference-card button {
-  margin: 1rem;
-  background: #a742a4;
-  color: #fff;
-  font-size: 1.1rem;
-  font-family: serif;
-  font-weight: 500;
-  padding: 0.85rem 1.25rem;
-  border-radius: 0.2rem;
-  transition: background 0.2s;
-}
-
-.preference-card button:hover {
-  background: #ba68c8;
-}
-
-/* Modal styling (for fallback if Tailwind not used) */
-
-.wishlist-modal-overlay {
-  position: fixed;
+.profile-overlay {
+  position: absolute;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(131, 38, 126, 0.85); /* deep purple with opacity */
-  z-index: 99999;
+  background: linear-gradient(
+    180deg,
+    rgba(10, 18, 28, 0.35) 0%,
+    rgba(8, 14, 22, 0.55) 50%,
+    rgba(5, 10, 16, 0.75) 100%
+  );
+  pointer-events: none;
+  z-index: 1;
+}
+
+.profile-main-content {
+  position: relative;
+  z-index: 2;
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 20px 30px 80px 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.profile-header-space {
+  height: 90px;
+  width: 100%;
+}
+
+/* ----------------------------------------------------------
+   TOP TITLE GRAPHIC (Register.svg)
+   ---------------------------------------------------------- */
+
+.profile-title-graphic-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+  margin-bottom: 35px;
+}
+
+.profile-register-title-img {
+  max-width: 520px;
+  width: 80%;
+  height: auto;
+  object-fit: contain;
+}
+
+/* ----------------------------------------------------------
+   REGISTRATION FORM GRID (REDUCED FONT SIZE BY 35%)
+   ---------------------------------------------------------- */
+
+.profile-form-grid {
+  width: 100%;
+  max-width: 1000px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.profile-form-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  gap: 20px;
+}
+
+.profile-label {
+  font-family: 'BatmanForeverAlternate', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 22px; /* Reduced by 35% from 34px for clean elegant size */
+  line-height: 26px;
+  color: #FFFFFF;
+  width: 44%;
+  letter-spacing: 0.04em;
+  margin: 0;
+  text-shadow: 0px 3px 5px rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+}
+
+.label-svg-wrapper {
+  width: 44%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.label-svg-graphic {
+  max-width: 85%;
+  height: 26px; /* Uniform height for single line labels */
+  width: auto;
+  object-fit: contain;
+  object-position: left center;
+}
+
+.sop-svg-wrapper,
+.expectations-svg-wrapper {
+  width: 44%;
+  display: flex;
+  align-items: flex-start;
+  padding-top: 4px;
+}
+
+.sop-svg {
+  max-width: 88%;
+  height: 52px; /* 2-line SVG height matching 26px per line */
+  width: auto;
+  object-fit: contain;
+  object-position: left top;
+}
+
+.expectations-svg {
+  max-width: 95%;
+  height: 98px; /* 4-line SVG height matching 24px per line */
+  width: auto;
+  object-fit: contain;
+  object-position: left top;
+}
+
+.sop-label {
+  font-size: 20px;
+  line-height: 24px;
+}
+
+.expectations-label {
+  font-size: 18px;
+  line-height: 22px;
+}
+
+.profile-input-frame {
+  box-sizing: border-box;
+  width: 500px;
+  max-width: 52%;
+  height: 48px;
+  background: rgba(255, 255, 255, 0.6);
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 16px;
+  backdrop-filter: blur(4px);
+}
+
+.text-display-field {
+  font-family: 'Inknut Antiqua', serif;
+  font-size: 15px;
+  color: #000000;
+  font-weight: 600;
+}
+
+.profile-field-input {
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  border: none;
+  outline: none;
+  font-family: 'Inknut Antiqua', serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14.5px;
+  line-height: 22px;
+  text-align: center;
+  color: #000000;
+}
+
+.profile-field-input::placeholder {
+  color: rgba(0, 0, 0, 0.7);
+  font-family: 'Inknut Antiqua', serif;
+  font-size: 14px;
+}
+
+/* Academic Subgrid */
+.academic-row {
+  align-items: flex-start;
+}
+
+.academic-subgrid-container {
+  width: 500px;
+  max-width: 52%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.academic-subgrid-top,
+.academic-subgrid-bottom {
+  display: flex;
+  gap: 12px;
+  width: 100%;
+}
+
+.academic-sub-box {
+  box-sizing: border-box;
+  flex: 1;
+  height: 42px;
+  background: rgba(255, 255, 255, 0.6);
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Inknut Antiqua', serif;
+  font-size: 13.5px;
+  color: #000000;
+  padding: 0 8px;
+  text-align: center;
+  backdrop-filter: blur(4px);
+}
+
+.sub-input {
+  font-size: 13.5px;
+}
+
+/* Textareas (SOP & Expectations) */
+.sop-row {
+  align-items: flex-start;
+  margin-top: 6px;
+}
+
+.profile-textarea-frame {
+  box-sizing: border-box;
+  width: 500px;
+  max-width: 52%;
+  height: 160px;
+  background: rgba(255, 255, 255, 0.6);
+  border-radius: 18px;
+  padding: 14px;
+  backdrop-filter: blur(4px);
+}
+
+.profile-textarea-input {
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  border: none;
+  outline: none;
+  resize: none;
+  font-family: 'Inknut Antiqua', serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 22px;
+  color: #000000;
+}
+
+.profile-textarea-input::placeholder {
+  color: rgba(0, 0, 0, 0.7);
+  font-family: 'Inknut Antiqua', serif;
+}
+
+/* ----------------------------------------------------------
+   PREFERENCES SECTION
+   ---------------------------------------------------------- */
+
+.preferences-header-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 60px;
+  margin-bottom: 35px;
+}
+
+.preferences-title-img {
+  max-width: 780px;
+  width: 85%;
+  height: auto;
+  object-fit: contain;
+}
+
+.preferences-cards-wrapper {
+  width: 100%;
+  max-width: 1050px;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  align-items: center;
+}
+
+.preferences-grid-top {
+  display: flex;
+  justify-content: center;
+  gap: 35px;
+  width: 100%;
+  flex-wrap: wrap;
+}
+
+.preferences-grid-bottom {
+  display: flex;
+  justify-content: center;
+  gap: 35px;
+  width: 100%;
+  flex-wrap: wrap;
+}
+
+.profile-preference-card-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.preference-label {
+  font-family: 'Space Grotesk', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16.8px;
+  line-height: 22px;
+  text-align: center;
+  color: #FFFFFF;
+  text-shadow: 0px 3.5px 3.5px rgba(0, 0, 0, 0.25);
+  margin-bottom: 8px;
+}
+
+/* Wireframe Preference Card Override */
+.profile-pref-card {
+  width: 270px !important;
+  height: 322px !important;
+  background: rgba(164, 180, 184, 0.95) !important;
+  border-radius: 12px !important;
+  position: relative !important;
+  box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.5) !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  cursor: pointer;
+  border: none !important;
+}
+
+.please-select-pref-text {
+  font-family: 'Oxanium', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 21px;
+  line-height: 27px;
+  text-align: center;
+  color: #121B3D;
+  text-shadow: 0px 3.5px 3.5px rgba(0, 0, 0, 0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  padding: 0 10px;
+}
+
+.pref-card-btn {
+  width: 134px !important;
+  height: 38px !important;
+  top: 250px !important;
+  font-size: 16px !important;
+}
+
+.select-btn {
+  background: #121B3D !important;
+}
+
+/* ----------------------------------------------------------
+   INTERACTIVE REGISTER BUTTON WITH BAT LOGO HOVER EFFECT
+   ---------------------------------------------------------- */
+
+.bottom-register-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 50px;
+}
+
+/* Rectangle 72 */
+.batman-register-pill-btn {
+  box-sizing: border-box;
+  width: 184px;
+  height: 53px;
+  background: rgba(26, 34, 49, 0.9);
+  border-radius: 72px;
+  border: none;
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 0.5rem;
-}
-
-.wishlist-modal-box {
-  background: #fff;
-  width: 100%;
-  max-width: 500px;
-  max-height: 650px;
-  height: 80vh;
-  border-radius: 1.25rem;
-  box-shadow: 0 6px 36px 4px rgba(40, 0, 40, 0.22);
-  padding: 1.5rem;
-  position: relative;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-}
-
-.wishlist-modal-close {
-  position: absolute;
-  top: 0.75rem;
-  right: 1.25rem;
-  color: #555;
-  font-size: 2rem;
   cursor: pointer;
-  z-index: 10;
-  background: none;
-  border: none;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  padding: 0;
+  user-select: none;
 }
 
-@media (max-width: 576px) {
-  .profile {
-    background-image: url("../assets/890378dbb61bdf023a0502a389061b44.png");
-    background-attachment: scroll;
-    min-height: 100vh;
+.batman-register-pill-btn:hover {
+  transform: scale(1.06);
+  background: #121B3D;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.8), 0 0 15px rgba(164, 180, 184, 0.3);
+}
+
+/* Rectangle 73 */
+.inner-register-pill {
+  position: relative;
+  width: 155px;
+  height: 43px;
+  background: #D9D9D9;
+  opacity: 0.85;
+  border-radius: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  transition: opacity 0.3s ease;
+}
+
+.batman-register-pill-btn:hover .inner-register-pill {
+  opacity: 1;
+}
+
+/* Default "REGISTER" text */
+.register-text-default {
+  font-family: 'BatmanForeverAlternate', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 18px;
+  color: #000000;
+  transition: opacity 0.25s ease, transform 0.25s ease;
+  position: absolute;
+}
+
+.batman-register-pill-btn:hover .register-text-default {
+  opacity: 0;
+  transform: scale(0.8);
+}
+
+/* Bat Logo image revealed on hover (Batman-Logo-2018 1.svg) */
+.register-bat-hover-img {
+  height: 38px;
+  width: 80px;
+  object-fit: contain;
+  opacity: 0;
+  transform: scale(0.7);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  position: absolute;
+}
+
+.batman-register-pill-btn:hover .register-bat-hover-img {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.registration-success-badge {
+  margin-top: 16px;
+  background: rgba(16, 185, 129, 0.2);
+  border: 1px solid #10B981;
+  color: #6EE7B7;
+  padding: 8px 20px;
+  border-radius: 20px;
+  font-family: 'Oxanium', sans-serif;
+  font-size: 16px;
+}
+
+/* ----------------------------------------------------------
+   RESPONSIVE DESIGN
+   ---------------------------------------------------------- */
+
+@media (max-width: 900px) {
+  .profile-form-row {
+    flex-direction: column;
+    align-items: center;
   }
-  .wishlist-modal-box {
-    max-width: 97vw;
-    padding: 0.8rem;
-    min-height: 55vh;
-    height: auto;
+
+  .profile-label {
+    width: 100%;
+    text-align: center;
+    font-size: 18px;
+    line-height: 22px;
   }
-  .preference-card {
-    max-width: 97vw;
-    min-height: 16rem;
-    padding: 0.5rem 0.2rem;
+
+  .profile-input-frame,
+  .academic-subgrid-container,
+  .profile-textarea-frame {
+    max-width: 100%;
+    width: 100%;
   }
 }
