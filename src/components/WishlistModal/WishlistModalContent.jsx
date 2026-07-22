@@ -40,21 +40,21 @@ export default function WishlistModalContent({ onSelect }) {
   if (loading)
     return (
       <div className="flex justify-center items-center h-64">
-        <div className="text-gray-600">Loading...</div>
+        <div className="text-gray-300">Loading...</div>
       </div>
     );
   if (error)
     return (
       <div className="flex justify-center items-center h-64">
-        <div className="text-red-600">Error loading wishlist: {error}</div>
+        <div className="text-red-400">Error loading wishlist: {error}</div>
       </div>
     );
   if (!mentors || mentors.length === 0)
     return (
       <div className="flex justify-center items-center h-64">
-        <div className="text-gray-600 text-center">
-          <p className="text-lg">No mentors in your wishlist</p>
-          <p className="text-sm mt-2">
+        <div className="text-gray-300 text-center">
+          <p className="text-lg font-semibold">No mentors in your wishlist</p>
+          <p className="text-sm mt-2 text-gray-400">
             Add mentors to your wishlist to see them here.
           </p>
         </div>
@@ -63,12 +63,14 @@ export default function WishlistModalContent({ onSelect }) {
 
   return (
     <div style={{ overflowY: "auto", padding: "0 0px" }}>
-      <h2 style={{ color: "#A742A4", textAlign: "center", marginBottom: "8px" }}>My Wishlist</h2>
+      <h2 className="wishlist-modal-title">MY WISHLIST</h2>
       <div
         style={{
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
+          gap: "28px",
+          padding: "10px 0 30px 0",
         }}
       >
         {mentors.map((mentor) => (

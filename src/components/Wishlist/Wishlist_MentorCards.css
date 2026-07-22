@@ -937,14 +937,17 @@
 
 /* Designation / Role Title */
 .wishlist-card-designation {
-  width: 190px;
-  height: 48px;
-  margin-top: 2px;
-  font-family: 'BatmanForeverAlternate', 'Oxanium', sans-serif;
+  position: absolute !important;
+  top: 12px !important;
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+  width: 190px !important;
+  height: 38px !important;
+  font-family: 'BatmanForeverAlternate', sans-serif !important;
   font-style: normal;
-  font-weight: 700;
-  font-size: 15.5px;
-  line-height: 15px;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 17px;
   text-align: center;
   color: #121B3D;
   text-shadow: 0px 4px 6.6px rgba(0, 0, 0, 0.18);
@@ -954,7 +957,7 @@
   text-transform: uppercase;
 }
 
-/* Company Name SVG Graphic */
+/* Company Name SVG Graphic (Legacy/Unused but kept for safety) */
 .wishlist-card-company {
   width: 180px;
   height: 22px;
@@ -970,73 +973,233 @@
   object-fit: contain;
 }
 
-/* Horizontal Line (Line 7: 195px width) */
+/* Horizontal Line - absolutely positioned inside the content container */
 .wishlist-card-divider {
-  width: 185px;
-  height: 0px;
-  border: 1.5px solid rgba(0, 0, 0, 0.5);
-  margin: 12px 0 10px 0;
+  position: absolute !important;
+  top: 104px !important;
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+  width: 185px !important;
+  height: 0px !important;
+  border: 1.5px solid rgba(0, 0, 0, 0.5) !important;
+  margin: 0 !important;
 }
 
-/* Experience */
+/* Experience - absolutely positioned inside the content container */
 .wishlist-card-exp {
-  width: 100%;
-  padding-left: 12px;
+  position: absolute !important;
+  top: 120px !important;
+  left: 12px !important;
+  width: 180px !important;
   font-family: 'Oxanium', sans-serif;
   font-style: normal;
   font-weight: 400;
-  font-size: 16.5px;
-  line-height: 20px;
+  font-size: 14px !important;
+  line-height: 18px !important;
   color: #121B3D;
   text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  margin-top: 4px;
+  margin: 0 !important;
+  padding: 0 !important;
 }
 
-/* Graduation Year */
+/* Graduation Year - absolutely positioned inside the content container */
 .wishlist-card-grad {
-  width: 100%;
-  padding-left: 12px;
+  position: absolute !important;
+  top: 142px !important;
+  left: 12px !important;
+  width: 180px !important;
   font-family: 'Oxanium', sans-serif;
   font-style: normal;
   font-weight: 400;
-  font-size: 16.5px;
-  line-height: 20px;
+  font-size: 14px !important;
+  line-height: 18px !important;
   color: #121B3D;
   text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  margin-top: 10px;
+  margin: 0 !important;
+  padding: 0 !important;
 }
 
-/* 4. Remove Button Pill (Rectangle 33 / 50: 141px x 41px) */
-.wishlist-card-remove-btn {
-  position: absolute;
-  width: 141px;
-  height: 41px;
-  left: 50%;
-  transform: translateX(-50%);
-  top: 257px;
+/* 4. Remove/Select Button Pill (Rectangle 33 / 50: 135px x 36px) - placed inside the content box above the frame */
+.wishlist-card-remove-btn-inner {
+  position: absolute !important;
+  width: 135px !important;
+  height: 36px !important;
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+  bottom: 12px !important;
+  top: auto !important;
+  background: rgba(26, 34, 49, 0.9) !important;
+  border-radius: 60px !important;
+  border: none !important;
+  font-family: 'Oxanium', sans-serif !important;
+  font-style: normal !important;
+  font-weight: 600 !important;
+  font-size: 16px !important;
+  line-height: 20px !important;
+  color: #FFFFFF !important;
+  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25) !important;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  cursor: pointer !important;
+  z-index: 10 !important;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4) !important;
+  transition: all 0.2s ease !important;
+}
+
+.wishlist-card-remove-btn-inner:hover {
+  background: #121B3D !important;
+  transform: translateX(-50%) scale(1.05) !important;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.6) !important;
+}
+
+.wishlist-card-remove-btn-inner.select-btn {
+  background: #121B3D !important;
+}
+
+.wishlist-card-remove-btn-inner.select-btn:hover {
+  background: rgba(26, 34, 49, 0.9) !important;
+}
+
+/* Center empty preference state text inside the content box */
+.please-select-pref-text {
+  position: absolute !important;
+  top: 50% !important;
+  left: 50% !important;
+  transform: translate(-50%, -65%) !important;
+  width: 90% !important;
+  font-family: 'Oxanium', sans-serif !important;
+  font-style: normal !important;
+  font-weight: 500 !important;
+  font-size: 19px !important;
+  line-height: 25px !important;
+  text-align: center !important;
+  color: #121B3D !important;
+  text-shadow: 0px 3.5px 3.5px rgba(0, 0, 0, 0.25) !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  height: auto !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+/* ==========================================================
+   NEW STYLES FOR TYPOGRAPHY & DARK THEME MODAL
+   ========================================================== */
+
+@font-face {
+  font-family: 'Exima Geometric';
+  src: url('../../assets/fonts/exima_geometric/Exima Geometric.otf') format('opentype');
+}
+
+@font-face {
+  font-family: 'BatmanForeverAlternate';
+  src: url('../../assets/fonts/BatmanForeverAlternate/batmfa.ttf') format('truetype');
+}
+
+.wishlist-card-company-text {
+  position: absolute !important;
+  top: 54px !important;
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+  width: 190px !important;
+  height: 40px !important;
+  font-family: 'Exima Geometric', sans-serif !important;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 24px;
+  text-align: center;
+  color: #121B3D;
+  text-shadow: 0px 4px 6.6px rgba(0, 0, 0, 0.18);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-transform: uppercase;
+}
+
+.selection-card-buttons {
+  position: absolute !important;
+  top: 120px !important;
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+  width: 100% !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  gap: 8px !important;
+  margin: 0 !important;
+  z-index: 5 !important;
+}
+
+.selection-btn {
+  width: 155px;
+  height: 40px;
   background: rgba(26, 34, 49, 0.9);
-  border-radius: 60px;
+  border-radius: 72px;
   border: none;
   font-family: 'Oxanium', sans-serif;
   font-style: normal;
   font-weight: 600;
-  font-size: 24px;
-  line-height: 30px;
+  font-size: 18px;
+  line-height: 22px;
   color: #FFFFFF;
   text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   display: flex;
   justify-content: center;
   align-items: center;
   cursor: pointer;
-  z-index: 10;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
   transition: all 0.2s ease;
 }
 
-.wishlist-card-remove-btn:hover {
+.selection-btn:hover {
   background: #121B3D;
-  transform: translateX(-50%) scale(1.05);
-  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.6);
+  transform: scale(1.05);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.6);
+}
+
+.wishlist-modal-title {
+  font-family: 'BatmanForeverAlternate', sans-serif;
+  font-size: 26px;
+  font-weight: 400;
+  color: #FFFFFF;
+  text-align: center;
+  margin-bottom: 24px;
+  letter-spacing: 0.05em;
+  text-shadow: 0px 4px 8px rgba(0, 0, 0, 0.5);
+}
+
+.wishlist-modal-container {
+  background: #151D26 !important;
+  border: 1px solid rgba(164, 180, 184, 0.2) !important;
+  color: #FFFFFF !important;
+  box-shadow: 0px 10px 40px rgba(0, 0, 0, 0.8) !important;
+}
+
+/* Specific Typography Swapping & Size Limits for Selection / Modal Cards */
+.selection-card-designation {
+  font-family: 'BatmanForeverAlternate', sans-serif !important;
+  font-style: normal !important;
+  font-weight: 400 !important;
+  font-size: 15px !important;
+  line-height: 18px !important;
+  color: #121B3D !important;
+  text-transform: uppercase !important;
+  text-align: center !important;
+}
+
+.selection-card-company-text {
+  font-family: 'Exima Geometric', sans-serif !important;
+  font-style: normal !important;
+  font-weight: 700 !important;
+  font-size: 12.5px !important;
+  line-height: 16px !important;
+  color: #121B3D !important;
+  text-transform: uppercase !important;
+  text-align: center !important;
+  margin-top: 6px !important;
 }
 
 
