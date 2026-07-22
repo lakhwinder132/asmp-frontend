@@ -1,6 +1,14 @@
 /* ==========================================================
    FIGMA MENTORS LANDING PAGE STYLES (MATCHING TARGET IMAGE)
    ========================================================== */
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+
+@font-face {
+    font-family: "Exima Geometric";
+    src: url("../assets/fonts/exima_geometric/Exima Geometric.otf") format("opentype");
+    font-weight: normal;
+    font-style: normal;
+}
 
 .figma-mentor-landing {
   position: relative;

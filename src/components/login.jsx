@@ -18,20 +18,21 @@ const customSwalStyles = `
   }
   .swal2-title {
     color: #C8A840 !important;
-    font-family: 'Fraunces', serif !important;
+    font-family: 'Oxanium', serif !important;
     font-size: 1.5rem !important;
   }
   .swal2-html-container {
     color: #ffffff !important;
-    font-family: 'Fraunces', serif !important;
+    font-family: 'Space Grotesk', serif !important;
   }
   .swal2-confirm {
     background: #C8A840 !important;
     border: none !important;
     border-radius: 8px !important;
-    font-family: 'Fraunces', serif !important;
+    font-family: 'Exima Geometric', serif !important;
     font-weight: bold !important;
     padding: 12px 24px !important;
+    color:black;
   }
   .swal2-confirm:hover {
     background: #D3BB69 !important;

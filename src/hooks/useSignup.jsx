@@ -18,7 +18,7 @@ const UseSignup = () => {
       console.log("Sending userData:", userData);
       const response = await fetch(
         "https://asmp.sarc-iitb.org/api/authentication/create-user/",
-        // `http://127.0.0.1:8000/api/authentication/create-user/`,
+        `http://127.0.0.1:8000/api/authentication/create-user/`,
         {
           method: "POST",
           headers: {
