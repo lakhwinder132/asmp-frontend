@@ -4,101 +4,110 @@ import instagramIcon from "/teampage/instagram.svg";
 import linkedinIcon from "/teampage/linkedin.svg";
 
 // Overall Coordinator
-import image1 from "/teampage/Karthik Vaishnav.png";
+import imageoc1 from "../../assets/images/oc1.jpeg";
+import imageoc2 from "../../assets/images/oc2.jpeg";
 // ASMP Team
-import image9 from "/teampage/asmpctm1.png";
-import image10 from "/teampage/asmpctm2.png";
-import image15 from "/teampage/ac1.png";
-import image16 from "/teampage/ac2.png";
-import image5 from "/teampage/ac3.png";
-import image14 from "/teampage/ac4.png";
-import image3 from "/teampage/ac5.png";
+import image9 from "../../assets/images/Bhavya.jpg.jpeg";
+import image10 from "../../assets/images/Kartavya.jpg.jpeg";
+import image15 from "../../assets/images/Samarveer Singh Virdi.jpeg";
+import image16 from "../../assets/images/Shonit Kataria_.jpg";
+import image5 from "../../assets/images/Muskan Meena.jpg";
+import image14 from "../../assets/images/Sanman Ghanbahadur_.jpg";
+import image3 from "../../assets/images/Samruddhi Gavali .jpg";
 // Web Team
 import image13 from "/teampage/arush.png";
-import image11 from "/teampage/khushi.png";
-import image2 from "/teampage/kapil.png";
+import image11 from "../../assets/images/Indrani.jpg.jpeg";
+import image2 from "../../assets/images/Rushikesh.jpg";
 import image7 from "/teampage/vanshika.png";
 import image20 from "/teampage/aditya.png";
 import image21 from "/teampage/vaibhav.png";
-import image22 from "/teampage/rutika.png";
-import image23 from "/teampage/tarun.png";
+import image22 from "../../assets/images/Gaurav.jpeg";
+import image23 from "../../assets/images/Krish.png";
 // Design Team
-import image17 from "/teampage/designctm1.png";
-import image18 from "/teampage/designctm2.png";
-import image25 from "/teampage/dc1.png";
-import image26 from "/teampage/dc2.png";
-import image27 from "/teampage/dc3.png";
-import image28 from "/teampage/dc4.png";
-import image29 from "/teampage/dc5.png";
-import image30 from "/teampage/dc6.png";
+import image17 from "../../assets/images/Shravanee.jpg.jpeg";
+import image18 from "../../assets/images/Shreyansh.jpg.jpeg";
+import image25 from "../../assets/images/Aman.jpg";
+import image26 from "../../assets/images/Annu.jpg";
+import image27 from "../../assets/images/Mishthi.jpg";
+import image28 from "../../assets/images/Simran.jpeg";
+import image29 from "../../assets/images/Vesundhara.jpg";
+import image30 from "../../assets/images/Suhani.jpg";
 
 import CursorAnimation from "../CursorAnimation";
 
 const Team = () => {
   const teamData = {
-    overallCoordinator: {
-      name: "Karthik Vaishnav",
-      image: image1,
-      instagram: "https://www.instagram.com/kartik__vaishnav/",
-      linkedin: "https://www.linkedin.com/in/kartik-vaishnav-12a758251/",
-      phone: "+91 88157 26072",
-    },
-
+    overallCoordinator:[
+      {
+        name: "Sai Sharanya",
+        image: imageoc2,
+        instagram: "https://www.instagram.com/sai_sharanya_06/?utm_source=ig_web_button_share_sheet",
+        linkedin: "https://www.linkedin.com/in/kinnera-sai-sharanya-05b9b9292/",
+        phone: "+91 83092 70649",
+      },
+      {
+        name: "Sarvagya Jain",
+        image: imageoc1,
+        instagram: "https://www.instagram.com/sarvo75/?utm_source=ig_web_button_share_sheet",
+        linkedin: "https://www.linkedin.com/in/sarvagya-jain-355798213/",
+        phone: "+91 94248 00631",
+      },
+    ],
     webTeams: [
       {
         title: "ASMP TEAM 2025-26",
         coreMembers: [
           {
-            name: "Aadit Sule",
+            name: "Bhavya Upadhyay",
             image: image9,
-            instagram: "https://www.instagram.com/aaadit_s/",
-            linkedin: "https://www.linkedin.com/in/aadit-sule/",
-            phone: "+91 84595 39918",
+            instagram: "https://www.instagram.com/bhavyaupadhyay._?igsh=NjQ1MDY3bG56ZnE1&utm_source=qr",
+            linkedin: "https://www.linkedin.com/in/bhavya-upadhyay-baa423332/",
+            phone: "+91 70147 25133",
           },
           {
-            name: "Aastha Maliwal",
+            name: "Kartavya Gupta",
             image: image10,
-            instagram: "https://www.instagram.com/aasthamaliwal/",
-            linkedin: "https://www.linkedin.com/in/aastha-maliwal-2ba2b0287/",
-            phone: "+91 94035 21022",
+            instagram: "https://www.instagram.com/kart4vya?igsh=MTd2a3ZjeW1yZTl6Mg%3D%3D&utm_source=qr",
+            linkedin: "https://www.linkedin.com/in/guptakartavya/",
+            phone: "+91 79055 40591",
           },
         ],
         coordinators: [
           {
-            name: "Manas Gupta",
+            name: "Samarveer Singh Virdi",
             image: image15,
-            instagram: "https://www.instagram.com/manasgupta1014/",
-            linkedin: "https://www.linkedin.com/in/manas-gupta-bb487b317",
-            phone: "+91 93511 02913",
+            instagram: "https://www.instagram.com/samarveer_singh_virdi/",
+            linkedin: "https://www.linkedin.com/in/samarveer-singh-virdi-7aa714380/",
+            phone: "+91 93108 25979",
           },
           {
-            name: "Ridham Saxena",
+            name: "Shonit Kataria",
             image: image16,
-            instagram: "https://www.instagram.com/ridham.2006/",
+            instagram: "https://www.instagram.com/shonitkataria/",
             linkedin:
-              "https://www.linkedin.com/in/ridham-saxena-5a1555318?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
-            phone: "+91 94256 01681",
+              "https://www.linkedin.com/in/shonit-kataria-095736378/",
+            phone: "+91 99231 11519",
           },
           {
-            name: "Srishti Poddar",
+            name: "Muskan Meena",
             image: image5,
-            instagram: "https://www.instagram.com/srishtipodda.r/",
-            linkedin: "https://www.linkedin.com/in/srishti-poddar-855944260/",
-            phone: "+91 63592 63317",
+            instagram: "",
+            linkedin: "https://www.linkedin.com/in/muskan-meena-b8728b388/",
+            phone: "+91 90127 03289",
           },
           {
-            name: "Vaibhav Kumar",
+            name: "Sanman Ghanbahadur",
             image: image14,
-            instagram: "https://www.instagram.com/fr._.vaibhav/",
-            linkedin: "https://www.linkedin.com/in/vaibhav-kumar-6a7b84330/",
-            phone: "+91 93527 22250",
+            instagram: "https://www.instagram.com/sanmanvg/",
+            linkedin: "https://www.linkedin.com/in/sanman-ghanbahadur-514229379/",
+            phone: "+91 92703 99404",
           },
           {
-            name: "Jasnoor Kaur",
+            name: "Samruddhi Gavali",
             image: image3,
-            instagram: "https://www.instagram.com/_noor._.78/",
-            linkedin: "https://www.linkedin.com/in/jasnoor-kaur-24b40734a/",
-            phone: "+91 98149 72319",
+            instagram: "https://www.instagram.com/samruddhii_990/",
+            linkedin: "https://www.linkedin.com/in/samruddhi-gavali-79064b39b/",
+            phone: "+91 94037 75626",
           },
         ],
       },
@@ -107,62 +116,55 @@ const Team = () => {
         title: "WEB TEAM 2025-26",
         coreMembers: [
           {
-            name: "Arush Srivastava",
-            image: image13,
-            instagram: "https://www.instagram.com/itss.arushhh/",
-            linkedin: "https://www.linkedin.com/in/arush-narayan-srivastav-001/",
-            phone: "+91 90055 49919",
-          },
-          {
-            name: "Khushi Yadav",
+            name: "Indrani Sahu",
             image: image11,
-            instagram: "https://www.instagram.com/yadavk_18/",
-            linkedin: "https://www.linkedin.com/in/khushi-yadav-0275b6293/",
-            phone: "+91 89300 97733",
+            instagram: "https://www.instagram.com/infinity.423/",
+            linkedin: "https://www.linkedin.com/in/indrani-sahu-358049343/",
+            phone: "+91 93020 41423",
           },
         ],
         coordinators: [
           {
-            name: "Kapil Chhipa",
+            name: "Rushikesh Akkal",
             image: image2,
-            instagram: "https://www.instagram.com/kapi_lchhipa/",
-            linkedin: "https://www.linkedin.com/in/kapil-chhipa-05a741330/",
-            phone: "+91 99509 13954",
+            instagram: "https://www.instagram.com/rushikesh_akkal/",
+            linkedin: "https://www.linkedin.com/in/rushikesh-akkal-a97423373/",
+            phone: "+91 75587 99565",
           },
           {
-            name: "Aditya Chaurasiya",
+            name: "Disha Agarwal",
             image: image20,
-            instagram: "https://www.instagram.com/adityachaurasiya.8807/",
-            linkedin: "https://www.linkedin.com/in/aditya-chaurasiya-70785531b/",
-            phone: "+91 79919 56691",
+            instagram: "https://www.instagram.com/disha_agarwal001/",
+            linkedin: "https://www.linkedin.com/in/disha-agarwal-a01665376/",
+            phone: "+91 99281 69642",
           },
           {
-            name: "Vaibhav Singh",
+            name: "Geetanjali Rajesh Aswar",
             image: image21,
-            instagram: "https://www.instagram.com/cheekycaibhav/",
-            linkedin: "https://www.linkedin.com/in/vaibhavsingh776/",
-            phone: "+91 90820 00452",
+            instagram: "https://www.instagram.com/geetsraswar21/",
+            linkedin: "https://www.linkedin.com/in/geetanjali-aswar-0b80b3387/",
+            phone: "+91 70380 82878",
           },
           {
-            name: "Rutika Hake",
+            name: "Gaurav",
             image: image22,
-            instagram: "https://www.instagram.com/rutikahake",
-            linkedin: "https://www.linkedin.com/in/rutika-hake-990787322",
-            phone: "+91 87671 53010",
+            instagram: "https://www.instagram.com/gaurav_vector2.0/",
+            linkedin: "linkedin.com/in/gaurav-magdum-73a7b2388/?skipRedirect=true",
+            phone: "+91 89624 37646",
           },
           {
-            name: "Tarun Kadam",
+            name: "Krish Tandel",
             image: image23,
-            instagram: "https://www.instagram.com/tarunkadam06",
-            linkedin: "https://www.linkedin.com/in/tarun-kadam-657a44330",
-            phone: "+91 77579 49693",
+            instagram: "https://www.instagram.com/krish_tandel.25/",
+            linkedin: "https://www.linkedin.com/in/tandelkrish/",
+            phone: "+91 90236 01901",
           },
           {
-            name: "Vanshika Nalamasa",
+            name: "Lakhwinder Singh",
             image: image7,
-            instagram: "https://www.instagram.com/vanshikazz0405",
-            linkedin: "https://www.linkedin.com/in/vanshika-nalamasa-04b6bb326",
-            phone: "+91 99896 83662",
+            instagram: "https://www.instagram.com/lakhwinder28590/",
+            linkedin: "https://www.linkedin.com/in/lakhwinder-singh-89440638a/",
+            phone: "+91 83609 70365",
           },
         ],
       },
@@ -171,62 +173,62 @@ const Team = () => {
         title: "DESIGN TEAM 2025-26",
         coreMembers: [
           {
-            name: "Sarthak Hase",
+            name: "Shravanee Kulkarni",
             image: image17,
-            instagram: "https://www.instagram.com/sarthak_hase",
-            linkedin: "https://www.linkedin.com/in/sarthak-hase-9503aa241/",
-            phone: "+91 93700 05696",
+            instagram: "https://www.instagram.com/shravanee_09?igsh=eDZqazd0Y3E1NDRn",
+            linkedin: "https://www.linkedin.com/in/shravanee-kulkarni-230989356?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
+            phone: "+91 95791 65349",
           },
           {
-            name: "Gayatri Sahu",
+            name: "Shreyansh Singh",
             image: image18,
-            instagram: "https://www.instagram.com/_gayu_02__/",
-            linkedin: "https://www.linkedin.com/in/gayatri-sahu-948310295/",
-            phone: "+91 77269 49650",
+            instagram: "https://www.instagram.com/shreyansh10.2/?hl=en",
+            linkedin: "https://www.linkedin.com/in/shreyansh-singh-103183314/",
+            phone: "+91 95204 29992",
           },
         ],
         coordinators: [
           {
-            name: "Ayushi Sahani",
+            name: "Aman",
             image: image25,
-            instagram: "https://www.instagram.com/ay_ushi6556/",
-            linkedin: "https://www.linkedin.com/in/ayushi-sahani-922bb5369",
-            phone: "+91 90262 90894",
+            instagram: "https://www.instagram.com/amanjangid004?igsh=MTg5bTNuODQ1aTMyOQ%3D%3D",
+            linkedin: "https://www.linkedin.com/in/aman-jangid-b60b08374?",
+            phone: "+91 90793 52217",
           },
           {
-            name: "Manvi Sheth",
+            name: "Annu",
             image: image26,
-            instagram: "https://www.instagram.com/ivnam_9/",
-            linkedin: "https://www.linkedin.com/in/manvi-sheth-18725a379/",
-            phone: "+91 93721 43959",
+            instagram: "https://www.instagram.com/_annu._87?igsh=dzQ5Nmg4bDJ0Ympu",
+            linkedin: "https://www.linkedin.com/in/annu-kumari-416540387/",
+            phone: "+91 76329 31266",
           },
           {
-            name: "Rutuparn Ranade ",
+            name: "Mishthi",
             image: image27,
-            instagram: "https://www.instagram.com/ingenious_rutu/",
-            linkedin: "https://www.linkedin.com/in/rutuparn-ranade-95623b340/",
-            phone: "+91 86691 83310",
+            instagram: "https://www.instagram.com/mishthiiii__22?igsh=eTcwYW9kN3hsZ3Vo",
+            linkedin: "https://www.linkedin.com/in/mishthi-verma-6b995a3a6/",
+            phone: "+91 78770 06492",
           },
           {
-            name: "Shravanee Kulkarni",
+            name: "Simran",
             image: image28,
-            instagram: "https://www.instagram.com/shravanee_09",
-            linkedin: "https://www.linkedin.com/in/shravanee-kulkarni-230989356/",
-            phone: "+91 95791 65349",
+            instagram: "https://www.instagram.com/simran._suhani?igsh=MW5yeGM2dW1qZmY4Yg%3D%",
+            linkedin: "https://www.linkedin.com/in/simran-suhani-594866371/",
+            phone: "+91 94375 84363",
           },
           {
-            name: "Umesh Motiwale",
+            name: "Vesundhara",
             image: image29,
-            instagram: "https://www.instagram.com/umesh_motiwale",
-            linkedin: "https://www.linkedin.com/in/umesh-motiwale-289132319",
-            phone: "+91 95797 40114",
+            instagram: "https://www.instagram.com/vesundharaa/",
+            linkedin: "http://www.linkedin.com/in/vesundhara-fagodia-147382409",
+            phone: "+91 70144 90461",
           },
           {
-            name: "Viraj Jadhav",
+            name: "Suhani",
             image: image30,
-            instagram: "https://www.instagram.com/viraj_jadhav_0108",
-            linkedin: "https://www.linkedin.com/in/viraj-jadhav-7b4933346",
-            phone: "+91 70580 48152",
+            instagram: "https://www.instagram.com/suhanii._.gupta_/?utm_source=ig_web_button_share_sheet",
+            linkedin: "",
+            phone: "+91 77150 47057",
           },
         ],
       },
@@ -292,7 +294,11 @@ const Team = () => {
 
         <h2 className="head2">OVERALL COORDINATOR</h2>
         <div className="team-grid-single">
-          {renderMember(teamData.overallCoordinator, true)}
+          {teamData.overallCoordinator.map((member, index) => (
+    <React.Fragment key={`overall-${index}`}>
+      {renderMember(member, true)}
+    </React.Fragment>
+  ))}
         </div>
 
         {teamData.webTeams.map((webTeam, teamIndex) => (

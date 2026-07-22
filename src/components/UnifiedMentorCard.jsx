@@ -9,6 +9,25 @@ import companyNameSvg from "../assets/images/Company Name.svg";
 import subtractSvg from "../assets/images/Subtract.svg";
 import rectangle47Svg from "../assets/images/Rectangle 47.svg";
 import batmanLogoSvg from "../assets/images/Batman-Logo-2018 1.svg";
+const getDesignationStyle = (text) => {
+  if (!text) return { fontStyle: "normal" };
+  const len = text.length;
+  // BatmanForeverAlternate is very wide
+  if (len > 32) return { fontSize: "9.5px", lineHeight: "11.5px", letterSpacing: "0.01em" };
+  if (len > 22) return { fontSize: "11px", lineHeight: "13px", letterSpacing: "0.02em" };
+  if (len > 12) return { fontSize: "13px", lineHeight: "15px", letterSpacing: "0.03em" };
+  return { fontSize: "14.5px", lineHeight: "16.5px", letterSpacing: "0.04em" };
+};
+
+const getCompanyStyle = (text) => {
+  if (!text) return { fontStyle: "normal" };
+  const len = text.length;
+  // Exima Geometric is narrower
+  if (len > 32) return { fontSize: "8.5px", lineHeight: "10.5px" };
+  if (len > 20) return { fontSize: "10px", lineHeight: "12px" };
+  if (len > 12) return { fontSize: "12px", lineHeight: "14px" };
+  return { fontSize: "14px", lineHeight: "16px" };
+};
 
 const UnifiedMentorCard = ({ 
   mentor, 
@@ -122,79 +141,51 @@ const UnifiedMentorCard = ({
   // For Selection / Modal mode
   if (mode === "selection") {
     return (
-      <div
-        className="wishlist-card"
-        data-mode={mode}
-        style={{
-          width: "320px",
-          height: "280px",
-          background: "#932C92",
-          border: "3px solid #fff",
-          borderRadius: "18px",
-          marginBottom: "18px",
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "space-between",
-          boxShadow: "0px 0px 3px 7px #FFFFFF",
-          paddingBottom: "11px",
-        }}
-      >
-        <div
-          style={{
-            background: "#A742A4",
-            color: "#fff",
-            textAlign: "center",
-            fontSize: "17px",
-            borderRadius: "0 0 32px 32px",
-            padding: "28px 0 6px 0",
-          }}
-        >
-          <strong>{mentor?.company_name || mentor?.name}</strong>
-          <br />
-          {mentor?.designation || mentor?.work_profile || ""}
-        </div>
-        <div style={{ flexGrow: 1 }}></div>
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            gap: "10px",
-          }}
-        >
-          <button
-            onClick={handleSelect}
-            style={{
-              width: "90%",
-              background: "#A742A4",
-              color: "white",
-              fontWeight: "bold",
-              fontSize: "16px",
-              borderRadius: "6px",
-              padding: "7px 0 7px 0",
-              border: "none",
-              cursor: "pointer",
-            }}
-          >
-            Select
-          </button>
+      <div className="wishlist-figma-card selection-card">
+        {/* 1. Top Batman Logo Emblem (Batman-Logo-2018 1.svg) */}
+        <img 
+          src={batmanLogoSvg} 
+          alt="Batman Logo" 
+          className="wishlist-batman-logo" 
+        />
 
-          <button
-            onClick={handleDelete}
-            style={{
-              width: "90%",
-              background: "#8B1E8B",
-              color: "white",
-              fontWeight: "bold",
-              fontSize: "15px",
-              borderRadius: "6px",
-              padding: "7px 0 7px 0",
-              border: "none",
-              cursor: "pointer",
-            }}
-          >
-            Remove
-          </button>
+        {/* 2. Outer Wireframe Frame (Subtract.svg 240px x 258px) */}
+        <img 
+          src={subtractSvg} 
+          alt="Outer Wireframe" 
+          className="wishlist-subtract-bg" 
+        />
+
+        {/* 3. Inner Wireframe Box (Rectangle 47.svg 205px x 231px) */}
+        <div className="wishlist-inner-card-box">
+          <img 
+            src={rectangle47Svg} 
+            alt="Inner Wireframe" 
+            className="wishlist-rect47-bg" 
+          />
+
+          {/* Content overlaid inside Rectangle 47 */}
+          <div className="wishlist-card-content selection-card-content">
+            <div className="wishlist-card-designation selection-card-designation" style={getDesignationStyle(mentor?.designation || mentor?.work_profile)}>
+              {(mentor?.designation || mentor?.work_profile || "Associate Product Manager").toUpperCase()}
+            </div>
+
+            <div className="wishlist-card-company-text selection-card-company-text" style={getCompanyStyle(mentor?.company_name || mentor?.name)}>
+              {mentor?.company_name || mentor?.name || "Company Name"}
+            </div>
+
+            <div className="wishlist-card-divider"></div>
+
+            {/* Vertical Stacked Buttons */}
+            <div className="selection-card-buttons">
+              <button className="selection-btn select-action-btn" onClick={handleSelect}>
+                SELECT
+              </button>
+              <button className="selection-btn remove-action-btn" onClick={handleDelete}>
+                Remove
+              </button>
+            </div>
+          </div>
         </div>
       </div>
     );
@@ -222,11 +213,11 @@ const UnifiedMentorCard = ({
             <div className="wishlist-card-content">
               {mentor ? (
                 <>
-                  <div className="wishlist-card-designation">
+                  <div className="wishlist-card-designation" style={getDesignationStyle(mentor.designation || mentor.work_profile)}>
                     {(mentor.designation || mentor.work_profile || "Associate Product Manager").toUpperCase()}
                   </div>
-                  <div className="wishlist-card-company">
-                    <img src={companyNameSvg} alt={mentor.company_name || mentor.name} className="company-svg-graphic" />
+                  <div className="wishlist-card-company-text" style={getCompanyStyle(mentor.company_name || mentor.name)}>
+                    {mentor.company_name || mentor.name || "Company Name"}
                   </div>
                   <div className="wishlist-card-divider"></div>
                   <div className="wishlist-card-exp">
@@ -235,37 +226,34 @@ const UnifiedMentorCard = ({
                   <div className="wishlist-card-grad">
                     Graduation year: {mentor.year || mentor.graduation_year || "2023"}
                   </div>
+                  <button 
+                    className="wishlist-card-remove-btn-inner" 
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      if (onRemove) onRemove();
+                    }}
+                  >
+                    Remove
+                  </button>
                 </>
               ) : (
-                <div className="please-select-pref-text">
-                  Please select your Preference {prefNum}
-                </div>
+                <>
+                  <div className="please-select-pref-text">
+                    Please select your Preference {prefNum}
+                  </div>
+                  <button 
+                    className="wishlist-card-remove-btn-inner select-btn" 
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      if (onSelect) onSelect();
+                    }}
+                  >
+                    Select
+                  </button>
+                </>
               )}
             </div>
           </div>
-
-          {/* Remove or Select Button */}
-          {mentor ? (
-            <button 
-              className="wishlist-card-remove-btn pref-card-btn" 
-              onClick={(e) => {
-                e.stopPropagation();
-                if (onRemove) onRemove();
-              }}
-            >
-              Remove
-            </button>
-          ) : (
-            <button 
-              className="wishlist-card-remove-btn pref-card-btn select-btn" 
-              onClick={(e) => {
-                e.stopPropagation();
-                if (onSelect) onSelect();
-              }}
-            >
-              Select
-            </button>
-          )}
         </div>
       </div>
     );
@@ -299,12 +287,12 @@ const UnifiedMentorCard = ({
 
           {/* Content overlaid inside Rectangle 47 */}
           <div className="wishlist-card-content">
-            <div className="wishlist-card-designation">
+            <div className="wishlist-card-designation" style={getDesignationStyle(mentor?.designation || mentor?.work_profile)}>
               {(mentor?.designation || mentor?.work_profile || "Associate Product Manager").toUpperCase()}
             </div>
 
-            <div className="wishlist-card-company">
-              <img src={companyNameSvg} alt={mentor?.company_name || mentor?.name || "Company Name"} className="company-svg-graphic" />
+            <div className="wishlist-card-company-text" style={getCompanyStyle(mentor?.company_name || mentor?.name)}>
+              {mentor?.company_name || mentor?.name || "Company Name"}
             </div>
 
             <div className="wishlist-card-divider"></div>
@@ -316,13 +304,13 @@ const UnifiedMentorCard = ({
             <div className="wishlist-card-grad">
               Graduation year: {mentor?.year || mentor?.graduation_year || "2023"}
             </div>
+
+            {/* 4. Remove Button inside Inner Content Box */}
+            <button className="wishlist-card-remove-btn-inner" onClick={handleDelete}>
+              Remove
+            </button>
           </div>
         </div>
-
-        {/* 4. Remove Button Pill (141px x 41px) */}
-        <button className="wishlist-card-remove-btn" onClick={handleDelete}>
-          Remove
-        </button>
       </div>
     );
   }
