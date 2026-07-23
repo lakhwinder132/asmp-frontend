@@ -1,5 +1,7 @@
 /* Allow scrolling, hide scrollbar visually */
 @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Yeseva+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Abhaya+Libre:wght@400;500;600;700;800&display=swap');
 html, body {
   margin: 0;
   padding: 0;
@@ -57,9 +59,15 @@ body::-webkit-scrollbar {
   flex: 0 0 auto;
   width: 360px;
   height: 380px;
-  background: #A4B4B8;
-  border: 1px solid rgba(255, 255, 255, 0.35);
-  backdrop-filter: blur(8px);
+  background-color: #A4B4B8;
+  border: none; /* or use a solid border below */
+  border-radius: 28px;
+  opacity: 0.85;
+  box-shadow:
+    0 0 0 2px #A4B4B8,
+    0 12px 30px rgba(0,0,0,0.4);
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
   border-radius: 28px;
   padding: 28px 24px;
   scroll-snap-align: center;
@@ -86,25 +94,23 @@ body::-webkit-scrollbar {
   color: #1a1c24;
 }
 
-.mentor-card p {
-  font-size: 1.25rem;
-  font-weight: 700;
-  color: #0a0a0afe;
-  line-height: 1.2;
-  font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-}
 
 
 
 /* Title section styling */
 .title-section {
   margin-bottom: 10px;
+  /* font-family: "Yeseva One", serif; */
+  /* text-transform: uppercase; */
 }
 
 .position-title {
   margin-bottom: 4px !important;
   font-size: 1.4rem;
-  font-weight: 700;
+  text-transform: uppercase;
+  font-family: "Yeseva One", serif;
+  font-size: 22px;
+  font-weight: 300;
   letter-spacing: 0.03em;
   color: #010101 !important;
 }
@@ -113,14 +119,26 @@ body::-webkit-scrollbar {
   margin: 0 !important;
   font-size: 1.15rem;
   font-weight: 700;
-  color: #263d50 !important;
+  color: #324046 !important;
+  font-family: "Yeseva One", serif;
+  font-size: 22px;
+  font-weight: 500;
   opacity: 0.9;
 }
 
+.mentor-card p {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #0a0a0afe;
+  line-height: 1.2;
+  font-family: "Abhaya Libre", serif;
+  font-weight: 800;   /* ExtraBold */
+  font-size: 20px;
+}
 /* Button — darker muted slate pill with a bordered circular arrow, matching the mockup */
 .cssbuttons-io-button {
   background:#3B4854;
-  color: #f0f0f2;
+  color: #A4B4B8;
   font-family: normal;
   padding: 0.35em 3.3em 0.35em 1.2em;
   font-size: 1.3rem;
