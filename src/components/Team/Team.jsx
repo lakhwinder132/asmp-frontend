@@ -18,7 +18,7 @@ import image3 from "../../assets/images/Samruddhi Gavali .jpg";
 import image13 from "/teampage/arush.png";
 import image11 from "../../assets/images/Indrani.jpg.jpeg";
 import image2 from "../../assets/images/Rushikesh.jpg";
-import image7 from "/teampage/vanshika.png";
+import image7 from "../../assets/images/lakhwinder.jpeg";
 import image20 from "/teampage/aditya.png";
 import image21 from "/teampage/vaibhav.png";
 import image22 from "../../assets/images/Gaurav.jpeg";
