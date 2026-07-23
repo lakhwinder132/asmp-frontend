@@ -132,10 +132,10 @@ function BatWithLight({ lengthScale, widthScale, positionNudge }) {
   const { size } = useThree();
 
   const isSmallScreen = size.width < 668;
-  const groupY = isSmallScreen ? 2.459 : 2.478;
+  const groupY = isSmallScreen ? 1.47 : 2.499;
 
   // scale factor now responsive too
-  const scaleFactor = isSmallScreen ? 0.036 : MANUAL_SCALE; // tweak 0.04 to taste
+  const scaleFactor = isSmallScreen ? 0.022 : MANUAL_SCALE; // tweak 0.04 to taste
 
   useFrame(({ clock }) => {
     const t = clock.getElapsedTime();
@@ -158,6 +158,7 @@ function BatWithLight({ lengthScale, widthScale, positionNudge }) {
 
   return (
     <group ref={groupRef} position={[0, groupY, 0]}>
+      
       <primitive object={batScene} scale={scaleFactor} rotation={[0,Math.PI/2,0]} />
 
       <group position={[0, 0.03, 0]}>
@@ -259,3 +260,4 @@ function BatSignalScene() {
 export default BatSignalScene;
 
 useGLTF.preload("/models/gltf/bat_icon.glb");
+

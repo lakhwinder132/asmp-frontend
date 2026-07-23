@@ -16,6 +16,12 @@
   padding-bottom: 4rem;
 }
 
+@media (min-width: 1024px) {
+  .abt {
+    padding-top: 50px;
+  }
+}
+
 .abt {
   display: flex;
   justify-content: center;

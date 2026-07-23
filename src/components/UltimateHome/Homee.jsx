@@ -1,6 +1,7 @@
 import React from 'react';
 import About from "../About/About";
 import Home from "../Home/Home";
+import Event from "../events/events"
 import Faq from "../Faq";
 import TestimonialSlider from "../TestimonialSlider/Testimonial";
 import CursorAnimation from "../CursorAnimation";
@@ -78,6 +79,7 @@ export default function Homee() {
 
           <Home />
           <About />
+            <Event />
           <div id="testimonials" />
           <TestimonialSlider />
           <div id="faq" />

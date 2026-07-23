@@ -72,7 +72,7 @@ const EventImages = () => {
       <div
         className='main-container-events'
         style={{
-          backgroundImage: "linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url('/event_background.png')",
+          backgroundColor: "transparent",
           backgroundSize: "cover",
           backgroundPosition: "center",
           backgroundRepeat: "no-repeat",

@@ -26,7 +26,7 @@ function App() {
           <Route path="/profile" element={<Profile />} />
           <Route path="/toggle" element={<Toggle />} />
           <Route path="/wishlist" element={<WishList />} />
-          <Route path="/events" element={<EventImages />} />
+          <Route path="/events" element={<div id="evetns"><EventImages /></div>} />
           <Route path="/sneakPeeks" element={<Sneakpeak />} />
         </Routes>
       </Router>

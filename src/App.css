@@ -14,3 +14,11 @@ html, body{
     width: 100%;
     overflow-x: hidden;
 }
+
+#evetns{
+    background-image: url("../src/assets/images/eventback.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    min-height: 100vh;
+}
