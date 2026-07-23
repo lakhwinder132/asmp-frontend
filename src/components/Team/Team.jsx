@@ -19,8 +19,8 @@ import image13 from "/teampage/arush.png";
 import image11 from "../../assets/images/Indrani.jpg.jpeg";
 import image2 from "../../assets/images/Rushikesh.jpg";
 import image7 from "../../assets/images/lakhwinder.jpeg";
-import image20 from "/teampage/aditya.png";
-import image21 from "/teampage/vaibhav.png";
+import image20 from "../../assets/images/img.jpg";
+import image21 from "../../assets/images/Geetanjali.png";
 import image22 from "../../assets/images/Gaurav.jpeg";
 import image23 from "../../assets/images/Krish.png";
 // Design Team
