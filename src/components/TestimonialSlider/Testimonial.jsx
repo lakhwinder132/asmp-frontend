@@ -54,33 +54,35 @@ const TestimonialSlider = () => {
 
   return (
     <div
-    ref={testimonialRef}
-    id="testimonials"
-    style={{
-      background:"transparent",
-      backgroundSize: "cover",
-      backgroundPosition: "center",
-      backgroundRepeat: "no-repeat",
-      minHeight: "100vh",
-      width: "100%",
-    }}
-   >
-      <div
-        className="testimonialHeading"
-        style={{
-          marginTop: "2%",
-          fontSize: "clamp(2rem, 4vw, 3.5rem)",
-          fontWeight: "700",
-          lineHeight: "1.2",
-          textAlign: "center",
-          marginLeft: "5%",
-          marginRight: "5%",
-          color: "rgba(255, 255, 255, 1)",
-        }}
-      >
-        TESTIMONIALS
-      </div>
-      <div className="slider-container">
+      ref={testimonialRef}
+      id="testimonials"
+      style={{
+        background: "transparent",
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+        minHeight: "100vh",
+        width: "100%",
+      }}
+    >
+      <div className="testimonials-panel">
+        <div
+          className="testimonialHeading"
+          id="TestimoinalHeading"
+          style={{
+            marginTop: "2%",
+            fontSize: "clamp(1.5rem, 3vw, 2.5rem)",
+            fontWeight: "700",
+            lineHeight: "1.2",
+            textAlign: "center",
+            marginLeft: "5%",
+            marginRight: "5%",
+            color: "rgba(255, 255, 255, 1)",
+          }}
+        >
+          TESTIMONIALS
+        </div>
+        <div className="slider-container">
         <Swiper
           modules={[Navigation, Pagination]}
           spaceBetween={30}
@@ -93,111 +95,35 @@ const TestimonialSlider = () => {
           breakpoints={{
             1300: { slidesPerView: 3, spaceBetween: 50 },
             1024: { slidesPerView: 3, spaceBetween: 40 },
-            768:  { slidesPerView: 2, spaceBetween: 30 },
-            480:  { slidesPerView: 1, spaceBetween: 20 },
-            0:    { slidesPerView: 1, spaceBetween: 15 },
+            768: { slidesPerView: 2, spaceBetween: 30 },
+            480: { slidesPerView: 1, spaceBetween: 20 },
+            0: { slidesPerView: 1, spaceBetween: 15 },
           }}
         >
           {testimonials.map((testimonial, index) => (
             <SwiperSlide key={index}>
-              <div style={styles.testimonialItem} >
-                <div style={styles.overContainer} >
-                  <div
-                    className="name-heading"
-                    style={{
-                      width: "100%",
-                      color: "white",
-                    }}
-                    id="TestimonialHeading"
-                  >
-                    {testimonial.name}
-                  </div>
-                  <div
-                    className="pic-content"
-                    style={{
-                      height: "auto",
-                      minHeight: "200px",
-                      width: "100%",
-                      display: "flex",
-                      gap: "10px"
-                    }}
-                  >
-                    <div
-                      className="image"
-                      style={{
-                        height: "80px",
-                        width: "80px",
-                        minWidth: "80px",
-                        display: "flex",
-                        justifyContent: "center",
-                        alignItems: "center",
-                        flexShrink: 0,
-                      }}
-                    >
-                      <img
-                        src={testimonial.image}
-                        alt={testimonial.name}
-                        style={{
-                          width: "100%",
-                          height: "200%",
-                          objectFit: "cover",
-                          borderRadius: "0%",
-                          position: "relative",
-                          bottom: "-80px"
-
-                        }}
-                      />
-                    </div>
-                    <div
-                      className="testimonal-content"
-                      style={{
-                        color: "white",
-                        flex: 1,
-                        minWidth: "0",
-                        wordWrap: "break-word",
-                        overflowWrap: "break-word"
-                      }}
-                      id="TestimonialContent"
-                    >
-                      {testimonial.feedback}
-                    </div>
-                  </div>
+              <div className="testimonial-card">
+                <div className="avatar-wrapper">
+                  <img
+                    src={testimonial.image}
+                    alt={testimonial.name}
+                    className="avatar-img"
+                  />
+                </div>
+                <div className="name-heading" id="TestimonialHeading">
+                  {testimonial.name}
+                </div>
+                <div className="testimonal-content" id="TestimonialContent">
+                  {testimonial.feedback}
                 </div>
               </div>
             </SwiperSlide>
           ))}
         </Swiper>
+        </div>
       </div>
     </div>
   );
-};
-
-const styles = {
-  testimonialItem: {
-    height: "auto",
-    minHeight: "314px",
-    width: "100%",
-    maxWidth: "428px",
-    margin: "0 auto",
-    textAlign: "left",
-    background: "linear-gradient(90deg, rgba(0, 0, 0, 0.58) 0%, rgba(89, 84, 84, 0.58) 43.5%, rgba(0, 0, 0, 0.58) 87.5%, rgba(0, 0, 0, 0.58) 100%)",
-    backdropFilter: "blur(1px)",
-    WebkitBackdropFilter: "blur(10px)",
-    borderRadius: "7px",
-    border: "4px solid rgba(255, 255, 255, 1)",
-    overflow: "hidden",
-    padding: "20px",
-    boxShadow: "0 8px 32px 0 rgba(31, 38, 135, 0.37)",
-    boxSizing: "border-box",
-  },
-
-  overContainer: {
-    height: "100%",
-    width: "100%",
-    display: "flex",
-    flexDirection: "column",
-    gap: "5px",
-  },
 };
 
 export default TestimonialSlider;
