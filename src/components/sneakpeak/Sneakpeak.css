@@ -1,7 +1,7 @@
 /* Allow scrolling, hide scrollbar visually */
 @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@700;800&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Yeseva+One&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Abhaya+Libre:wght@400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Oxanium:wght@200;300;400;500;600;700;800&display=swap');
+
 html, body {
   margin: 0;
   padding: 0;
@@ -98,48 +98,56 @@ body::-webkit-scrollbar {
 
 
 /* Title section styling */
+@font-face {
+  font-family: "Exima Geometric";
+  src: url("./Exima Geometric.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "BatmanForeverAlternate";
+  src: url("./batmfa__.ttf") format("truetype");
+  font-weight: normal;
+  /* color: #324046; */
+}
+
 .title-section {
   margin-bottom: 10px;
-  /* font-family: "Yeseva One", serif; */
-  /* text-transform: uppercase; */
+  
 }
+
 
 .position-title {
   margin-bottom: 4px !important;
-  font-size: 1.4rem;
+  font-size: 18px;
   text-transform: uppercase;
-  font-family: "Yeseva One", serif;
-  font-size: 22px;
-  font-weight: 300;
+  font-family: "Exima Geometric", sans-serif;
   letter-spacing: 0.03em;
   color: #010101 !important;
 }
 
 .company-name {
   margin: 0 !important;
-  font-size: 1.15rem;
-  font-weight: 700;
+  font-size: 20px;
+  font-family: "BatmanForeverAlternate", sans-serif;
   color: #324046 !important;
-  font-family: "Yeseva One", serif;
-  font-size: 22px;
-  font-weight: 500;
+  
   opacity: 0.9;
 }
 
 .mentor-card p {
-  font-size: 1.25rem;
-  font-weight: 700;
+  font-family: "Oxanium", sans-serif;
+  font-size: 17px;
+  font-weight: 400;
   color: #0a0a0afe;
-  line-height: 1.2;
-  font-family: "Abhaya Libre", serif;
-  font-weight: 800;   /* ExtraBold */
-  font-size: 20px;
+  /* line-height: 1.2; */
+  
 }
 /* Button — darker muted slate pill with a bordered circular arrow, matching the mockup */
 .cssbuttons-io-button {
   background:#3B4854;
   color: #A4B4B8;
-  font-family: normal;
+  font-family: "Oxanium", sans-serif;
   padding: 0.35em 3.3em 0.35em 1.2em;
   font-size: 1.3rem;
   font-weight: 600;
