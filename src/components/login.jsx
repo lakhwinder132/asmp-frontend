@@ -3,6 +3,8 @@ import "../styles/Login.css";
 import { Navigate } from "react-router-dom";
 import UseLogin from "../hooks/useLogin";
 import logo from "../assets/images/mk.png";
+import group25Svg from "../assets/images/Group 25.svg";
+import bgImg from "../assets/images/login.png";
 import loginButtonBg from "../assets/images/loginbuttonbg.png";
 import loginbutton from "../assets/images/loginbutton.png";
 import CursorAnimation from "./CursorAnimation";
@@ -142,7 +144,11 @@ function Login() {
   ) : (
     <>
       <CursorAnimation />
-      <div className="form-container">
+      <div className="login-page form-container">
+        <div className="bg-container">
+          <img src={bgImg} className="register-bg-img" alt="" />
+          <img src={group25Svg} className="batman-group25-img" alt="" />
+        </div>
         <div className="image-containerr">
           <img src={logo} alt="Logo" className="logoo" />
         </div>
@@ -169,7 +175,11 @@ function Login() {
           </span>
         </div>
 
-        <div style={{ color: "white" }}>{error}</div>
+        {error && (
+          <div style={{ color: "#FF6B6B", background: "rgba(255, 107, 107, 0.15)", border: "1px solid #FF6B6B", padding: "8px 16px", borderRadius: "10px", margin: "10px 0", fontSize: "14px", fontFamily: "Space Grotesk, sans-serif" }}>
+            ⚠️ {error}
+          </div>
+        )}
         <button
           onMouseEnter={() => sethover(true)}
           onMouseLeave={() => sethover(false)}

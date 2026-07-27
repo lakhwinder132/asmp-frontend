@@ -9,7 +9,7 @@ import Lottie from "lottie-react";
 import animationData from "../../assets/scroll.json";
 import Footer from "../Footer/Footer";
 import "./Homee.css";
-import BAT from "./../threeshadowmap/page.jsx";
+// import BAT from "./../threeshadowmap/page.jsx";
 
 export default function Homee() {
   const scrollAnimation = () => {
@@ -30,7 +30,7 @@ export default function Homee() {
           overflow: "hidden",
         }}
       >
-        {/* BAT Background Layer */}
+        {/* BAT Background Layer
         <div
           style={{
             position: "absolute",
@@ -43,7 +43,7 @@ export default function Homee() {
           }}
         >
           <BAT />
-        </div>
+        </div> */}
 
         {/* Content */}
         <div

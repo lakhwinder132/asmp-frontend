@@ -70,8 +70,10 @@ const TestimonialSlider = () => {
         className="testimonial-background"
         style={{
           backgroundImage: `url(${testimonialBg})`,
+          backgroundPosition: "left center",
+          backgroundSize: "cover",
         }}
-      ></div>
+      />
 
   <div className="testimonials-panel"></div>
       <div className="testimonials-panel">

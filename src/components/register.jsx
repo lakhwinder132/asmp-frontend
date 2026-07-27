@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import logo from "../assets/images/mk.png";
-import loginButtonBg from "../assets/images/registerbat.png";
+import group25Svg from "../assets/images/Group 25.svg";
+import bgImg from "../assets/images/login.png";
 import "../styles/Register.css";
 import Select from "react-select";
 import UseSignup from "../hooks/useSignup";
@@ -27,27 +28,38 @@ function Register() {
     control: (base, state) => ({
       ...base,
       width: "100%",
-      height: "58px",
-      background: "rgba(255, 255, 255, 0.1)",
-      borderRadius: state.isFocused ? "10px 10px 0 0" : "10px",
+      minHeight: "unset",
+      background: "rgba(164, 180, 184, 0.45)",
+      backdropFilter: "blur(8px)",
+      borderRadius: state.isFocused ? "20px 20px 0 0" : "20px",
       border: "none",
       boxShadow: "none",
-      marginBottom: "20px",
-      paddingLeft: "20px",
+      marginBottom: "10px",
+      paddingLeft: "0px",
+      paddingRight: "0px",
+      alignItems: "center",
       "&:hover": {
         borderColor: "transparent",
       },
     }),
+    valueContainer: (base) => ({
+      ...base,
+      height: "100%",
+      margin: "0",
+      display: "flex",
+      alignItems: "center",
+    }),
     singleValue: (provided) => ({
       ...provided,
       color: "white",
-      fontSize: "22px",
-      fontFamily: "'Fraunces', serif",
+      fontFamily: "'Space Grotesk', serif",
+      margin: "0",
     }),
     input: (base) => ({
       ...base,
       color: "white",
-      height: "40px",
+      margin: "0",
+      padding: "0",
     }),
     indicatorSeparator: (base) => ({
       ...base,
@@ -57,25 +69,30 @@ function Register() {
       ...base,
       color: "white",
     }),
+    indicatorsContainer: (base) => ({
+      ...base,
+      height: "100%",
+    }),
     menu: (base) => ({
       ...base,
-      width: "578px",
-      borderRadius: "0 0 10px 10px",
+      width: "100%",
+      borderRadius: "0 0 20px 20px",
       marginTop: "-5px",
-      background: "rgba(0, 0, 0, 0.9)",
+      background: "rgba(0, 0, 0, 0.95)",
       border: "none",
-      boxShadow: "none",
+      boxShadow: "0 8px 16px rgba(0, 0, 0, 0.5)",
+      zIndex: 99,
     }),
     menuList: (base) => ({
       ...base,
       padding: 0,
-      borderRadius: "0 0 10px 10px",
+      borderRadius: "0 0 20px 20px",
     }),
     placeholder: (base) => ({
       ...base,
       color: "rgba(255, 255, 255, 0.7)",
-      fontSize: "22px",
-      fontFamily: "'Fraunces', serif",
+      fontFamily: "'Space Grotesk', serif",
+      margin: "0",
     }),
     option: (base, { isFocused, isSelected }) => ({
       ...base,
@@ -85,9 +102,8 @@ function Register() {
         ? "rgba(189, 4, 231, 0.3)"
         : "transparent",
       color: "white",
-      fontSize: "22px",
-      // fontFamily: "'Fraunces', serif",
-      padding: "15px 20px",
+      fontFamily: "'Space Grotesk', serif",
+      padding: "12px 20px",
     }),
   };
 
@@ -103,8 +119,6 @@ function Register() {
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [isTokenValid, setIsTokenValid] = useState(true);
   const [isCheckingToken, setIsCheckingToken] = useState(true);
-  const [hover,sethover]=useState(false);
-  
 
   const navigate = useNavigate();
 
@@ -288,8 +302,11 @@ function Register() {
   ) : (
     <>
       <CursorAnimation />
-      <div style={{ height: "10vh" }}></div>
-      <div className="form-container">
+      <div className="register-page form-container">
+        <div className="bg-container">
+          <img src={bgImg} className="register-bg-img" alt="" />
+          <img src={group25Svg} className="batman-group25-img" alt="" />
+        </div>
         <div className="image-containerr">
           <img src={logo} alt="Logo" className="logoo" />
         </div>
@@ -303,36 +320,13 @@ function Register() {
             className="input-field"
           />
 
-          {/* <input
+          <input
             type="text"
             placeholder="LDAP ID"
             value={emailId}
             onChange={handleEmailIdChange}
             className="input-field"
-          /> */}
-          <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
-            <input
-              type="text"
-              placeholder="LDAP ID"
-              value={emailId}
-              onChange={handleEmailIdChange}
-              className="input-field"
-              style={{ flex: "1" }}
-            />
-            <div
-              className="input-field" 
-              style={{
-                padding: "0 12px",
-                borderRadius: "6px",
-                height: "58px",
-                color: "#d4d4d6",
-                display: "flex",
-                alignItems: "center"
-              }}
-            >
-              @iitb.ac.in
-            </div>
-          </div>
+          />
 
           <input
             type="text"
@@ -347,6 +341,7 @@ function Register() {
             styles={customStyles}
             placeholder="DEPARTMENT"
             onChange={handleDepartmentChange}
+            className="react-select-container"
             classNamePrefix="react-select"
           />
 
@@ -355,6 +350,7 @@ function Register() {
             styles={customStyles}
             placeholder="DEGREE"
             onChange={handleDegreeChange}
+            className="react-select-container"
             classNamePrefix="react-select"
           />
 
@@ -412,8 +408,6 @@ function Register() {
           )}
 
           <button
-          onMouseEnter={() => sethover(true)}
-          onMouseLeave={() => sethover(false)}
             className={
               canRegister()
                 ? "register-button"
@@ -422,7 +416,7 @@ function Register() {
             onClick={handleRegistration}
             disabled={!canRegister() || loading}
           >
-            {loading ? "REGISTERING..." : hover ? (<div  style={{height:"54px",width:"578",backgroundImage:`url(${loginButtonBg})`}}></div>):"REGISTER"}
+            {loading ? "REGISTERING..." : "REGISTER"}
           </button>
 
           <div className="login-link">
