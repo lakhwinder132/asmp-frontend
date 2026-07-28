@@ -1,5 +1,4 @@
-import React, { useEffect, useRef } from "react";
-
+import React, { useEffect, useRef, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
 
@@ -38,6 +37,8 @@ const testimonials = [
 
 const TestimonialSlider = () => {
   const testimonialRef = useRef(null);
+  const [prevEl, setPrevEl] = useState(null);
+  const [nextEl, setNextEl] = useState(null);
 
   useEffect(() => {
     const scrollToTestimonial = () => {
@@ -47,86 +48,76 @@ const TestimonialSlider = () => {
       });
     };
 
-    window.addEventListener(
-      "scrollToTestimonials",
-      scrollToTestimonial
-    );
+    window.addEventListener("scrollToTestimonials", scrollToTestimonial);
 
     return () => {
-      window.removeEventListener(
-        "scrollToTestimonials",
-        scrollToTestimonial
-      );
+      window.removeEventListener("scrollToTestimonials", scrollToTestimonial);
     };
   }, []);
 
   return (
-    <section
-      ref={testimonialRef}
-      id="testimonials"
-      className="testimonials-section"
-    >
+    <section ref={testimonialRef} id="testimonials" className="testimonials-section">
       <div
         className="testimonial-background"
         style={{
           backgroundImage: `url(${testimonialBg})`,
-          backgroundPosition: "left center",
-          backgroundSize: "cover",
         }}
       />
 
-  <div className="testimonials-panel"></div>
-      <div className="testimonials-panel">
-        <h2 className="testimonial-heading">
-          TESTIMONIALS
-        </h2>
+      <div className="testimonial-outer-box">
+        <h2 className="testimonial-heading">TESTIMONIALS</h2>
 
-        <div className="testimonial-slider-container">
-          <div className="testimonial-slider-wrapper">
-            <Swiper
-              className="testimonials-swiper"
-              modules={[Navigation]}
-              navigation
-              loop
-              centeredSlides
-              grabCursor
-              slidesPerView={1}
-              spaceBetween={18}
-              breakpoints={{
-                640: {
-                  slidesPerView: 2,
-                  spaceBetween: 18,
-                },
-                1024: {
-                  slidesPerView: 3,
-                  spaceBetween: 22,
-                },
-              }}
-            >
-            {testimonials.map((testimonial) => (
-              <SwiperSlide key={testimonial.name}>
+        <div className="testimonials-swiper">
+          <Swiper
+            modules={[Navigation]}
+            navigation={{
+              prevEl,
+              nextEl,
+            }}
+            loop={true}
+            centeredSlides={true}
+            grabCursor={true}
+            speed={500}
+            slidesPerView={1}
+            spaceBetween={20}
+            breakpoints={{
+              640: { slidesPerView: 1.2, spaceBetween: 20 },
+              768: { slidesPerView: 2.1, spaceBetween: 25 },
+              1024: { slidesPerView: 3, spaceBetween: 25 },
+            }}
+          >
+            {testimonials.map((testimonial, idx) => (
+              <SwiperSlide key={idx}>
                 <article className="testimonial-card">
                   <div className="testimonial-avatar">
-                    <img
-                      src={testimonial.image}
-                      alt={testimonial.name}
-                    />
+                    <img src={testimonial.image} alt={testimonial.name} />
                   </div>
-
-                  <h3 className="testimonial-name">
-                    {testimonial.name}
-                  </h3>
-
-                  <p className="testimonial-content">
-                    {testimonial.feedback}
-                  </p>
+                  <h3 className="testimonial-name">{testimonial.name}</h3>
+                  <p className="testimonial-content">{testimonial.feedback}</p>
                 </article>
               </SwiperSlide>
             ))}
           </Swiper>
+
+          {/* Navigation Buttons linked via state ref */}
+          <div className="custom-nav-wrapper">
+            <button
+              ref={(node) => setPrevEl(node)}
+              className="custom-prev"
+              aria-label="Previous slide"
+            >
+              &#10094;
+            </button>
+            <button
+              ref={(node) => setNextEl(node)}
+              className="custom-next"
+              aria-label="Next slide"
+            >
+              &#10095;
+            </button>
+          </div>
         </div>
       </div>
-    </div>
     </section>
   );
 };
