@@ -35,7 +35,7 @@ const rawTestimonials = [
   },
 ];
 
-// Array duplicate kiya taaki 3-card centered loop right & left side se bilkul bhara hua dikhe
+// Array duplicate kiya taaki 3-card centered loop bilkul filled dikhe
 const testimonials = [...rawTestimonials, ...rawTestimonials];
 
 const TestimonialSlider = () => {
@@ -103,7 +103,7 @@ const TestimonialSlider = () => {
             ))}
           </Swiper>
 
-          {/* Custom Navigation Buttons */}
+          {/* Navigation Buttons linked via state ref */}
           <div className="custom-nav-wrapper">
             <button
               ref={(node) => setPrevEl(node)}
