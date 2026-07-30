@@ -1,7 +1,4 @@
-/* Custom Font Stack for High Elegance / Serif Design Matching Nav Headers */
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
-
-/* Section Container */
+/* Section Base */
 .testimonials-section {
   position: relative;
   width: 100%;
@@ -26,27 +23,27 @@
   z-index: 1;
 }
 
-/* Outer Glass Container - Overflow Hidden prevents left/right shadow leaking */
+/* Outer Glass Container */
 .testimonial-outer-box {
   position: relative;
   z-index: 2;
   width: 100%;
-  max-width: 1050px;
+  max-width: 1100px;
   border-radius: 20px;
-  background: rgba(26, 35, 50, 0.45) !important;
-  border: 1px solid rgba(148, 163, 184, 0.25) !important;
+  background: rgba(26, 35, 50, 0.45);
+  border: 1px solid rgba(148, 163, 184, 0.25);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   padding: 35px 25px 25px 25px;
   box-sizing: border-box;
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
-  overflow: hidden !important; /* Left side shadow/card clipping fix */
+  overflow: hidden;
 }
 
-/* 1. TESTIMONIALS HEADING FONT (Matching Image 1) */
+/* Header Typography */
 #testimonials .testimonial-heading,
 .testimonial-outer-box .testimonial-heading {
-  font-family: 'Playfair Display', Georgia, "Times New Roman", serif !important;
+  font-family: 'Playfair Display', Exima Geometric !important;
   color: #ffffff !important;
   font-size: 2.3rem !important;
   font-weight: 700 !important;
@@ -56,37 +53,38 @@
   text-transform: uppercase !important;
 }
 
+/* Swiper Outer Area - Space given for elevated active card */
 .testimonials-swiper {
   position: relative;
   width: 100%;
-  padding-bottom: 55px;
+  padding-top: 20px !important;    /* Active card cut hone se rokne ke liye */
+  padding-bottom: 55px !important;
 }
 
 .swiper {
-  overflow: hidden !important;
+  overflow: visible !important;
+  width: 100% !important;
 }
 
-/* Slide Scale & Transition */
 .swiper-slide {
   display: flex;
   justify-content: center;
   align-items: center;
-  opacity: 0.45;
-  transform: scale(0.88);
+  opacity: 0.5;
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   height: auto;
 }
 
 .swiper-slide-active {
-  opacity: 1;
-  transform: scale(1.04);
-  z-index: 3;
+  opacity: 1 !important;
+  z-index: 5 !important;
 }
 
-/* Card Outer Base */
+/* Base Card Styling */
 .testimonial-card {
   width: 100%;
-  min-height: 320px;
+  max-width: 320px;
+  min-height: 330px;
   background: rgba(15, 23, 42, 0.55);
   border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: 18px;
@@ -96,17 +94,18 @@
   align-items: center;
   text-align: center;
   box-sizing: border-box;
-  transition: all 0.3s ease;
+  transition: all 0.35s ease;
 }
 
-/* Active Center Card Glow & Contrast */
+/* Elevated Centre Card Styling */
 .swiper-slide-active .testimonial-card {
-  border: 1px solid rgba(255, 255, 255, 0.35);
-  background: rgba(15, 23, 42, 0.85);
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.6);
+  transform: translateY(-12px) scale(1.02) !important;
+  border: 1px solid rgba(255, 255, 255, 0.35) !important;
+  background: rgba(15, 23, 42, 0.88) !important;
+  box-shadow: 0 16px 35px rgba(0, 0, 0, 0.6) !important;
 }
 
-/* Profile Avatar */
+/* Avatar Frame */
 .testimonial-avatar {
   width: 80px;
   height: 80px;
@@ -123,11 +122,11 @@
   object-fit: cover;
 }
 
-/* 2. PERSON NAME FONT (SARAH JOHNSON / PREKSHA PC Style) */
+/* Name Font */
 #testimonials .testimonial-name,
 .testimonial-card .testimonial-name {
-  font-family: 'Playfair Display', Georgia, "Times New Roman", serif !important;
-  font-size: 1.2rem !important;
+  font-family: 'Playfair Display', Georgia, serif !important;
+  font-size: 1.15rem !important;
   font-weight: 700 !important;
   letter-spacing: 1.5px !important;
   text-transform: uppercase !important;
@@ -135,10 +134,10 @@
   color: #ffffff !important;
 }
 
-/* 3. TESTIMONIAL TEXT CONTENT FONT */
+/* Content Font */
 #testimonials .testimonial-content,
 .testimonial-card .testimonial-content {
-  font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif !important;
+  font-family: 'Plus Jakarta Sans', system-ui, sans-serif !important;
   font-size: 0.83rem !important;
   font-weight: 400 !important;
   line-height: 1.6 !important;
@@ -153,11 +152,11 @@
 }
 
 .swiper-slide-active .testimonial-content {
-  color: #f8fafc !important;
+  color: #ffffff !important;
   font-weight: 500 !important;
 }
 
-/* Navigation Buttons Styling */
+/* Navigation Arrows */
 .custom-nav-wrapper {
   position: absolute;
   bottom: 0;
@@ -193,7 +192,6 @@
   box-shadow: 0 0 12px rgba(255, 255, 255, 0.5);
 }
 
-/* Responsive Scaling */
 @media (max-width: 640px) {
   .testimonial-outer-box {
     padding: 20px 12px 20px 12px;
@@ -214,48 +212,4 @@
     -webkit-line-clamp: 5;
     line-clamp: 5;
   }
-}
-/* Outer Glass Box - Left Shadow and Overflow Fix */
-.testimonial-outer-box {
-  overflow: hidden !important;
-}
-
-/* Headings & Person Name - Playfair Display */
-#testimonials .testimonial-heading,
-#testimonials .testimonial-name,
-.testimonial-card .testimonial-name {
-  font-family: 'Playfair Display', Georgia, serif !important;
-}
-
-/* Testimonial Feedback Text - Plus Jakarta Sans */
-#testimonials .testimonial-content,
-.testimonial-card .testimonial-content {
-  font-family: 'Plus Jakarta Sans', sans-serif !important;
-}
-
-/* Active Slide Styling - Pop Out & Shift UP Effect */
-.swiper-slide-active {
-  opacity: 1 !important;
-  z-index: 5 !important;
-}
-
-/* Centre/Active Card Shift Up */
-.swiper-slide-active .testimonial-card {
-  transform: translateY(-12px) scale(1.03) !important; /* -12px card ko upar lift karega */
-  border: 1px solid rgba(255, 255, 255, 0.35) !important;
-  background: rgba(15, 23, 42, 0.85) !important;
-  box-shadow: 0 16px 35px rgba(0, 0, 0, 0.6) !important;
-}
-
-/* Swiper wrapper me padding add karein taaki upar space bane */
-.testimonials-swiper {
-  position: relative;
-  width: 100%;
-  padding-top: 15px !important;    /* Upar se space di taaki card na kate */
-  padding-bottom: 55px !important;
-}
-
-/* Swiper overflow overflow visible karein */
-.swiper {
-  overflow: visible !important;
 }

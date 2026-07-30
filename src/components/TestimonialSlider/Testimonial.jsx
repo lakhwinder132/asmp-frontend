@@ -8,7 +8,7 @@ import "./swiper-custom.css";
 
 import testimonialBg from "../../assets/Testimonial.png";
 
-const testimonials = [
+const rawTestimonials = [
   {
     name: "Preksha PC",
     image: "/testimonials/image1.jpg",
@@ -34,6 +34,9 @@ const testimonials = [
       "ASMP program was a game-changer for me. The experience with my mentor was incredibly helpful. He was approachable, quick to respond, and always offered clear, practical advice. Even in brief interactions, he made an effort to support and guide me. His mentorship played a meaningful role in my learning, and I'm truly grateful for it.",
   },
 ];
+
+// Array duplicate kiya taaki 3-card centered loop right & left side se bilkul bhara hua dikhe
+const testimonials = [...rawTestimonials, ...rawTestimonials];
 
 const TestimonialSlider = () => {
   const testimonialRef = useRef(null);
@@ -76,13 +79,14 @@ const TestimonialSlider = () => {
             }}
             loop={true}
             centeredSlides={true}
+            initialSlide={1}
             grabCursor={true}
             speed={500}
             slidesPerView={1}
             spaceBetween={20}
             breakpoints={{
-              640: { slidesPerView: 1.2, spaceBetween: 20 },
-              768: { slidesPerView: 2.1, spaceBetween: 25 },
+              640: { slidesPerView: 1.5, spaceBetween: 20 },
+              768: { slidesPerView: 2.2, spaceBetween: 20 },
               1024: { slidesPerView: 3, spaceBetween: 25 },
             }}
           >
@@ -99,7 +103,7 @@ const TestimonialSlider = () => {
             ))}
           </Swiper>
 
-          {/* Navigation Buttons linked via state ref */}
+          {/* Custom Navigation Buttons */}
           <div className="custom-nav-wrapper">
             <button
               ref={(node) => setPrevEl(node)}
