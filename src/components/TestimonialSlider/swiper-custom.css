@@ -232,3 +232,30 @@
 .testimonial-card .testimonial-content {
   font-family: 'Plus Jakarta Sans', sans-serif !important;
 }
+
+/* Active Slide Styling - Pop Out & Shift UP Effect */
+.swiper-slide-active {
+  opacity: 1 !important;
+  z-index: 5 !important;
+}
+
+/* Centre/Active Card Shift Up */
+.swiper-slide-active .testimonial-card {
+  transform: translateY(-12px) scale(1.03) !important; /* -12px card ko upar lift karega */
+  border: 1px solid rgba(255, 255, 255, 0.35) !important;
+  background: rgba(15, 23, 42, 0.85) !important;
+  box-shadow: 0 16px 35px rgba(0, 0, 0, 0.6) !important;
+}
+
+/* Swiper wrapper me padding add karein taaki upar space bane */
+.testimonials-swiper {
+  position: relative;
+  width: 100%;
+  padding-top: 15px !important;    /* Upar se space di taaki card na kate */
+  padding-bottom: 55px !important;
+}
+
+/* Swiper overflow overflow visible karein */
+.swiper {
+  overflow: visible !important;
+}
